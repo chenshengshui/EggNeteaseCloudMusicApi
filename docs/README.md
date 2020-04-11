@@ -1,33 +1,15 @@
-# hackernews-async-ts
+# EggNeteaseCloudMusicApi
 
-[Hacker News](https://news.ycombinator.com/) showcase using typescript && egg
+网易云音乐 EggJs 版 API
 
-## QuickStart
+## 工作原理
 
-### Development
+跨站请求伪造 (CSRF), 伪造请求头 , 调用官方 API
 
-```bash
-$ npm i
-$ npm run dev
-$ open http://localhost:7001/
-```
+## 特别声明
 
-Don't tsc compile at development mode, if you had run `tsc` then you need to `npm run clean` before `npm run dev`.
+!> 本项目不提供线上 demo，请不要轻易信任使用他人提供的公开服务，以免发生安全问题,泄露自己的账号和密码
 
-### Deploy
+!> 部分接口如登录接口不能调用太频繁 , 否则可能会触发 503 错误或者 ip 高频错误 ,若需频繁调用 , 需要准备 IP 代理池 (更新:已加入缓存机制,但仍需注意).
 
-```bash
-$ npm run tsc
-$ npm start
-```
-
-### Npm Scripts
-
-- Use `npm run lint` to check code style
-- Use `npm test` to run unit test
-- se `npm run clean` to clean compiled js at development mode once
-
-### Requirement
-
-- Node.js 8.x
-- Typescript 2.8+
+!> 本项目仅供学习使用,请尊重版权，请勿利用此项目从事商业行为
