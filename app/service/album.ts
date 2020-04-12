@@ -25,4 +25,19 @@ export default class Album extends Service {
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );
   }
+
+  /**
+   * @description 获取最新专辑
+   */
+  public async getLatestAlbum(): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+
+    return createRequest(
+      'POST',
+      `https://music.163.com/api/discovery/newAlbum`,
+      {},
+      { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
 }

@@ -11,4 +11,13 @@ export default class ArtistController extends Controller {
       albumId,
     });
   }
+
+  /**
+   *
+   */
+  public async getLatestAlbum() {
+    const { ctx } = this;
+
+    ctx.body = await ctx.service.album.getLatestAlbum();
+  }
 }

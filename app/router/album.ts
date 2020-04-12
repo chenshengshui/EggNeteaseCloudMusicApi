@@ -7,4 +7,5 @@ export default (app: Application) => {
     '/album/:albumId/detail/dynamic',
     controller.album.getAlbumDynamicInfo
   );
+  router.get('/album/latest', controller.album.getLatestAlbum);
 };
