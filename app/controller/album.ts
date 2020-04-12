@@ -7,10 +7,14 @@ export default class ArtistController extends Controller {
    */
   public async getAlbumDynamicInfo() {
     const { ctx } = this;
-    const { albumId } = ctx.query;
-    ctx.body = await ctx.service.album.getAlbumDynamicInfo({
-      albumId,
-    });
+    const { albumId } = ctx.params;
+    try {
+      ctx.body = await ctx.service.album.getAlbumDynamicInfo({
+        albumId,
+      });
+    } catch (error) {
+      console.log(error, 'sdsds');
+    }
   }
 
   /**
