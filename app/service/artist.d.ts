@@ -8,7 +8,7 @@ export interface iGetArtistInfo {
   artistId: string;
 }
 
-export interface iGetArtistAlbums extends iPageParams {
+export interface iGetArtistArts extends iPageParams {
   artistId: string;
 }
 

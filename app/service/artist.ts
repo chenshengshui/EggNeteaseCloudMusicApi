@@ -1,5 +1,5 @@
 import { Service } from 'egg';
-import { iGetArtistList, iGetArtistInfo, iGetArtistAlbums } from './artist.d';
+import { iGetArtistList, iGetArtistInfo, iGetArtistArts } from './artist.d';
 import createRequest from '../utils/createRequest';
 
 /**
@@ -65,13 +65,43 @@ export default class Artist extends Service {
     artistId,
     page,
     pageSize,
-  }: iGetArtistAlbums): Promise<any> {
+  }: iGetArtistArts): Promise<any> {
     const { ctx } = this;
     const query = ctx.request.query;
     return createRequest(
       'POST',
       `https://music.163.com/weapi/artist/albums/${artistId}`,
       {
+        limit: pageSize,
+        offset: page,
+        total: true,
+      },
+      {
+        crypto: 'weapi',
+        cookie: query.cookie,
+        proxy: query.proxy,
+      }
+    );
+  }
+
+  /**
+   * @description 获取歌手MV
+   * @param artistId 歌手ID
+   * @param page
+   * @param pageSize
+   */
+  public async getArtistMv({
+    artistId,
+    page,
+    pageSize,
+  }: iGetArtistArts): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/artist/mvs`,
+      {
+        artistId,
         limit: pageSize,
         offset: page,
         total: true,

@@ -45,4 +45,22 @@ export default class ArtistController extends Controller {
       pageSize,
     });
   }
+
+  /**
+   * @description 获取歌手MV
+   */
+  public async getArtistMv() {
+    const { ctx } = this;
+    const {
+      pageSize = Default_PageSize,
+      page = Default_PageNumber,
+    } = ctx.query;
+    const { artistId } = ctx.params;
+
+    ctx.body = await ctx.service.artist.getArtistMv({
+      artistId,
+      page,
+      pageSize,
+    });
+  }
 }
