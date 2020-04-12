@@ -8,6 +8,7 @@ export default (app: Application) => {
     controller.album.getAlbumDynamicInfo
   );
   router.get('/album/latest', controller.album.getLatestAlbum);
+  router.get('/album/:albumId/info', controller.album.getAlbumInfo);
   router.post('/album/:albumId/sub/:actionType', controller.album.postAlbumSub);
   router.post('/album/sublist', controller.album.getAlbumSublist);
 };

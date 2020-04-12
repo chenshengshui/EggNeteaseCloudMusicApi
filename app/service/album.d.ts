@@ -7,6 +7,10 @@ export interface iPostAlbumSub {
   actionType: 'sub' | 'unsub';
 }
 
+export interface iGetAlbumInfo {
+  albumId: string;
+}
+
 export interface iPageParams {
   page?: number;
   pageSize?: number;

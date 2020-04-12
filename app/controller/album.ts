@@ -8,13 +8,10 @@ export default class ArtistController extends Controller {
   public async getAlbumDynamicInfo() {
     const { ctx } = this;
     const { albumId } = ctx.params;
-    try {
-      ctx.body = await ctx.service.album.getAlbumDynamicInfo({
-        albumId,
-      });
-    } catch (error) {
-      console.log(error, 'sdsds');
-    }
+
+    ctx.body = await ctx.service.album.getAlbumDynamicInfo({
+      albumId,
+    });
   }
 
   /**
@@ -52,6 +49,18 @@ export default class ArtistController extends Controller {
     ctx.body = await ctx.service.album.getAlbumSublist({
       page,
       pageSize,
+    });
+  }
+
+  /**
+   * @description 获取专辑信息
+   */
+  public async getAlbumInfo() {
+    const { ctx } = this;
+    const { albumId } = ctx.params;
+
+    ctx.body = await ctx.service.album.getAlbumInfo({
+      albumId,
     });
   }
 }

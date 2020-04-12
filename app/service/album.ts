@@ -2,7 +2,12 @@ import { Service } from 'egg';
 
 import createRequest from '../utils/createRequest';
 
-import { iGetAlbumDynamicInfo, iPostAlbumSub, iPageParams } from './album.d';
+import {
+  iGetAlbumDynamicInfo,
+  iPostAlbumSub,
+  iPageParams,
+  iGetAlbumInfo,
+} from './album.d';
 
 /**
  * Album Service
@@ -82,6 +87,22 @@ export default class Album extends Service {
         offset: page,
         total: true,
       },
+      { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
+
+  /**
+   * @description 获取专辑信息
+   * @param albumId
+   */
+  public async getAlbumInfo({ albumId }: iGetAlbumInfo): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/v1/album/${albumId}`,
+      {},
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );
   }
