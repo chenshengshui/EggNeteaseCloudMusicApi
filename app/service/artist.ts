@@ -1,5 +1,10 @@
 import { Service } from 'egg';
-import { iGetArtistList, iGetArtistInfo, iGetArtistArts } from './artist.d';
+import {
+  iGetArtistList,
+  iGetArtistInfo,
+  iGetArtistArts,
+  iPostArtistSub,
+} from './artist.d';
 import createRequest from '../utils/createRequest';
 
 /**
@@ -105,6 +110,29 @@ export default class Artist extends Service {
         limit: pageSize,
         offset: page,
         total: true,
+      },
+      {
+        crypto: 'weapi',
+        cookie: query.cookie,
+        proxy: query.proxy,
+      }
+    );
+  }
+
+  /**
+   * @description 收藏｜取消收藏歌手
+   * @param artistId 歌手ID
+   * @param actionType 收藏或取消 sub ｜ unsub
+   */
+  public async postArtistSub({ artistId, actionType }: iPostArtistSub) {
+    const { ctx } = this;
+    const query = ctx.request.query;
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/artist/${actionType}`,
+      {
+        artistId,
+        artistIds: '[' + artistId + ']',
       },
       {
         crypto: 'weapi',

@@ -63,4 +63,17 @@ export default class ArtistController extends Controller {
       pageSize,
     });
   }
+
+  /**
+   * @description 收藏｜取消收藏歌手
+   */
+  public async postArtistSub() {
+    const { ctx } = this;
+    const { artistId, actionType } = ctx.params;
+
+    ctx.body = await ctx.service.artist.postArtistSub({
+      artistId,
+      actionType,
+    });
+  }
 }

@@ -12,6 +12,11 @@ export interface iGetArtistArts extends iPageParams {
   artistId: string;
 }
 
+export interface iPostArtistSub {
+  artistId: string;
+  actionType: 'sub' | 'unsub';
+}
+
 export interface iPageParams {
   page?: number;
   pageSize?: number;
