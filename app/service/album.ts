@@ -1,6 +1,8 @@
 import { Service } from 'egg';
+
 import createRequest from '../utils/createRequest';
-import { iGetAlbumDynamicInfo } from './album.d';
+
+import { iGetAlbumDynamicInfo, iPostAlbumSub } from './album.d';
 
 /**
  * Album Service
@@ -37,6 +39,28 @@ export default class Album extends Service {
       'POST',
       `https://music.163.com/api/discovery/newAlbum`,
       {},
+      { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
+
+  /**
+   * @description 收藏 ｜ 取消收藏 专辑
+   * @param albumId
+   * @param actionType
+   */
+  public async postAlbumSub({
+    albumId,
+    actionType,
+  }: iPostAlbumSub): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+
+    return createRequest(
+      'POST',
+      `https://music.163.com/api/album/${actionType}`,
+      {
+        id: albumId,
+      },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );
   }
