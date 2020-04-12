@@ -11,4 +11,5 @@ export default (app: Application) => {
     '/artist/:artistId/sub/:actionType',
     controller.artist.postArtistSub
   );
+  router.get('/artist/sublist', controller.artist.getArtistSublist);
 };

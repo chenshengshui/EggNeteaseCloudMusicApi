@@ -76,4 +76,20 @@ export default class ArtistController extends Controller {
       actionType,
     });
   }
+
+  /**
+   * @description 获取订阅歌手列表
+   */
+  public async getArtistSublist() {
+    const { ctx } = this;
+    const {
+      pageSize = Default_PageSize,
+      page = Default_PageNumber,
+    } = ctx.query;
+
+    ctx.body = await ctx.service.artist.getArtistSublist({
+      page,
+      pageSize,
+    });
+  }
 }

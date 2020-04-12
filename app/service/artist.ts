@@ -4,6 +4,7 @@ import {
   iGetArtistInfo,
   iGetArtistArts,
   iPostArtistSub,
+  iPageParams,
 } from './artist.d';
 import createRequest from '../utils/createRequest';
 
@@ -133,6 +134,30 @@ export default class Artist extends Service {
       {
         artistId,
         artistIds: '[' + artistId + ']',
+      },
+      {
+        crypto: 'weapi',
+        cookie: query.cookie,
+        proxy: query.proxy,
+      }
+    );
+  }
+
+  /**
+   * @description 获取订阅歌手列表
+   * @param page
+   * @param pageSize
+   */
+  public async getArtistSublist({ page, pageSize }: iPageParams) {
+    const { ctx } = this;
+    const query = ctx.request.query;
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/artist/sublist`,
+      {
+        limit: pageSize,
+        offset: page,
+        total: true,
       },
       {
         crypto: 'weapi',
