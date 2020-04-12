@@ -6,5 +6,12 @@ export interface iGetArtistList {
 }
 
 export interface iGetArtistInfo {
+  /** @params */
   artistId: string;
+}
+
+export interface iGetArtistAlbums {
+  artistId: string;
+  page?: number;
+  pageSize?: number;
 }

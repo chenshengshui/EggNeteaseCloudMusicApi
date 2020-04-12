@@ -1,5 +1,5 @@
 import { Service } from 'egg';
-import { iGetArtistList, iGetArtistInfo } from './artist.d';
+import { iGetArtistList, iGetArtistInfo, iGetArtistAlbums } from './artist.d';
 import createRequest from '../utils/createRequest';
 
 /**
@@ -11,7 +11,7 @@ export default class Artist extends Service {
     page,
     pageSize,
     initial,
-  }: iGetArtistList) {
+  }: iGetArtistList): Promise<any> {
     const { ctx } = this;
     const query = ctx.request.query;
     const data = {
@@ -31,7 +31,7 @@ export default class Artist extends Service {
     );
   }
 
-  public async getArtistInfo({ artistId }: iGetArtistInfo) {
+  public async getArtistInfo({ artistId }: iGetArtistInfo): Promise<any> {
     const { ctx } = this;
     const query = ctx.request.query;
     return createRequest(
@@ -44,12 +44,16 @@ export default class Artist extends Service {
     );
   }
 
-  public async getArtistAlbums({ id, page, pageSize }) {
+  public async getArtistAlbums({
+    artistId,
+    page,
+    pageSize,
+  }: iGetArtistAlbums): Promise<any> {
     const { ctx } = this;
     const query = ctx.request.query;
     return createRequest(
       'POST',
-      `https://music.163.com/weapi/artist/albums/${id}`,
+      `https://music.163.com/weapi/artist/albums/${artistId}`,
       {
         limit: pageSize,
         offset: page,

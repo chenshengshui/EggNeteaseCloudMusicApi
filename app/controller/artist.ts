@@ -37,10 +37,10 @@ export default class ArtistController extends Controller {
       pageSize = Default_PageSize,
       page = Default_PageNumber,
     } = ctx.query;
-    const { id } = ctx.params;
+    const { artistId } = ctx.params;
 
     ctx.body = await ctx.service.artist.getArtistAlbums({
-      id,
+      artistId,
       page,
       pageSize,
     });
