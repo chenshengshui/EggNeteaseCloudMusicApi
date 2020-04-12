@@ -17,6 +17,10 @@ export interface iPostArtistSub {
   actionType: 'sub' | 'unsub';
 }
 
+export interface iGetArtistTopSong {
+  artistId: string;
+}
+
 export interface iPageParams {
   page?: number;
   pageSize?: number;

@@ -3,6 +3,7 @@ import {
   iGetArtistList,
   iGetArtistInfo,
   iGetArtistArts,
+  iGetArtistTopSong,
   iPostArtistSub,
   iPageParams,
 } from './artist.d';
@@ -111,6 +112,27 @@ export default class Artist extends Service {
         limit: pageSize,
         offset: page,
         total: true,
+      },
+      {
+        crypto: 'weapi',
+        cookie: query.cookie,
+        proxy: query.proxy,
+      }
+    );
+  }
+
+  /**
+   * @description 获取歌手50首流行歌曲
+   * @param artistId 歌手ID
+   */
+  public async getArtistTopSong({ artistId }: iGetArtistTopSong): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+    return createRequest(
+      'POST',
+      `https://music.163.com/api/artist/top/song`,
+      {
+        id: artistId,
       },
       {
         crypto: 'weapi',

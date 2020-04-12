@@ -65,6 +65,18 @@ export default class ArtistController extends Controller {
   }
 
   /**
+   * @description 获取歌手50首流行歌曲
+   */
+  public async getArtistTopSong() {
+    const { ctx } = this;
+    const { artistId } = ctx.params;
+
+    ctx.body = await ctx.service.artist.getArtistTopSong({
+      artistId,
+    });
+  }
+
+  /**
    * @description 收藏｜取消收藏歌手
    */
   public async postArtistSub() {
