@@ -18,7 +18,7 @@ export default class ArtistController extends Controller {
   }
 
   /**
-   * @description 获取某个歌手的信息
+   * @description 获取歌手信息
    */
   public async getArtistInfo() {
     const { ctx } = this;
@@ -29,7 +29,7 @@ export default class ArtistController extends Controller {
   }
 
   /**
-   * @description 获取某个歌手的单曲
+   * @description 获取歌手专辑
    */
   public async getArtistAlbums() {
     const { ctx } = this;

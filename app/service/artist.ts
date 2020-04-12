@@ -6,6 +6,13 @@ import createRequest from '../utils/createRequest';
  * Artist Service
  */
 export default class Artist extends Service {
+  /**
+   * @description 获取歌手列表
+   * @param categoryCode 类别code
+   * @param initial 排序规则
+   * @param page
+   * @param pageSize
+   */
   public async getArtistList({
     categoryCode,
     page,
@@ -31,6 +38,10 @@ export default class Artist extends Service {
     );
   }
 
+  /**
+   * @description 获取歌手信息
+   * @param artistId 歌手ID
+   */
   public async getArtistInfo({ artistId }: iGetArtistInfo): Promise<any> {
     const { ctx } = this;
     const query = ctx.request.query;
@@ -44,6 +55,12 @@ export default class Artist extends Service {
     );
   }
 
+  /**
+   * @description 获取歌手专辑
+   * @param artistId 歌手ID
+   * @param page
+   * @param pageSize
+   */
   public async getArtistAlbums({
     artistId,
     page,

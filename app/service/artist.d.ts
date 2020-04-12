@@ -1,7 +1,5 @@
-export interface iGetArtistList {
+export interface iGetArtistList extends iPageParams {
   categoryCode: string;
-  page?: number;
-  pageSize?: number;
   initial?: string | number;
 }
 
@@ -10,8 +8,11 @@ export interface iGetArtistInfo {
   artistId: string;
 }
 
-export interface iGetArtistAlbums {
+export interface iGetArtistAlbums extends iPageParams {
   artistId: string;
+}
+
+export interface iPageParams {
   page?: number;
   pageSize?: number;
 }
