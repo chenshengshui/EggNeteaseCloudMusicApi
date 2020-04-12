@@ -1,7 +1,7 @@
 import { Service } from 'egg';
 import {
   iGetArtistList,
-  iGetArtistInfo,
+  iGetArtistBrief,
   iGetArtistArts,
   iGetArtistTopSong,
   iPostArtistSub,
@@ -49,7 +49,7 @@ export default class Artist extends Service {
    * @description 获取歌手信息
    * @param artistId 歌手ID
    */
-  public async getArtistInfo({ artistId }: iGetArtistInfo): Promise<any> {
+  public async getArtistBrief({ artistId }: iGetArtistBrief): Promise<any> {
     const { ctx } = this;
     const query = ctx.request.query;
     return createRequest(

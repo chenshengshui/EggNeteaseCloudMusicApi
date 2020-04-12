@@ -5,7 +5,7 @@ export default (app: Application) => {
 
   router.get('/artist/list', controller.artist.getArtistList);
   router.get('/artist/:artistId/albums', controller.artist.getArtistAlbums);
-  router.get('/artist/:artistId/info', controller.artist.getArtistInfo);
+  router.get('/artist/:artistId/brief', controller.artist.getArtistBrief);
   router.get('/artist/:artistId/mv', controller.artist.getArtistMv);
   router.get('/artist/:artistId/top/song', controller.artist.getArtistTopSong);
   router.post(

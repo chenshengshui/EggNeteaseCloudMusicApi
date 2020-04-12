@@ -3,7 +3,7 @@ export interface iGetArtistList extends iPageParams {
   initial?: string | number;
 }
 
-export interface iGetArtistInfo {
+export interface iGetArtistBrief {
   /** @params */
   artistId: string;
 }

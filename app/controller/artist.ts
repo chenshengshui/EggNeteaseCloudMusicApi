@@ -20,10 +20,10 @@ export default class ArtistController extends Controller {
   /**
    * @description 获取歌手信息
    */
-  public async getArtistInfo() {
+  public async getArtistBrief() {
     const { ctx } = this;
     const { artistId } = ctx.params;
-    ctx.body = await ctx.service.artist.getArtistInfo({
+    ctx.body = await ctx.service.artist.getArtistBrief({
       artistId,
     });
   }
