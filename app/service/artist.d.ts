@@ -8,6 +8,11 @@ export interface iGetArtistBrief {
   artistId: string;
 }
 
+export interface iGetArtistInfo {
+  /** @params */
+  artistId: string;
+}
+
 export interface iGetArtistArts extends iPageParams {
   artistId: string;
 }

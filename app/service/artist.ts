@@ -2,6 +2,7 @@ import { Service } from 'egg';
 import {
   iGetArtistList,
   iGetArtistBrief,
+  iGetArtistInfo,
   iGetArtistArts,
   iGetArtistTopSong,
   iPostArtistSub,
@@ -46,7 +47,7 @@ export default class Artist extends Service {
   }
 
   /**
-   * @description 获取歌手信息
+   * @description 获取歌手简介
    * @param artistId 歌手ID
    */
   public async getArtistBrief({ artistId }: iGetArtistBrief): Promise<any> {
@@ -55,6 +56,23 @@ export default class Artist extends Service {
     return createRequest(
       'POST',
       `https://music.163.com/weapi/artist/introduction`,
+      {
+        id: artistId,
+      },
+      { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
+
+  /**
+   * @description 获取歌手信息
+   * @param artistId 歌手ID
+   */
+  public async getArtistInfo({ artistId }: iGetArtistInfo): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/v1/artist/${artistId}`,
       {
         id: artistId,
       },

@@ -18,12 +18,23 @@ export default class ArtistController extends Controller {
   }
 
   /**
-   * @description 获取歌手信息
+   * @description 获取歌手简介
    */
   public async getArtistBrief() {
     const { ctx } = this;
     const { artistId } = ctx.params;
     ctx.body = await ctx.service.artist.getArtistBrief({
+      artistId,
+    });
+  }
+
+  /**
+   * @description 获取歌手信息
+   */
+  public async getArtistInfo() {
+    const { ctx } = this;
+    const { artistId } = ctx.params;
+    ctx.body = await ctx.service.artist.getArtistInfo({
       artistId,
     });
   }
