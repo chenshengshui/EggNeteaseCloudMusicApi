@@ -1,4 +1,5 @@
 import { Controller } from 'egg';
+import { Default_PageNumber, Default_PageSize } from '../utils/common';
 
 export default class ArtistController extends Controller {
   /**
@@ -31,6 +32,22 @@ export default class ArtistController extends Controller {
     ctx.body = await ctx.service.album.postAlbumSub({
       albumId,
       actionType,
+    });
+  }
+
+  /**
+   * @description 获取收藏专辑列表
+   */
+  public async getAlbumSublist() {
+    const { ctx } = this;
+    const {
+      pageSize = Default_PageSize,
+      page = Default_PageNumber,
+    } = ctx.query;
+
+    ctx.body = await ctx.service.album.getAlbumSublist({
+      page,
+      pageSize,
     });
   }
 }

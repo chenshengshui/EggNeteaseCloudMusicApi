@@ -2,7 +2,7 @@ import { Service } from 'egg';
 
 import createRequest from '../utils/createRequest';
 
-import { iGetAlbumDynamicInfo, iPostAlbumSub } from './album.d';
+import { iGetAlbumDynamicInfo, iPostAlbumSub, iPageParams } from './album.d';
 
 /**
  * Album Service
@@ -60,6 +60,27 @@ export default class Album extends Service {
       `https://music.163.com/api/album/${actionType}`,
       {
         id: albumId,
+      },
+      { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
+
+  /**
+   * @description 获取收藏专辑列表
+   * @param page
+   * @param pageSize
+   */
+  public async getAlbumSublist({ page, pageSize }: iPageParams): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/album/sublist`,
+      {
+        limit: pageSize,
+        offset: page,
+        total: true,
       },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );
