@@ -90,4 +90,23 @@ export default class User extends Service {
       }
     );
   }
+
+  /**
+   * @description 获取用户信息
+   * @param uid
+   */
+  public async getUserInfo({ uid }): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/v1/user/detail/${uid}`,
+      {},
+      {
+        crypto: 'weapi',
+        cookie: query.cookie,
+        proxy: query.proxy,
+      }
+    );
+  }
 }

@@ -50,4 +50,16 @@ export default class UserController extends Controller {
       pageSize,
     });
   }
+
+  /**
+   * @description 获取用户信息
+   */
+  public async getUserInfo() {
+    const { ctx } = this;
+    const { uid } = ctx.query;
+
+    ctx.body = await ctx.service.user.getUserInfo({
+      uid,
+    });
+  }
 }
