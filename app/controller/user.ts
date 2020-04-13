@@ -26,7 +26,7 @@ export default class UserController extends Controller {
   }
 
   /**
-   * @description 删除用户云盘歌曲
+   * @description 获取用户云盘数据详情
    */
   public async getCloudMusicsInfo() {
     const { ctx } = this;
@@ -35,6 +35,19 @@ export default class UserController extends Controller {
 
     ctx.body = await ctx.service.user.getCloudMusicsInfo({
       ids: songIds,
+    });
+  }
+
+  /**
+   * @description 获取云盘音乐列表
+   */
+  public async getCloudMusics() {
+    const { ctx } = this;
+    const { page, pageSize } = ctx.query;
+
+    ctx.body = await ctx.service.user.getCloudMusics({
+      page,
+      pageSize,
     });
   }
 }

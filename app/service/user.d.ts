@@ -5,3 +5,8 @@ export interface iDeleteCloudMusic {
 export interface iGetCloudMusicsInfo {
   ids: string[];
 }
+
+export interface iPageParams {
+  page?: number;
+  pageSize?: number;
+}
