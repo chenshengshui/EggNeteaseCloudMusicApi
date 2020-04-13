@@ -24,4 +24,17 @@ export default class UserController extends Controller {
       ids,
     });
   }
+
+  /**
+   * @description 删除用户云盘歌曲
+   */
+  public async getCloudMusicsInfo() {
+    const { ctx } = this;
+    const { ids } = ctx.query;
+    const songIds = ids.replace(/\s/g, '').split(',');
+
+    ctx.body = await ctx.service.user.getCloudMusicsInfo({
+      ids: songIds,
+    });
+  }
 }

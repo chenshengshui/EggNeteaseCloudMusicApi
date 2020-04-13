@@ -5,4 +5,5 @@ export default (app: Application) => {
 
   router.get('/user/:userId/audios', controller.user.getAudios);
   router.delete('/user/cloud/song/del', controller.user.deleteCloudMusic);
+  router.get('/user/cloud/song', controller.user.getCloudMusicsInfo);
 };

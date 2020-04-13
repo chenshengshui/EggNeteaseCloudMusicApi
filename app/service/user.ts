@@ -2,7 +2,7 @@ import { Service } from 'egg';
 
 import createRequest from '../utils/createRequest';
 
-import { iDeleteCloudMusic } from './user.d';
+import { iDeleteCloudMusic, iGetCloudMusicsInfo } from './user.d';
 
 /**
  * User Service
@@ -39,6 +39,27 @@ export default class User extends Service {
     return createRequest(
       'POST',
       `http://music.163.com/weapi/cloud/del`,
+      {
+        songIds: ids,
+      },
+      {
+        crypto: 'weapi',
+        cookie: query.cookie,
+        proxy: query.proxy,
+      }
+    );
+  }
+
+  /**
+   * @description 获取用户云盘歌曲详情
+   * @param ids
+   */
+  public async getCloudMusicsInfo({ ids }: iGetCloudMusicsInfo): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/v1/cloud/get/byids`,
       {
         songIds: ids,
       },
