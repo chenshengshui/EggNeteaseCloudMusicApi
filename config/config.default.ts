@@ -11,6 +11,8 @@ export default (appInfo: EggAppInfo) => {
 
   // 跨域配置
   config.cors = {
+    allowHeaders: 'X-Requested-With,Content-Type',
+    credentials: true,
     origin: '*',
     allowMethods: 'GET, HEAD, PUT, DELETE, PATCH, OPTIONS',
   };
