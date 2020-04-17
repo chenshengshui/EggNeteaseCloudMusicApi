@@ -7,7 +7,7 @@ export default (appInfo: EggAppInfo) => {
   config.keys = appInfo.name + '_1585919666382_9400';
 
   // 中间件配置
-  config.middleware = ['query'];
+  config.middleware = ['query', 'cookie'];
 
   // 跨域配置
   config.cors = {
