@@ -222,4 +222,29 @@ export default class User extends Service {
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );
   }
+
+  /**
+   * @description 获取用户播放列表
+   * @param uid
+   * @param page
+   * @param pageSize
+   */
+  public async getUserPlaylist({
+    uid,
+    page,
+    pageSize,
+  }: iGetUserFollows): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/user/playlist`,
+      {
+        offset: page,
+        limit: pageSize,
+        uid: uid,
+      },
+      { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
 }

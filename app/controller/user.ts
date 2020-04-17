@@ -107,7 +107,7 @@ export default class UserController extends Controller {
   }
 
   /**
-   * @description 获取用户关注着
+   * @description 获取用户关注者
    */
   public async getUserFollows() {
     const { ctx } = this;
@@ -117,6 +117,23 @@ export default class UserController extends Controller {
       pageSize = Default_PageSize,
     } = ctx.query;
     ctx.body = await ctx.service.user.getUserFollows({
+      uid,
+      page,
+      pageSize,
+    });
+  }
+
+  /**
+   * @description 获取用户播放列表
+   */
+  public async getUserPlaylist() {
+    const { ctx } = this;
+    const uid = ctx.cookies.get('userId');
+    const {
+      page = Default_PageNumber,
+      pageSize = Default_PageSize,
+    } = ctx.query;
+    ctx.body = await ctx.service.user.getUserPlaylist({
       uid,
       page,
       pageSize,
