@@ -1,5 +1,7 @@
 import { Controller } from 'egg';
 
+import { Default_PageNumber, Default_PageSize } from '../utils/common';
+
 export default class UserController extends Controller {
   /**
    * 获取用户电台
@@ -43,7 +45,10 @@ export default class UserController extends Controller {
    */
   public async getCloudMusics() {
     const { ctx } = this;
-    const { page, pageSize } = ctx.query;
+    const {
+      page = Default_PageNumber,
+      pageSize = Default_PageSize,
+    } = ctx.query;
 
     ctx.body = await ctx.service.user.getCloudMusics({
       page,
@@ -56,9 +61,19 @@ export default class UserController extends Controller {
    */
   public async getUserInfo() {
     const { ctx } = this;
-    const { uid } = ctx.query;
-
+    const uid = ctx.cookies.get('userId');
     ctx.body = await ctx.service.user.getUserInfo({
+      uid,
+    });
+  }
+
+  /**
+   * @description 获取用户电台
+   */
+  public async getUserDjs() {
+    const { ctx } = this;
+    const uid = ctx.cookies.get('userId');
+    ctx.body = await ctx.service.user.getUserDjs({
       uid,
     });
   }

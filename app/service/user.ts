@@ -1,5 +1,7 @@
 import { Service } from 'egg';
+
 import createRequest from '../utils/createRequest';
+
 import { iDeleteCloudMusic, iGetCloudMusicsInfo, iPageParams } from './user.d';
 
 /**
@@ -80,8 +82,8 @@ export default class User extends Service {
       'POST',
       `https://music.163.com/weapi/v1/cloud/get`,
       {
-        page,
-        pageSize,
+        offset: page,
+        limit: pageSize,
       },
       {
         crypto: 'weapi',
@@ -101,6 +103,25 @@ export default class User extends Service {
     return createRequest(
       'POST',
       `https://music.163.com/weapi/v1/user/detail/${uid}`,
+      {},
+      {
+        crypto: 'weapi',
+        cookie: query.cookie,
+        proxy: query.proxy,
+      }
+    );
+  }
+
+  /**
+   * @description 获取用户电台
+   * @param uid
+   */
+  public async getUserDjs({ uid }): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/dj/program/${uid}`,
       {},
       {
         crypto: 'weapi',
