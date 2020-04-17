@@ -91,4 +91,18 @@ export default class UserController extends Controller {
       lasttime,
     });
   }
+
+  /**
+   * @description 获取用户粉丝
+   */
+  public async getUserFolloweds() {
+    const { ctx } = this;
+    const uid = ctx.cookies.get('userId');
+    const { lasttime = -1, pageSize = Default_PageSize } = ctx.query;
+    ctx.body = await ctx.service.user.getUserFolloweds({
+      uid,
+      pageSize,
+      lasttime,
+    });
+  }
 }

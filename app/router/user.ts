@@ -10,4 +10,5 @@ export default (app: Application) => {
   router.get('/user/info', controller.user.getUserInfo);
   router.get('/user/djs', controller.user.getUserDjs);
   router.get('/user/event', controller.user.getUserEvent);
+  router.get('/user/followeds', controller.user.getUserFolloweds);
 };

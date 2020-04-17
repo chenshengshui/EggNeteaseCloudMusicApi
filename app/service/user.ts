@@ -166,4 +166,34 @@ export default class User extends Service {
       }
     );
   }
+
+  /**
+   * @description 获取用户粉丝
+   * @param uid
+   * @param lasttime 时间戳，获取下一页数据，传入返回的lasttime
+   * @param pageSize 分页大小
+   */
+  public async getUserFolloweds({
+    uid,
+    lasttime,
+    pageSize,
+  }: iGetUserEvent): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+    return createRequest(
+      'POST',
+      `https://music.163.com/eapi/user/getfolloweds/${uid}`,
+      {
+        userId: uid,
+        time: lasttime,
+        limit: pageSize,
+      },
+      {
+        crypto: 'eapi',
+        cookie: query.cookie,
+        proxy: query.proxy,
+        url: '/api/user/getfolloweds',
+      }
+    );
+  }
 }
