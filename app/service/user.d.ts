@@ -11,6 +11,8 @@ export interface iGetUserEvent extends iUserId {
   pageSize: number;
 }
 
+export interface iGetUserFollows extends iUserId, iPageParams {}
+
 export interface iUserId {
   uid: string;
 }

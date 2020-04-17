@@ -8,6 +8,7 @@ import {
   iPageParams,
   iUserId,
   iGetUserEvent,
+  iGetUserFollows,
 } from './user.d';
 
 /**
@@ -194,6 +195,31 @@ export default class User extends Service {
         proxy: query.proxy,
         url: '/api/user/getfolloweds',
       }
+    );
+  }
+
+  /**
+   * @description 获取用户关注者
+   * @param uid
+   * @param lasttime 时间戳，获取下一页数据，传入返回的lasttime
+   * @param pageSize 分页大小
+   */
+  public async getUserFollows({
+    uid,
+    page,
+    pageSize,
+  }: iGetUserFollows): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/user/getfollows/${uid}`,
+      {
+        offset: page,
+        limit: pageSize,
+        order: true,
+      },
+      { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );
   }
 }
