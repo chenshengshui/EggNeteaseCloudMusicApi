@@ -13,6 +13,10 @@ export interface iGetUserEvent extends iUserId {
 
 export interface iGetUserFollows extends iUserId, iPageParams {}
 
+export interface iGetUserPlayRecord extends iUserId {
+  type: number;
+}
+
 export interface iUserId {
   uid: string;
 }

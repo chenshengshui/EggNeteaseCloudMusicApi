@@ -9,6 +9,7 @@ import {
   iUserId,
   iGetUserEvent,
   iGetUserFollows,
+  iGetUserPlayRecord,
 } from './user.d';
 
 /**
@@ -243,6 +244,28 @@ export default class User extends Service {
         offset: page,
         limit: pageSize,
         uid: uid,
+      },
+      { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
+
+  /**
+   * @interface 获取用户播放记录
+   * @param uid
+   * @param type
+   */
+  public async getUserPlayrecord({
+    uid,
+    type,
+  }: iGetUserPlayRecord): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/v1/play/record`,
+      {
+        type,
+        uid,
       },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );
