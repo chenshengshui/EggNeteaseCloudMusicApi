@@ -6,6 +6,15 @@ export interface iGetCloudMusicsInfo {
   ids: string[];
 }
 
+export interface iGetUserEvent extends iUserId {
+  lasttime: number;
+  pageSize: number;
+}
+
+export interface iUserId {
+  uid: string;
+}
+
 export interface iPageParams {
   page?: number;
   pageSize?: number;

@@ -77,4 +77,18 @@ export default class UserController extends Controller {
       uid,
     });
   }
+
+  /**
+   * @description 获取用户动态
+   */
+  public async getUserEvent() {
+    const { ctx } = this;
+    const uid = ctx.cookies.get('userId');
+    const { lasttime = -1, pageSize = Default_PageSize } = ctx.query;
+    ctx.body = await ctx.service.user.getUserEvent({
+      uid,
+      pageSize,
+      lasttime,
+    });
+  }
 }

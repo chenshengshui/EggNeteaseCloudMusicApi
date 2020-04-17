@@ -2,7 +2,13 @@ import { Service } from 'egg';
 
 import createRequest from '../utils/createRequest';
 
-import { iDeleteCloudMusic, iGetCloudMusicsInfo, iPageParams } from './user.d';
+import {
+  iDeleteCloudMusic,
+  iGetCloudMusicsInfo,
+  iPageParams,
+  iUserId,
+  iGetUserEvent,
+} from './user.d';
 
 /**
  * User Service
@@ -97,7 +103,7 @@ export default class User extends Service {
    * @description 获取用户信息
    * @param uid
    */
-  public async getUserInfo({ uid }): Promise<any> {
+  public async getUserInfo({ uid }: iUserId): Promise<any> {
     const { ctx } = this;
     const query = ctx.request.query;
     return createRequest(
@@ -116,13 +122,43 @@ export default class User extends Service {
    * @description 获取用户电台
    * @param uid
    */
-  public async getUserDjs({ uid }): Promise<any> {
+  public async getUserDjs({ uid }: iUserId): Promise<any> {
     const { ctx } = this;
     const query = ctx.request.query;
     return createRequest(
       'POST',
       `https://music.163.com/weapi/dj/program/${uid}`,
       {},
+      {
+        crypto: 'weapi',
+        cookie: query.cookie,
+        proxy: query.proxy,
+      }
+    );
+  }
+
+  /**
+   * @description 获取用户动态
+   * @param uid
+   * @param lasttime 时间戳，获取下一页数据，传入返回的lasttime
+   * @param pageSize 分页大小
+   */
+  public async getUserEvent({
+    uid,
+    lasttime,
+    pageSize,
+  }: iGetUserEvent): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/dj/program/${uid}`,
+      {
+        getcounts: true,
+        time: lasttime,
+        limit: pageSize,
+        total: false,
+      },
       {
         crypto: 'weapi',
         cookie: query.cookie,
