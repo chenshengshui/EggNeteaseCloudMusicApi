@@ -32,4 +32,15 @@ export default class ArtistController extends Controller {
     const { ctx } = this;
     ctx.body = await ctx.service.dj.getCategoryList();
   }
+
+  /**
+   * @description 获取电台分类列表
+   */
+  public async getDjDetail() {
+    const { ctx } = this;
+    const { djId } = ctx.params;
+    ctx.body = await ctx.service.dj.getDjDetail({
+      djId,
+    });
+  }
 }
