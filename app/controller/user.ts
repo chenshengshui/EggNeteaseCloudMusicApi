@@ -153,4 +153,12 @@ export default class UserController extends Controller {
       type,
     });
   }
+
+  /**
+   * @description 获取用户收藏计数
+   */
+  public async getUserSubcount() {
+    const { ctx } = this;
+    ctx.body = await ctx.service.user.getUserSubcount();
+  }
 }
