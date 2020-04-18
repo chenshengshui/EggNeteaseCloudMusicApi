@@ -5,4 +5,5 @@ export default (app: Application) => {
 
   router.get('/dj/banner', controller.dj.getDjBanner);
   router.get('/dj/category/excludehot', controller.dj.getNonHotCategory);
+  router.get('/dj/category/rec', controller.dj.getRecCategory);
 };

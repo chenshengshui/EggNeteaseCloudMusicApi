@@ -21,7 +21,7 @@ export default class Dj extends Service {
   }
 
   /**
-   * @description 获取电台 banner
+   * @description 获取非热门电台分类
    */
   public async getNonHotCategory(): Promise<any> {
     const { ctx } = this;
@@ -30,6 +30,21 @@ export default class Dj extends Service {
     return createRequest(
       'POST',
       `http://music.163.com/weapi/djradio/category/excludehot`,
+      {},
+      { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
+
+  /**
+   * @description 获取推荐电台分类
+   */
+  public async getRecCategory(): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+
+    return createRequest(
+      'POST',
+      `http://music.163.com/weapi/djradio/home/category/recommend`,
       {},
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );
