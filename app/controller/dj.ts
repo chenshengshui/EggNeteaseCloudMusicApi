@@ -6,7 +6,11 @@ export default class ArtistController extends Controller {
    */
   public async getDjBanner() {
     const { ctx } = this;
-
     ctx.body = await ctx.service.dj.getDjBanner();
+  }
+
+  public async getNonHotCategory() {
+    const { ctx } = this;
+    ctx.body = await ctx.service.dj.getNonHotCategory();
   }
 }

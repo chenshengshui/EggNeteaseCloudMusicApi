@@ -19,4 +19,19 @@ export default class Dj extends Service {
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );
   }
+
+  /**
+   * @description 获取电台 banner
+   */
+  public async getNonHotCategory(): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+
+    return createRequest(
+      'POST',
+      `http://music.163.com/weapi/djradio/category/excludehot`,
+      {},
+      { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
 }
