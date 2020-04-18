@@ -6,6 +6,7 @@ import ExportAlbum from '../../../app/controller/album';
 import ExportArtist from '../../../app/controller/artist';
 import ExportLogin from '../../../app/controller/login';
 import ExportUser from '../../../app/controller/user';
+import ExportVideo from '../../../app/controller/video';
 
 declare module 'egg' {
   interface IController {
@@ -13,5 +14,6 @@ declare module 'egg' {
     artist: ExportArtist;
     login: ExportLogin;
     user: ExportUser;
+    video: ExportVideo;
   }
 }

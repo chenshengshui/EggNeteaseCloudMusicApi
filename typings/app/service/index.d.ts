@@ -10,6 +10,7 @@ import ExportAlbum from '../../../app/service/album';
 import ExportArtist from '../../../app/service/artist';
 import ExportLogin from '../../../app/service/login';
 import ExportUser from '../../../app/service/user';
+import ExportVidoe from '../../../app/service/vidoe';
 
 declare module 'egg' {
   interface IService {
@@ -17,5 +18,6 @@ declare module 'egg' {
     artist: AutoInstanceType<typeof ExportArtist>;
     login: AutoInstanceType<typeof ExportLogin>;
     user: AutoInstanceType<typeof ExportUser>;
+    vidoe: AutoInstanceType<typeof ExportVidoe>;
   }
 }
