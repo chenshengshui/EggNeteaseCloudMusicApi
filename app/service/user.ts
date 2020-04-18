@@ -252,7 +252,8 @@ export default class User extends Service {
   /**
    * @interface 获取用户播放记录
    * @param uid
-   * @param type
+   * @param type 1 | 0
+   * type=1 时只返回 weekData, type=0 时返回 allData
    */
   public async getUserPlayrecord({
     uid,
