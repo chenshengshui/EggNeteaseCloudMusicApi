@@ -1,8 +1,9 @@
 import { Controller } from 'egg';
+import { Default_Ctcode } from '../utils/common';
 
-export default class HomeController extends Controller {
+export default class LoginController extends Controller {
   /**
-   * 手机号登录
+   * @description 手机号登录
    */
   public async loginByCellPhone() {
     const { ctx } = this;
@@ -21,5 +22,26 @@ export default class HomeController extends Controller {
       const maxAge = rememberLogin ? 3600 * 24 * 30 : 3600 * 24;
       ctx.cookies.set('userId', useId, { httpOnly: true, maxAge: maxAge });
     } catch (err) {}
+  }
+
+  /**
+   * @description 初始化昵称
+   */
+  public async postInitProfile() {
+    const { ctx } = this;
+    const { nickname } = ctx.request.body;
+    ctx.body = await ctx.service.login.postInitProfile({ nickname });
+  }
+
+  /**
+   * @description 发送验证码
+   */
+  public async postLoginCaptchaSend() {
+    const { ctx } = this;
+    const { ctcode = Default_Ctcode, cellphone } = ctx.request.body;
+    ctx.body = await ctx.service.login.postLoginCaptchaSend({
+      ctcode,
+      cellphone,
+    });
   }
 }

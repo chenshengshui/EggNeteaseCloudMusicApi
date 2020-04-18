@@ -59,4 +59,24 @@ export default class Login extends Service {
       }
     );
   }
+
+  /**
+   * @description 发送验证码
+   * @param ctcode
+   * @param cellphone
+   */
+  public async postLoginCaptchaSend({ ctcode, cellphone }): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/sms/captcha/sent`,
+      { ctcode, cellphone },
+      {
+        crypto: 'weapi',
+        cookie: query.cookie,
+        proxy: query.proxy,
+      }
+    );
+  }
 }
