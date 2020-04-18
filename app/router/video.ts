@@ -5,4 +5,5 @@ export default (app: Application) => {
 
   router.get('/video/:videoId/detail', controller.video.getVideoInfo);
   router.get('/video/group/list', controller.video.getVideoGroupList);
+  router.get('/video/group/videos', controller.video.getVideoGroupVideos);
 };

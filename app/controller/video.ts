@@ -1,4 +1,5 @@
 import { Controller } from 'egg';
+import { Default_PageNumber, Default_Resolution } from '../utils/common';
 
 export default class VideoController extends Controller {
   /**
@@ -17,10 +18,27 @@ export default class VideoController extends Controller {
    */
   public async getVideoGroupList() {
     const { ctx } = this;
+    ctx.body = await ctx.service.video.getVideoGroupList();
+  }
+
+  /**
+   * @description 获取视频分组下的视频
+   */
+  public async getVideoGroupVideos() {
+    const { ctx } = this;
+    const {
+      groupId,
+      page = Default_PageNumber,
+      resolution = Default_Resolution,
+    } = ctx.query;
     try {
-      ctx.body = await ctx.service.video.getVideoGroupList();
+      ctx.body = await ctx.service.video.getVideoGroupVideos({
+        groupId,
+        page,
+        resolution,
+      });
     } catch (error) {
-      console.log(error, 'hh');
+      console.log(error);
     }
   }
 }
