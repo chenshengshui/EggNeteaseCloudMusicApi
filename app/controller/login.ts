@@ -57,4 +57,16 @@ export default class LoginController extends Controller {
       captcha,
     });
   }
+
+  /**
+   * @description 校验手机号是否存在
+   */
+  public async postCheckCellphoneExit() {
+    const { ctx } = this;
+    const { cellphone, countrycode } = ctx.request.body;
+    ctx.body = await ctx.service.login.postCheckCellphoneExit({
+      cellphone,
+      countrycode,
+    });
+  }
 }

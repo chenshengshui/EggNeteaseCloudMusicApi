@@ -10,4 +10,8 @@ export default (app: Application) => {
     '/login/sms/captcha/verify',
     controller.login.postLoginCaptchaVerify
   );
+  router.post(
+    '/login/cellphone/check/exist',
+    controller.login.postCheckCellphoneExit
+  );
 };

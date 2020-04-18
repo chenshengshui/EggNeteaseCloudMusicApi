@@ -5,6 +5,7 @@ import {
   iPostInitProfile,
   iPostLoginCaptchaSend,
   iPostLoginCaptchaVerify,
+  iPostCheckCellphoneExit,
 } from './login.d';
 const crypto = require('crypto');
 
@@ -109,6 +110,31 @@ export default class Login extends Service {
         crypto: 'weapi',
         cookie: query.cookie,
         proxy: query.proxy,
+      }
+    );
+  }
+
+  /**
+   * @description 发送验证码
+   * @param ctcode
+   * @param cellphone
+   * @param captcha
+   */
+  public async postCheckCellphoneExit({
+    cellphone,
+    countrycode,
+  }: iPostCheckCellphoneExit): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+    return createRequest(
+      'POST',
+      `http://music.163.com/eapi/cellphone/existence/check`,
+      { cellphone, countrycode },
+      {
+        crypto: 'eapi',
+        cookie: query.cookie,
+        proxy: query.proxy,
+        url: '/api/cellphone/existence/check',
       }
     );
   }

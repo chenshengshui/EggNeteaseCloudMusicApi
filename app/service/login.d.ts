@@ -16,3 +16,8 @@ export interface iPostLoginCaptchaSend {
 export interface iPostLoginCaptchaVerify extends iPostLoginCaptchaSend {
   captcha: string;
 }
+
+export interface iPostCheckCellphoneExit {
+  cellphone: string;
+  countrycode: string;
+}
