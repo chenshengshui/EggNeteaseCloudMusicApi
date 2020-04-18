@@ -10,6 +10,7 @@ import {
   iGetUserEvent,
   iGetUserFollows,
   iGetUserPlayRecord,
+  iUserInfo,
 } from './user.d';
 
 /**
@@ -282,6 +283,41 @@ export default class User extends Service {
       'POST',
       `https://music.163.com/weapi/subcount`,
       {},
+      { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
+
+  /**
+   * @description 更新用户信息
+   * @param birthday
+   * @param city
+   * @param gender
+   * @param nickname
+   * @param province
+   * @param signature
+   */
+  public async putUserInfo({
+    birthday,
+    city,
+    gender,
+    nickname,
+    province,
+    signature,
+  }: iUserInfo): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/user/profile/update`,
+      {
+        avatarImgId: '0',
+        birthday,
+        city,
+        gender,
+        nickname,
+        province,
+        signature,
+      },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );
   }

@@ -161,4 +161,20 @@ export default class UserController extends Controller {
     const { ctx } = this;
     ctx.body = await ctx.service.user.getUserSubcount();
   }
+
+  /**
+   * @description 更新用户信息
+   */
+  public async putUserInfo() {
+    const { ctx } = this;
+    const { birthday, city, gender, nickname, province, signature } = ctx.body;
+    ctx.body = await ctx.service.user.putUserInfo({
+      birthday,
+      city,
+      gender,
+      nickname,
+      province,
+      signature,
+    });
+  }
 }

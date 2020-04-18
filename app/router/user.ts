@@ -15,4 +15,5 @@ export default (app: Application) => {
   router.get('/user/playlist', controller.user.getUserPlaylist);
   router.get('/user/playrecord', controller.user.getUserPlayrecord);
   router.get('/user/subcount', controller.user.getUserSubcount);
+  router.put('/user/info', controller.user.putUserInfo);
 };

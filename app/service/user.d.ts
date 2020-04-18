@@ -17,6 +17,15 @@ export interface iGetUserPlayRecord extends iUserId {
   type: number;
 }
 
+export interface iUserInfo {
+  birthday: string;
+  city: string;
+  gender: string;
+  nickname: string;
+  province: string;
+  signature: string;
+}
+
 export interface iUserId {
   uid: string;
 }
