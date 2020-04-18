@@ -1,6 +1,11 @@
 import { Service } from 'egg';
 import createRequest from '../utils/createRequest';
-import { iVideoId, iGetGroupVideos, iPostVideoSub } from './video.d';
+import {
+  iVideoId,
+  iGetGroupVideos,
+  iPostVideoSub,
+  iGetVideoUrls,
+} from './video.d';
 
 /**
  * Video Service
@@ -92,6 +97,29 @@ export default class Video extends Service {
       `https://music.163.com/weapi/cloudvideo/video/${actionType}`,
       {
         id: videoId,
+      },
+      { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
+
+  /**
+   * @description 获取视频URL
+   * @param videoIds
+   * @param resolution
+   */
+  public async getVideoUrls({
+    videoIds,
+    resolution,
+  }: iGetVideoUrls): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/cloudvideo/playurl`,
+      {
+        ids: '["' + videoIds + '"]',
+        resolution,
       },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );

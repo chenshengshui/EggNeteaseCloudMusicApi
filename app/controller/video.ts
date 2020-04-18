@@ -55,4 +55,17 @@ export default class VideoController extends Controller {
       actionType,
     });
   }
+
+  /**
+   * @description 获取视频URL
+   */
+  public async getVideoUrls() {
+    const { ctx } = this;
+    const { videoIds, resolution = Default_Resolution } = ctx.query;
+
+    ctx.body = await ctx.service.video.getVideoUrls({
+      videoIds,
+      resolution,
+    });
+  }
 }

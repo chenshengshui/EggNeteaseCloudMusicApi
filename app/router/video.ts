@@ -7,4 +7,5 @@ export default (app: Application) => {
   router.get('/video/group/list', controller.video.getVideoGroupList);
   router.get('/video/group/videos', controller.video.getVideoGroupVideos);
   router.post('/video/:videoId/sub/:actionType', controller.video.postVideoSub);
+  router.get('/video/urls', controller.video.getVideoUrls);
 };

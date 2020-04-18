@@ -10,3 +10,8 @@ export interface iVideoId {
 export interface iPostVideoSub extends iVideoId {
   actionType: 'sub' | 'unsub';
 }
+
+export interface iGetVideoUrls {
+  videoIds: string;
+  resolution: number;
+}
