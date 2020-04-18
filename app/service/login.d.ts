@@ -8,3 +8,11 @@ export interface iLoginByCellPhone {
 export interface iPostInitProfile {
   nickname: string;
 }
+
+export interface iPostLoginCaptchaSend {
+  ctcode: string;
+  cellphone: string;
+}
+export interface iPostLoginCaptchaVerify extends iPostLoginCaptchaSend {
+  captcha: string;
+}

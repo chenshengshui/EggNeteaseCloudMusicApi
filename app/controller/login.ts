@@ -44,4 +44,17 @@ export default class LoginController extends Controller {
       cellphone,
     });
   }
+
+  /**
+   * @description 发送验证码
+   */
+  public async postLoginCaptchaVerify() {
+    const { ctx } = this;
+    const { ctcode = Default_Ctcode, cellphone, captcha } = ctx.request.body;
+    ctx.body = await ctx.service.login.postLoginCaptchaVerify({
+      ctcode,
+      cellphone,
+      captcha,
+    });
+  }
 }

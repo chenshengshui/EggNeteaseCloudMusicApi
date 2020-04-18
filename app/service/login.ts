@@ -1,6 +1,11 @@
 import { Service } from 'egg';
 import createRequest from '../utils/createRequest';
-import { iLoginByCellPhone, iPostInitProfile } from './login.d';
+import {
+  iLoginByCellPhone,
+  iPostInitProfile,
+  iPostLoginCaptchaSend,
+  iPostLoginCaptchaVerify,
+} from './login.d';
 const crypto = require('crypto');
 
 /**
@@ -65,13 +70,41 @@ export default class Login extends Service {
    * @param ctcode
    * @param cellphone
    */
-  public async postLoginCaptchaSend({ ctcode, cellphone }): Promise<any> {
+  public async postLoginCaptchaSend({
+    ctcode,
+    cellphone,
+  }: iPostLoginCaptchaSend): Promise<any> {
     const { ctx } = this;
     const query = ctx.request.query;
     return createRequest(
       'POST',
       `https://music.163.com/weapi/sms/captcha/sent`,
       { ctcode, cellphone },
+      {
+        crypto: 'weapi',
+        cookie: query.cookie,
+        proxy: query.proxy,
+      }
+    );
+  }
+
+  /**
+   * @description 发送验证码
+   * @param ctcode
+   * @param cellphone
+   * @param captcha
+   */
+  public async postLoginCaptchaVerify({
+    ctcode,
+    cellphone,
+    captcha,
+  }: iPostLoginCaptchaVerify): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/sms/captcha/verify`,
+      { ctcode, cellphone, captcha },
       {
         crypto: 'weapi',
         cookie: query.cookie,

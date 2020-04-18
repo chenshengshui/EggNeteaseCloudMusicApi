@@ -6,4 +6,8 @@ export default (app: Application) => {
   router.post('/login/cellphone', controller.login.loginByCellPhone);
   router.post('/login/init/profile', controller.login.postInitProfile);
   router.post('/login/sms/captcha/send', controller.login.postLoginCaptchaSend);
+  router.post(
+    '/login/sms/captcha/verify',
+    controller.login.postLoginCaptchaVerify
+  );
 };
