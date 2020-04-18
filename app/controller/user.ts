@@ -182,6 +182,6 @@ export default class UserController extends Controller {
    */
   public async getUserLogs() {
     const { ctx } = this;
-    ctx.body = await ctx.service.user.getUserLogs;
+    ctx.body = await ctx.service.user.getUserLogs();
   }
 }

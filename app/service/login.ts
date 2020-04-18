@@ -1,17 +1,25 @@
 import { Service } from 'egg';
 import createRequest from '../utils/createRequest';
+import { iLoginByCellPhone, iPostInitProfile } from './login.d';
 const crypto = require('crypto');
 
 /**
  * Login Service
  */
 export default class Login extends Service {
+  /**
+   * @description 手机号码登录
+   * @param phone
+   * @param password
+   * @param countrycode
+   * @param rememberLogin
+   */
   public async loginByCellPhone({
     phone,
     countrycode,
     password,
     rememberLogin,
-  }) {
+  }: iLoginByCellPhone): Promise<any> {
     const { ctx } = this;
     const query = ctx.request.query;
     return createRequest(
@@ -28,6 +36,26 @@ export default class Login extends Service {
         ua: 'pc',
         cookie: query.cookie,
         proxy: query.proxy,
+      }
+    );
+  }
+
+  /**
+   * @description 初始化昵称
+   * @param nickname
+   */
+  public async postInitProfile({ nickname }: iPostInitProfile): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+    return createRequest(
+      'POST',
+      `http://music.163.com/eapi/activate/initProfile`,
+      { nickname },
+      {
+        crypto: 'eapi',
+        cookie: query.cookie,
+        proxy: query.proxy,
+        url: '/api/activate/initProfile',
       }
     );
   }
