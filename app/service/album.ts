@@ -1,7 +1,5 @@
 import { Service } from 'egg';
-
 import createRequest from '../utils/createRequest';
-
 import {
   iGetAlbumDynamicInfo,
   iPostAlbumSub,
