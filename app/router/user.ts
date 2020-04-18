@@ -3,7 +3,7 @@ import { Application } from 'egg';
 export default (app: Application) => {
   const { controller, router } = app;
 
-  router.get('/user/:userId/audios', controller.user.getAudios);
+  router.get('/user/audios', controller.user.getAudios);
   router.delete('/user/cloud/song/del', controller.user.deleteCloudMusic);
   router.get('/user/cloud/songs/info', controller.user.getCloudMusicsInfo);
   router.get('/user/cloud', controller.user.getCloudMusics);
@@ -16,4 +16,5 @@ export default (app: Application) => {
   router.get('/user/playrecord', controller.user.getUserPlayrecord);
   router.get('/user/subcount', controller.user.getUserSubcount);
   router.put('/user/info', controller.user.putUserInfo);
+  router.get('/user/logs', controller.user.getUserLogs);
 };

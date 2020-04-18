@@ -19,16 +19,16 @@ import {
 export default class User extends Service {
   /**
    * @description 获取用户电台
-   * @param userId
+   * @param uid
    */
-  public async getAudios({ userId }) {
+  public async getAudios({ uid }: iUserId) {
     const { ctx } = this;
     const query = ctx.request.query;
     return createRequest(
       'POST',
       `https://music.163.com/weapi/djradio/get/byuser`,
       {
-        userId: userId,
+        userId: uid,
       },
       {
         crypto: 'weapi',
@@ -319,6 +319,24 @@ export default class User extends Service {
         signature,
       },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
+
+  /**
+   * @description 获取用户操作记录
+   */
+  public async getUserLogs() {
+    const { ctx } = this;
+    const query = ctx.request.query;
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/feedback/weblog`,
+      {},
+      {
+        crypto: 'weapi',
+        cookie: query.cookie,
+        proxy: query.proxy,
+      }
     );
   }
 }

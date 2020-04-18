@@ -8,10 +8,9 @@ export default class UserController extends Controller {
    */
   public async getAudios() {
     const { ctx } = this;
-    const { userId } = ctx.params;
-
+    const uid = ctx.cookies.get('userId');
     ctx.body = await ctx.service.user.getAudios({
-      userId: userId,
+      uid,
     });
   }
 
@@ -176,5 +175,13 @@ export default class UserController extends Controller {
       province,
       signature,
     });
+  }
+
+  /**
+   * @description 获取用户操作记录
+   */
+  public async getUserLogs() {
+    const { ctx } = this;
+    ctx.body = await ctx.service.user.getUserLogs;
   }
 }
