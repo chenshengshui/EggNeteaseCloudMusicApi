@@ -1,4 +1,5 @@
 import { Controller } from 'egg';
+
 import { Default_PageNumber, Default_Resolution } from '../utils/common';
 
 export default class VideoController extends Controller {
@@ -40,5 +41,18 @@ export default class VideoController extends Controller {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  /**
+   * @description 收藏｜取消收藏 视频
+   */
+  public async postVideoSub() {
+    const { ctx } = this;
+    const { videoId, actionType } = ctx.params;
+
+    ctx.body = await ctx.service.video.postVideoSub({
+      videoId,
+      actionType,
+    });
   }
 }

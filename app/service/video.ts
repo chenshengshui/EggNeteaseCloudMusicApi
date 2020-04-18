@@ -1,6 +1,6 @@
 import { Service } from 'egg';
 import createRequest from '../utils/createRequest';
-import { iVideoId, iGetGroupVideos } from './video.d';
+import { iVideoId, iGetGroupVideos, iPostVideoSub } from './video.d';
 
 /**
  * Video Service
@@ -72,6 +72,28 @@ export default class Video extends Service {
         cookie: query.cookie,
         proxy: query.proxy,
       }
+    );
+  }
+
+  /**
+   * @description 收藏 ｜ 取消收藏 专辑
+   * @param albumId
+   * @param actionType
+   */
+  public async postVideoSub({
+    videoId,
+    actionType,
+  }: iPostVideoSub): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/cloudvideo/video/${actionType}`,
+      {
+        id: videoId,
+      },
+      { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );
   }
 }

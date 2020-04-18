@@ -6,3 +6,7 @@ export interface iGetGroupVideos {
 export interface iVideoId {
   videoId: string;
 }
+
+export interface iPostVideoSub extends iVideoId {
+  actionType: 'sub' | 'unsub';
+}
