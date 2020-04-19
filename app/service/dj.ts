@@ -282,4 +282,25 @@ export default class Dj extends Service {
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );
   }
+
+  /**
+   * @description 订阅｜ 取消订阅电台
+   * @param djId
+   * @param actionType
+   */
+  public async getDjSublist({ page, pageSize }: iPageParams): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/djradio/get/subed`,
+      {
+        offset: page,
+        limit: pageSize,
+        total: true,
+      },
+      { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
 }

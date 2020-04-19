@@ -175,4 +175,16 @@ export default class ArtistController extends Controller {
     const { djId, actionType } = ctx.params;
     ctx.body = await ctx.service.dj.postDjSub({ djId, actionType });
   }
+
+  /**
+   * @description 获取订阅电台列表
+   */
+  public async getDjSublist() {
+    const { ctx } = this;
+    const {
+      page = Default_PageNumber,
+      pageSize = Default_PageSize,
+    } = ctx.query;
+    ctx.body = await ctx.service.dj.getDjSublist({ page, pageSize });
+  }
 }
