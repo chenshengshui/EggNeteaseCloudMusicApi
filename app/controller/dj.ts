@@ -130,4 +130,21 @@ export default class ArtistController extends Controller {
       asc,
     });
   }
+
+  /**
+   * @description 获取分类热门电台
+   */
+  public async getCatgoryHotDjs() {
+    const { ctx } = this;
+    const { catgoryId } = ctx.params;
+    const {
+      page = Default_PageNumber,
+      pageSize = Default_PageSize,
+    } = ctx.query;
+    ctx.body = await ctx.service.dj.getCatgoryHotDjs({
+      page,
+      pageSize,
+      catgoryId,
+    });
+  }
 }

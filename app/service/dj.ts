@@ -1,6 +1,12 @@
 import { Service } from 'egg';
 import createRequest from '../utils/createRequest';
-import { iDjId, iPageParams, iDjHoursProgram, iGetDjProgramList } from './dj.d';
+import {
+  iDjId,
+  iPageParams,
+  iDjHoursProgram,
+  iGetDjProgramList,
+  iGetCatgoryHotDjs,
+} from './dj.d';
 
 /**
  * dj Service
@@ -181,6 +187,25 @@ export default class Dj extends Service {
       'POST',
       `https://music.163.com/weapi/dj/program/byradio`,
       { djId, asc, offset: page, limit: pageSize },
+      { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
+
+  /**
+   * @description 获取分类热门电台
+   */
+  public async getCatgoryHotDjs({
+    page,
+    pageSize,
+    catgoryId,
+  }: iGetCatgoryHotDjs): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+
+    return createRequest(
+      'POST',
+      `https://music.163.com/api/djradio/hot`,
+      { cateId: catgoryId, offset: page, limit: pageSize },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );
   }

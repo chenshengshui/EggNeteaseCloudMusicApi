@@ -15,3 +15,7 @@ export interface iGetDjProgramList extends iPageParams {
   djId: string;
   asc: boolean;
 }
+
+export interface iGetCatgoryHotDjs extends iPageParams {
+  catgoryId: string;
+}
