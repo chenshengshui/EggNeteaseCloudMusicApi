@@ -9,4 +9,16 @@ export default class ArtistController extends Controller {
     const { ctx } = this;
     ctx.body = await ctx.service.playlist.getPlaylistCatgorys();
   }
+
+  /**
+   * @description 创建歌单
+   */
+  public async postPlaylistCreate() {
+    const { ctx } = this;
+    const { name, privacy } = ctx.request.body;
+    ctx.body = await ctx.service.playlist.postPlaylistCreate({
+      name,
+      privacy,
+    });
+  }
 }
