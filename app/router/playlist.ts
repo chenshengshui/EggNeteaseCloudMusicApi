@@ -7,4 +7,5 @@ export default (app: Application) => {
   router.post('/playlist/create', controller.playlist.postPlaylistCreate);
   router.delete('/playlist/delete', controller.playlist.deletePlaylist);
   router.put('/playlist/des/update', controller.playlist.updatePlaylistDes);
+  router.get('/playlist/detail', controller.playlist.getPlaylistDetail);
 };

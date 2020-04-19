@@ -4,6 +4,7 @@ import {
   iPostPlaylistCreate,
   iPid,
   iUpdatePlaylistDes,
+  iGetPlaylistDetail,
 } from './types/playlist';
 
 /**
@@ -93,6 +94,34 @@ export default class Playlist extends Service {
         cookie: query.cookie,
         proxy: query.proxy,
         url: '/api/playlist/desc/update',
+      }
+    );
+  }
+
+  /**
+   * @description 获取歌单详情
+   * @param pid
+   * @param subNum
+   */
+  public async getPlaylistDetail({
+    pid,
+    subNum,
+  }: iGetPlaylistDetail): Promise<any> {
+    const { ctx } = this;
+    const query: any = ctx.request.query;
+
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/v3/playlist/detail`,
+      {
+        id: pid,
+        n: 100000,
+        s: subNum,
+      },
+      {
+        crypto: 'linuxapi',
+        cookie: query.cookie,
+        proxy: query.proxy,
       }
     );
   }

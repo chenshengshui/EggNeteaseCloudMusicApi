@@ -44,4 +44,16 @@ export default class ArtistController extends Controller {
       description,
     });
   }
+
+  /**
+   * @description 获取歌单详情
+   */
+  public async getPlaylistDetail() {
+    const { ctx } = this;
+    const { pid, subNum } = ctx.query;
+    ctx.body = await ctx.service.playlist.getPlaylistDetail({
+      pid,
+      subNum,
+    });
+  }
 }
