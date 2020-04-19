@@ -6,3 +6,7 @@ export interface iPostPlaylistCreate {
 export interface iPid {
   pid: string;
 }
+
+export interface iUpdatePlaylistDes extends iPid {
+  description: string;
+}

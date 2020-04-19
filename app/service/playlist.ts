@@ -1,6 +1,10 @@
 import { Service } from 'egg';
 import createRequest from '../utils/createRequest';
-import { iPostPlaylistCreate, iPid } from './types/playlist';
+import {
+  iPostPlaylistCreate,
+  iPid,
+  iUpdatePlaylistDes,
+} from './types/playlist';
 
 /**
  * playlist Service
@@ -47,7 +51,7 @@ export default class Playlist extends Service {
 
   /**
    * @description 删除歌单
-   * @param id
+   * @param pid
    */
   public async deletePlaylist({ pid }: iPid): Promise<any> {
     const { ctx } = this;
@@ -61,6 +65,35 @@ export default class Playlist extends Service {
         pid,
       },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
+
+  /**
+   * @description 更新歌单描述
+   * @param pid
+   * @param description
+   */
+  public async updatePlaylistDes({
+    pid,
+    description,
+  }: iUpdatePlaylistDes): Promise<any> {
+    const { ctx } = this;
+    const query: any = ctx.request.query;
+    query.cookie.os = 'pc';
+
+    return createRequest(
+      'POST',
+      `http://interface3.music.163.com/eapi/playlist/desc/update`,
+      {
+        id: pid,
+        desc: description,
+      },
+      {
+        crypto: 'eapi',
+        cookie: query.cookie,
+        proxy: query.proxy,
+        url: '/api/playlist/desc/update',
+      }
     );
   }
 }

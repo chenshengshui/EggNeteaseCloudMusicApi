@@ -32,4 +32,16 @@ export default class ArtistController extends Controller {
       pid,
     });
   }
+
+  /**
+   * @description 更新歌单描述
+   */
+  public async updatePlaylistDes() {
+    const { ctx } = this;
+    const { pid, description } = ctx.request.body;
+    ctx.body = await ctx.service.playlist.updatePlaylistDes({
+      pid,
+      description,
+    });
+  }
 }
