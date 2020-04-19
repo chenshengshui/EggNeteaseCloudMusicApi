@@ -8,6 +8,7 @@ import {
   iGetCatgoryHotDjs,
   iGetTypeRecDjs,
   iPostDjSub,
+  iGetDjToplist,
 } from './dj.d';
 
 /**
@@ -390,6 +391,29 @@ export default class Dj extends Service {
       `https://music.163.com/api/dj/toplist/popular`,
       {
         limit: pageSize,
+      },
+      { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
+
+  /**
+   * @description 热榜
+   */
+  public async getDjToplist({
+    page,
+    pageSize,
+    type,
+  }: iGetDjToplist): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+
+    return createRequest(
+      'POST',
+      `https://music.163.com/api/djradio/toplist`,
+      {
+        offset: page,
+        limit: pageSize,
+        type,
       },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );

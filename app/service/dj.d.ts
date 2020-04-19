@@ -28,3 +28,7 @@ export interface iPostDjSub {
   djId: string;
   actionType: 'sub' | 'unsub';
 }
+
+export interface iGetDjToplist extends iPageParams {
+  type: 0 | 1;
+}

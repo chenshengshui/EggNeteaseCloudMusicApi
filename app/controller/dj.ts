@@ -235,4 +235,18 @@ export default class ArtistController extends Controller {
     const { pageSize = Default_PageSize } = ctx.query;
     ctx.body = await ctx.service.dj.getDjPopularToplist({ pageSize });
   }
+
+  /**
+   * @description 热榜
+   * @type
+   */
+  public async getDjToplist() {
+    const { ctx } = this;
+    const {
+      page = Default_PageNumber,
+      pageSize = Default_PageSize,
+      type = 0,
+    } = ctx.query;
+    ctx.body = await ctx.service.dj.getDjToplist({ page, pageSize, type });
+  }
 }
