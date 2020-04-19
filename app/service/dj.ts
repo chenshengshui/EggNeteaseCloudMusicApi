@@ -284,9 +284,9 @@ export default class Dj extends Service {
   }
 
   /**
-   * @description 订阅｜ 取消订阅电台
-   * @param djId
-   * @param actionType
+   * @description 获取订阅电台列表
+   * @param page
+   * @param pageSize
    */
   public async getDjSublist({ page, pageSize }: iPageParams): Promise<any> {
     const { ctx } = this;
@@ -299,6 +299,24 @@ export default class Dj extends Service {
         offset: page,
         limit: pageSize,
         total: true,
+      },
+      { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
+
+  /**
+   * @description 获取今日优选
+   * @param page
+   */
+  public async getTodayPerferedDjs({ page }: iPageParams): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+
+    return createRequest(
+      'POST',
+      `http://music.163.com/weapi/djradio/home/today/perfered`,
+      {
+        page: page,
       },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );

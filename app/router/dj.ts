@@ -22,4 +22,5 @@ export default (app: Application) => {
   router.get('/dj/rec/djs', controller.dj.getRecDjs);
   router.post('/dj/:djId/sub/:actionType', controller.dj.postDjSub);
   router.get('/dj/sublist', controller.dj.getDjSublist);
+  router.get('/dj/totay/perfered', controller.dj.getTodayPerferedDjs);
 };

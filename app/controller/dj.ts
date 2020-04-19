@@ -187,4 +187,13 @@ export default class ArtistController extends Controller {
     } = ctx.query;
     ctx.body = await ctx.service.dj.getDjSublist({ page, pageSize });
   }
+
+  /**
+   * @description 获取今日优选
+   */
+  public async getTodayPerferedDjs() {
+    const { ctx } = this;
+    const { page = Default_PageNumber } = ctx.query;
+    ctx.body = await ctx.service.dj.getTodayPerferedDjs({ page });
+  }
 }
