@@ -131,7 +131,7 @@ export default class Dj extends Service {
   }
 
   /**
-   * @description 获取电台分类列表
+   * @description 获取电台节目24小时榜单
    */
   public async getDjToplistHoursProgram({
     pageSize,
@@ -143,6 +143,24 @@ export default class Dj extends Service {
       'POST',
       `https://music.163.com/api/djprogram/toplist/hours`,
       { limit: pageSize },
+      { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
+
+  /**
+   * @description 获取电台节目榜
+   */
+  public async getDjToplistProgram({
+    page,
+    pageSize,
+  }: iPageParams): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+
+    return createRequest(
+      'POST',
+      `https://music.163.com/api/program/toplist/v1`,
+      { offset: page, limit: pageSize },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );
   }

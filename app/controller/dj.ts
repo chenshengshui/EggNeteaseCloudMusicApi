@@ -91,8 +91,23 @@ export default class ArtistController extends Controller {
    */
   public async getDjToplistHoursProgram() {
     const { ctx } = this;
-    const { pageSize } = ctx.query;
+    const { pageSize = Default_PageSize } = ctx.query;
     ctx.body = await ctx.service.dj.getDjToplistHoursProgram({
+      pageSize,
+    });
+  }
+
+  /**
+   * @description 获取电台节目榜单
+   */
+  public async getDjToplistProgram() {
+    const { ctx } = this;
+    const {
+      page = Default_PageNumber,
+      pageSize = Default_PageSize,
+    } = ctx.query;
+    ctx.body = await ctx.service.dj.getDjToplistProgram({
+      page,
       pageSize,
     });
   }
