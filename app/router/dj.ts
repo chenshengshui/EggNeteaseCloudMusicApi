@@ -24,4 +24,5 @@ export default (app: Application) => {
   router.get('/dj/sublist', controller.dj.getDjSublist);
   router.get('/dj/totay/perfered', controller.dj.getTodayPerferedDjs);
   router.get('/dj/toplist/hours', controller.dj.getDjHoursToplist);
+  router.get('/dj/toplist/newcomer', controller.dj.getDjNewcomerToplist);
 };
