@@ -19,3 +19,7 @@ export interface iGetDjProgramList extends iPageParams {
 export interface iGetCatgoryHotDjs extends iPageParams {
   catgoryId: string;
 }
+
+export interface iGetTypeRecDjs {
+  typeId: string;
+}

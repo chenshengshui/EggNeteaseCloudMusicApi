@@ -6,6 +6,7 @@ import {
   iDjHoursProgram,
   iGetDjProgramList,
   iGetCatgoryHotDjs,
+  iGetTypeRecDjs,
 } from './dj.d';
 
 /**
@@ -206,6 +207,21 @@ export default class Dj extends Service {
       'POST',
       `https://music.163.com/api/djradio/hot`,
       { cateId: catgoryId, offset: page, limit: pageSize },
+      { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
+
+  /**
+   * @description 获取类型推荐电台
+   */
+  public async getTypeRecDjs({ typeId }: iGetTypeRecDjs): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/djradio/recommend`,
+      { cateId: typeId },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );
   }

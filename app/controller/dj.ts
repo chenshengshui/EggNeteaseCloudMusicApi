@@ -147,4 +147,15 @@ export default class ArtistController extends Controller {
       catgoryId,
     });
   }
+
+  /**
+   * @description 获取分类热门电台
+   */
+  public async getTypeRecDjs() {
+    const { ctx } = this;
+    const { typeId } = ctx.params;
+    ctx.body = await ctx.service.dj.getTypeRecDjs({
+      typeId,
+    });
+  }
 }

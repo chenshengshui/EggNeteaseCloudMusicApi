@@ -18,4 +18,5 @@ export default (app: Application) => {
   router.get('/dj/program/toplist', controller.dj.getDjToplistProgram);
   router.get('/dj/:djId/program/list', controller.dj.getDjProgramList);
   router.get('/dj/catgory/:catgoryId/djs', controller.dj.getCatgoryHotDjs);
+  router.get('/dj/type/:typeId/rec/djs', controller.dj.getTypeRecDjs);
 };
