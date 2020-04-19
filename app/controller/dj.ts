@@ -1,4 +1,5 @@
 import { Controller } from 'egg';
+import { Default_PageNumber, Default_PageSize } from '../utils/common';
 
 export default class ArtistController extends Controller {
   /**
@@ -41,6 +42,21 @@ export default class ArtistController extends Controller {
     const { djId } = ctx.params;
     ctx.body = await ctx.service.dj.getDjDetail({
       djId,
+    });
+  }
+
+  /**
+   * @description 获取热门电台
+   */
+  public async getHotDjs() {
+    const { ctx } = this;
+    const {
+      page = Default_PageNumber,
+      pageSize = Default_PageSize,
+    } = ctx.query;
+    ctx.body = await ctx.service.dj.getHotDjs({
+      page,
+      pageSize,
     });
   }
 }

@@ -1,5 +1,6 @@
 import { Service } from 'egg';
 import createRequest from '../utils/createRequest';
+import { iPageParams } from './dj.d';
 
 /**
  * dj Service
@@ -76,6 +77,23 @@ export default class Dj extends Service {
       'POST',
       `https://music.163.com/weapi/djradio/get`,
       { id: djId },
+      { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
+
+  /**
+   * @description 获取热门电台列表
+   * @param page
+   * @param pageSize
+   */
+  public async getHotDjs({ page, pageSize }: iPageParams): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/djradio/hot/v1`,
+      { offset: page, limit: pageSize },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );
   }
