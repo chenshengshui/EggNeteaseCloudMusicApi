@@ -21,4 +21,15 @@ export default class ArtistController extends Controller {
       privacy,
     });
   }
+
+  /**
+   * @description 创建歌单
+   */
+  public async deletePlaylist() {
+    const { ctx } = this;
+    const { pid } = ctx.request.body;
+    ctx.body = await ctx.service.playlist.deletePlaylist({
+      pid,
+    });
+  }
 }

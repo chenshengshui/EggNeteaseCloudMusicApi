@@ -1,6 +1,6 @@
 import { Service } from 'egg';
 import createRequest from '../utils/createRequest';
-import { iPostPlaylistCreate } from './types/playlist';
+import { iPostPlaylistCreate, iPid } from './types/playlist';
 
 /**
  * playlist Service
@@ -40,6 +40,25 @@ export default class Playlist extends Service {
       {
         name,
         privacy,
+      },
+      { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
+
+  /**
+   * @description 删除歌单
+   * @param id
+   */
+  public async deletePlaylist({ pid }: iPid): Promise<any> {
+    const { ctx } = this;
+    const query: any = ctx.request.query;
+    query.cookie.os = 'pc';
+
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/playlist/delete`,
+      {
+        pid,
       },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );
