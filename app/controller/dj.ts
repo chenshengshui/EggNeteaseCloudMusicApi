@@ -196,4 +196,13 @@ export default class ArtistController extends Controller {
     const { page = Default_PageNumber } = ctx.query;
     ctx.body = await ctx.service.dj.getTodayPerferedDjs({ page });
   }
+
+  /**
+   * @description 获取24小时榜电台
+   */
+  public async getDjHoursToplist() {
+    const { ctx } = this;
+    const { pageSize = Default_PageSize } = ctx.query;
+    ctx.body = await ctx.service.dj.getDjHoursToplist({ pageSize });
+  }
 }

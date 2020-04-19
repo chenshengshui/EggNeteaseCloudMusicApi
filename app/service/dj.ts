@@ -321,4 +321,22 @@ export default class Dj extends Service {
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );
   }
+
+  /**
+   * @description 获取24小时榜电台
+   * @param pageSize
+   */
+  public async getDjHoursToplist({ pageSize }: iPageParams): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+
+    return createRequest(
+      'POST',
+      `https://music.163.com/api/dj/toplist/hours`,
+      {
+        limit: pageSize,
+      },
+      { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
 }
