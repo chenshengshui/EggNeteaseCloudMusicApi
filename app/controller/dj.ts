@@ -158,4 +158,12 @@ export default class ArtistController extends Controller {
       typeId,
     });
   }
+
+  /**
+   * @description 获取推荐电台
+   */
+  public async getRecDjs() {
+    const { ctx } = this;
+    ctx.body = await ctx.service.dj.getRecDjs();
+  }
 }

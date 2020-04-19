@@ -225,4 +225,19 @@ export default class Dj extends Service {
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );
   }
+
+  /**
+   * @description 获取推荐电台
+   */
+  public async getRecDjs(): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/djradio/recommend/v1`,
+      {},
+      { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
 }
