@@ -23,3 +23,8 @@ export interface iGetCatgoryHotDjs extends iPageParams {
 export interface iGetTypeRecDjs {
   typeId: string;
 }
+
+export interface iPostDjSub {
+  djId: string;
+  actionType: 'sub' | 'unsub';
+}

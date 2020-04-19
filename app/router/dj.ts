@@ -20,4 +20,5 @@ export default (app: Application) => {
   router.get('/dj/catgory/:catgoryId/djs', controller.dj.getCatgoryHotDjs);
   router.get('/dj/type/:typeId/rec/djs', controller.dj.getTypeRecDjs);
   router.get('/dj/rec/djs', controller.dj.getRecDjs);
+  router.post('/dj/:djId/sub/:actionType', controller.dj.postDjSub);
 };

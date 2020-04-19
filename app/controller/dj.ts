@@ -166,4 +166,13 @@ export default class ArtistController extends Controller {
     const { ctx } = this;
     ctx.body = await ctx.service.dj.getRecDjs();
   }
+
+  /**
+   * @description 订阅 ｜ 取消订阅 电台
+   */
+  public async postDjSub() {
+    const { ctx } = this;
+    const { djId, actionType } = ctx.params;
+    ctx.body = await ctx.service.dj.postDjSub({ djId, actionType });
+  }
 }
