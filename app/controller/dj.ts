@@ -59,4 +59,41 @@ export default class ArtistController extends Controller {
       pageSize,
     });
   }
+
+  /**
+   * @description 获取付费电台
+   */
+  public async getPaygiftDjs() {
+    const { ctx } = this;
+    const {
+      page = Default_PageNumber,
+      pageSize = Default_PageSize,
+    } = ctx.query;
+    ctx.body = await ctx.service.dj.getPaygiftDjs({
+      page,
+      pageSize,
+    });
+  }
+
+  /**
+   * @description 获取电台节目详情
+   */
+  public async getDjProgramDetail() {
+    const { ctx } = this;
+    const { djId } = ctx.params;
+    ctx.body = await ctx.service.dj.getDjProgramDetail({
+      djId,
+    });
+  }
+
+  /**
+   * @description 获取电台24
+   */
+  public async getDjToplistHoursProgram() {
+    const { ctx } = this;
+    const { pageSize } = ctx.query;
+    ctx.body = await ctx.service.dj.getDjToplistHoursProgram({
+      pageSize,
+    });
+  }
 }

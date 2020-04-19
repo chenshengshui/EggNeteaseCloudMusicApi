@@ -1,6 +1,6 @@
 import { Service } from 'egg';
 import createRequest from '../utils/createRequest';
-import { iPageParams } from './dj.d';
+import { iDjId, iPageParams, iDjHoursProgram } from './dj.d';
 
 /**
  * dj Service
@@ -69,7 +69,7 @@ export default class Dj extends Service {
   /**
    * @description 获取电台分类列表
    */
-  public async getDjDetail({ djId }): Promise<any> {
+  public async getDjDetail({ djId }: iDjId): Promise<any> {
     const { ctx } = this;
     const query = ctx.request.query;
 
@@ -94,6 +94,55 @@ export default class Dj extends Service {
       'POST',
       `https://music.163.com/weapi/djradio/hot/v1`,
       { offset: page, limit: pageSize },
+      { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
+
+  /**
+   * @description 获取付费电台列表
+   * @param page
+   * @param pageSize
+   */
+  public async getPaygiftDjs({ page, pageSize }: iPageParams): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/djradio/home/paygift/list?_nmclfl=1`,
+      { offset: page, limit: pageSize },
+      { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
+
+  /**
+   * @description 获取电台分类列表
+   */
+  public async getDjProgramDetail({ djId }: iDjId): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/dj/program/detail`,
+      { id: djId },
+      { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
+
+  /**
+   * @description 获取电台分类列表
+   */
+  public async getDjToplistHoursProgram({
+    pageSize,
+  }: iDjHoursProgram): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+
+    return createRequest(
+      'POST',
+      `https://music.163.com/api/djprogram/toplist/hours`,
+      { limit: pageSize },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );
   }

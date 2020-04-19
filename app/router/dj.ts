@@ -9,4 +9,10 @@ export default (app: Application) => {
   router.get('/dj/category/list', controller.dj.getCategoryList);
   router.get('/dj/:djId/detail', controller.dj.getDjDetail);
   router.get('/dj/hot', controller.dj.getHotDjs);
+  router.get('/dj/paygift', controller.dj.getPaygiftDjs);
+  router.get('/dj/:djId/program/detail', controller.dj.getDjProgramDetail);
+  router.get(
+    '/dj/program/toplist/hours',
+    controller.dj.getDjToplistHoursProgram
+  );
 };
