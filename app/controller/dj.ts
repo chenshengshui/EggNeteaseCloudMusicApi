@@ -217,4 +217,13 @@ export default class ArtistController extends Controller {
     } = ctx.query;
     ctx.body = await ctx.service.dj.getDjNewcomerToplist({ page, pageSize });
   }
+
+  /**
+   * @description 付费精品
+   */
+  public async getDjPayToplist() {
+    const { ctx } = this;
+    const { pageSize = Default_PageSize } = ctx.query;
+    ctx.body = await ctx.service.dj.getDjPayToplist({ pageSize });
+  }
 }
