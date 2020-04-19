@@ -11,7 +11,7 @@ import {
   iGetUserFollows,
   iGetUserPlayRecord,
   iUserInfo,
-} from './user.d';
+} from './types/user';
 
 /**
  * User Service

@@ -5,7 +5,7 @@ import {
   iGetGroupVideos,
   iPostVideoSub,
   iGetVideoUrls,
-} from './video.d';
+} from './types/video';
 
 /**
  * Video Service

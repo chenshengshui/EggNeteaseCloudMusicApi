@@ -7,7 +7,7 @@ import {
   iGetArtistTopSong,
   iPostArtistSub,
   iPageParams,
-} from './artist.d';
+} from './types/artist';
 import createRequest from '../utils/createRequest';
 
 /**

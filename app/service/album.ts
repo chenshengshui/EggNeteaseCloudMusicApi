@@ -5,7 +5,7 @@ import {
   iPostAlbumSub,
   iPageParams,
   iGetAlbumInfo,
-} from './album.d';
+} from './types/album';
 
 /**
  * Album Service

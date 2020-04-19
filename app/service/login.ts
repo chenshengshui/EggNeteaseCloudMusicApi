@@ -6,7 +6,7 @@ import {
   iPostLoginCaptchaSend,
   iPostLoginCaptchaVerify,
   iPostCheckCellphoneExit,
-} from './login.d';
+} from './types/login';
 const crypto = require('crypto');
 
 /**

@@ -9,7 +9,7 @@ import {
   iGetTypeRecDjs,
   iPostDjSub,
   iGetDjToplist,
-} from './dj.d';
+} from './types/dj';
 
 /**
  * dj Service
