@@ -10,6 +10,7 @@ import ExportAlbum from '../../../app/service/album';
 import ExportArtist from '../../../app/service/artist';
 import ExportDj from '../../../app/service/dj';
 import ExportLogin from '../../../app/service/login';
+import ExportPlaylist from '../../../app/service/playlist';
 import ExportUser from '../../../app/service/user';
 import ExportVideo from '../../../app/service/video';
 
@@ -19,6 +20,7 @@ declare module 'egg' {
     artist: AutoInstanceType<typeof ExportArtist>;
     dj: AutoInstanceType<typeof ExportDj>;
     login: AutoInstanceType<typeof ExportLogin>;
+    playlist: AutoInstanceType<typeof ExportPlaylist>;
     user: AutoInstanceType<typeof ExportUser>;
     video: AutoInstanceType<typeof ExportVideo>;
   }
