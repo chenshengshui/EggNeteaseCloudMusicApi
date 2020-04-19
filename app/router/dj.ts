@@ -16,4 +16,5 @@ export default (app: Application) => {
     controller.dj.getDjToplistHoursProgram
   );
   router.get('/dj/program/toplist', controller.dj.getDjToplistProgram);
+  router.get('/dj/:djId/program/list', controller.dj.getDjProgramList);
 };

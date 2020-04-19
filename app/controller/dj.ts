@@ -111,4 +111,23 @@ export default class ArtistController extends Controller {
       pageSize,
     });
   }
+
+  /**
+   * @description 获取电台节目列表
+   */
+  public async getDjProgramList() {
+    const { ctx } = this;
+    const { djId } = ctx.params;
+    const {
+      page = Default_PageNumber,
+      pageSize = Default_PageSize,
+      asc,
+    } = ctx.query;
+    ctx.body = await ctx.service.dj.getDjProgramList({
+      page,
+      pageSize,
+      djId,
+      asc,
+    });
+  }
 }

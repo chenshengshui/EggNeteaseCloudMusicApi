@@ -1,6 +1,6 @@
 import { Service } from 'egg';
 import createRequest from '../utils/createRequest';
-import { iDjId, iPageParams, iDjHoursProgram } from './dj.d';
+import { iDjId, iPageParams, iDjHoursProgram, iGetDjProgramList } from './dj.d';
 
 /**
  * dj Service
@@ -161,6 +161,26 @@ export default class Dj extends Service {
       'POST',
       `https://music.163.com/api/program/toplist/v1`,
       { offset: page, limit: pageSize },
+      { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
+
+  /**
+   * @description 获取电台节目列表
+   */
+  public async getDjProgramList({
+    page,
+    pageSize,
+    djId,
+    asc,
+  }: iGetDjProgramList): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/dj/program/byradio`,
+      { djId, asc, offset: page, limit: pageSize },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );
   }

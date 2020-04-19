@@ -10,3 +10,8 @@ export interface iDjId {
 export interface iDjHoursProgram {
   pageSize?: number;
 }
+
+export interface iGetDjProgramList extends iPageParams {
+  djId: string;
+  asc: boolean;
+}
