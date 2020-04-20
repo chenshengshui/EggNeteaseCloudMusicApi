@@ -22,4 +22,5 @@ export default (app: Application) => {
     '/playlist/:pid/tags/update',
     controller.playlist.updatePlaylistTags
   );
+  router.post('/playlist/:pid/songs/add', controller.playlist.addPlaylistSongs);
 };

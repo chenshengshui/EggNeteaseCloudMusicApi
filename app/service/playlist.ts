@@ -9,6 +9,7 @@ import {
   iPostPlaylistSub,
   iGetPlaylistSubcribers,
   iUpdatePlaylistTags,
+  iAddPlaylistSongs,
 } from './types/playlist';
 
 /**
@@ -257,6 +258,34 @@ export default class Playlist extends Service {
         cookie: query.cookie,
         proxy: query.proxy,
         url: '/api/playlist/tags/update',
+      }
+    );
+  }
+
+  /**
+   * @description 添加歌曲到歌单
+   * @param pid
+   * @param songIds
+   */
+  public async addPlaylistSongs({
+    pid,
+    songIds,
+  }: iAddPlaylistSongs): Promise<any> {
+    const { ctx } = this;
+    const query: any = ctx.request.query;
+
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/playlist/manipulate/tracks`,
+      {
+        op: 'add',
+        pid,
+        trackIds: songIds,
+      },
+      {
+        crypto: 'weapi',
+        cookie: query.cookie,
+        proxy: query.proxy,
       }
     );
   }

@@ -118,4 +118,17 @@ export default class ArtistController extends Controller {
       tags,
     });
   }
+
+  /**
+   * @description 添加歌单歌曲
+   */
+  public async addPlaylistSongs() {
+    const { ctx } = this;
+    const { pid } = ctx.params;
+    const { songIds } = ctx.request.body;
+    ctx.body = await ctx.service.playlist.addPlaylistSongs({
+      pid,
+      songIds,
+    });
+  }
 }

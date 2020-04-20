@@ -33,3 +33,7 @@ export interface iPageParams {
 export interface iUpdatePlaylistTags extends iPid {
   tags: string;
 }
+
+export interface iAddPlaylistSongs extends iPid {
+  songIds: Array<string>;
+}
