@@ -18,4 +18,8 @@ export default (app: Application) => {
     '/playlist/:pid/subscribers',
     controller.playlist.getPlaylistSubcribers
   );
+  router.put(
+    '/playlist/:pid/tags/update',
+    controller.playlist.updatePlaylistTags
+  );
 };

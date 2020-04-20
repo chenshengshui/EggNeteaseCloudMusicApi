@@ -29,3 +29,7 @@ export interface iPageParams {
   page?: number;
   pageSize?: number;
 }
+
+export interface iUpdatePlaylistTags extends iPid {
+  tags: string;
+}

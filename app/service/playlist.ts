@@ -8,6 +8,7 @@ import {
   iUpdatePlaylistName,
   iPostPlaylistSub,
   iGetPlaylistSubcribers,
+  iUpdatePlaylistTags,
 } from './types/playlist';
 
 /**
@@ -150,6 +151,8 @@ export default class Playlist extends Service {
 
   /**
    * @description 更新歌单名
+   * @param pid
+   * @param name
    */
   public async updatePlaylistName({
     pid,
@@ -176,6 +179,8 @@ export default class Playlist extends Service {
 
   /**
    * @description 更新歌单名
+   * @param pid
+   * @param actionType
    */
   public async postPlaylistSub({
     pid,
@@ -200,6 +205,9 @@ export default class Playlist extends Service {
 
   /**
    * @description 更新歌单名
+   * @param pid
+   * @param page
+   * @param pageSize
    */
   public async getPlaylistSubcribers({
     pid,
@@ -221,6 +229,34 @@ export default class Playlist extends Service {
         crypto: 'weapi',
         cookie: query.cookie,
         proxy: query.proxy,
+      }
+    );
+  }
+
+  /**
+   * @description 更新歌单标签
+   * @param pid
+   * @param tags 多个tag用;分隔
+   */
+  public async updatePlaylistTags({
+    pid,
+    tags,
+  }: iUpdatePlaylistTags): Promise<any> {
+    const { ctx } = this;
+    const query: any = ctx.request.query;
+
+    return createRequest(
+      'POST',
+      `http://interface3.music.163.com/eapi/playlist/tags/update`,
+      {
+        id: pid,
+        tags,
+      },
+      {
+        crypto: 'eapi',
+        cookie: query.cookie,
+        proxy: query.proxy,
+        url: '/api/playlist/tags/update',
       }
     );
   }

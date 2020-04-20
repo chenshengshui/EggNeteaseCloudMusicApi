@@ -105,4 +105,17 @@ export default class ArtistController extends Controller {
       pageSize,
     });
   }
+
+  /**
+   * @description 更新歌单标签
+   */
+  public async updatePlaylistTags() {
+    const { ctx } = this;
+    const { pid } = ctx.params;
+    const { tags } = ctx.request.body;
+    ctx.body = await ctx.service.playlist.updatePlaylistTags({
+      pid,
+      tags,
+    });
+  }
 }
