@@ -14,3 +14,7 @@ export interface iUpdatePlaylistDes extends iPid {
 export interface iGetPlaylistDetail extends iPid {
   subNum?: number;
 }
+
+export interface iUpdatePlaylistName extends iPid {
+  name: string;
+}

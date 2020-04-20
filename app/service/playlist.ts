@@ -7,6 +7,7 @@ import {
   iPid,
   iUpdatePlaylistDes,
   iGetPlaylistDetail,
+  iUpdatePlaylistName,
 } from './types/playlist';
 
 /**
@@ -143,6 +144,32 @@ export default class Playlist extends Service {
         crypto: 'linuxapi',
         cookie: query.cookie,
         proxy: query.proxy,
+      }
+    );
+  }
+
+  /**
+   * @description 更新歌单名
+   */
+  public async updatePlaylistName({
+    pid,
+    name,
+  }: iUpdatePlaylistName): Promise<any> {
+    const { ctx } = this;
+    const query: any = ctx.request.query;
+
+    return createRequest(
+      'POST',
+      `http://interface3.music.163.com/eapi/playlist/update/name`,
+      {
+        id: pid,
+        name,
+      },
+      {
+        crypto: 'eapi',
+        cookie: query.cookie,
+        proxy: query.proxy,
+        url: '/api/playlist/update/name',
       }
     );
   }

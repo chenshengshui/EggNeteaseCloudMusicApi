@@ -64,4 +64,16 @@ export default class ArtistController extends Controller {
     const { ctx } = this;
     ctx.body = await ctx.service.playlist.getHotPlaylist();
   }
+
+  /**
+   * @description 更新歌单名
+   */
+  public async updatePlaylistName() {
+    const { ctx } = this;
+    const { pid, name } = ctx.request.body;
+    ctx.body = await ctx.service.playlist.updatePlaylistName({
+      pid,
+      name,
+    });
+  }
 }

@@ -9,4 +9,5 @@ export default (app: Application) => {
   router.put('/playlist/des/update', controller.playlist.updatePlaylistDes);
   router.get('/playlist/detail', controller.playlist.getPlaylistDetail);
   router.get('/playlist/hot', controller.playlist.getHotPlaylist);
+  router.put('/playlist/name/update', controller.playlist.updatePlaylistName);
 };
