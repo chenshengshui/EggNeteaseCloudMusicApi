@@ -1,13 +1,12 @@
 import { Service } from 'egg';
-
 import createRequest from '../utils/createRequest';
-
 import {
   iPostPlaylistCreate,
   iPid,
   iUpdatePlaylistDes,
   iGetPlaylistDetail,
   iUpdatePlaylistName,
+  iPostPlaylistSub,
 } from './types/playlist';
 
 /**
@@ -164,6 +163,31 @@ export default class Playlist extends Service {
       {
         id: pid,
         name,
+      },
+      {
+        crypto: 'eapi',
+        cookie: query.cookie,
+        proxy: query.proxy,
+        url: '/api/playlist/update/name',
+      }
+    );
+  }
+
+  /**
+   * @description 更新歌单名
+   */
+  public async postPlaylistSub({
+    pid,
+    actionType,
+  }: iPostPlaylistSub): Promise<any> {
+    const { ctx } = this;
+    const query: any = ctx.request.query;
+
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/playlist/${actionType}`,
+      {
+        id: pid,
       },
       {
         crypto: 'eapi',

@@ -10,4 +10,8 @@ export default (app: Application) => {
   router.get('/playlist/detail', controller.playlist.getPlaylistDetail);
   router.get('/playlist/hot', controller.playlist.getHotPlaylist);
   router.put('/playlist/name/update', controller.playlist.updatePlaylistName);
+  router.post(
+    '/playlist/:pid/sub/:actionType',
+    controller.playlist.postPlaylistSub
+  );
 };

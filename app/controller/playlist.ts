@@ -76,4 +76,16 @@ export default class ArtistController extends Controller {
       name,
     });
   }
+
+  /**
+   * @description 订阅 ｜ 取消订阅 歌单
+   */
+  public async postPlaylistSub() {
+    const { ctx } = this;
+    const { pid, actionType } = ctx.params;
+    ctx.body = await ctx.service.playlist.postPlaylistSub({
+      pid,
+      actionType,
+    });
+  }
 }

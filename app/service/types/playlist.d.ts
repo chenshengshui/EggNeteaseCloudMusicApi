@@ -18,3 +18,7 @@ export interface iGetPlaylistDetail extends iPid {
 export interface iUpdatePlaylistName extends iPid {
   name: string;
 }
+
+export interface iPostPlaylistSub extends iPid {
+  actionType: 'subscribe' | 'unsubscribe';
+}
