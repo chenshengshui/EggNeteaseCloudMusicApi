@@ -37,3 +37,7 @@ export interface iUpdatePlaylistTags extends iPid {
 export interface iAddPlaylistSongs extends iPid {
   songIds: Array<string>;
 }
+
+export interface iUpdatePlaylist extends iUpdatePlaylistTags {
+  description: string;
+}

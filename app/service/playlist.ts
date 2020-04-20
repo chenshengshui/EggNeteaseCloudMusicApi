@@ -10,6 +10,7 @@ import {
   iGetPlaylistSubcribers,
   iUpdatePlaylistTags,
   iAddPlaylistSongs,
+  iUpdatePlaylist,
 } from './types/playlist';
 
 /**
@@ -309,6 +310,38 @@ export default class Playlist extends Service {
         op: 'del',
         pid,
         trackIds: songIds,
+      },
+      {
+        crypto: 'weapi',
+        cookie: query.cookie,
+        proxy: query.proxy,
+      }
+    );
+  }
+
+  /**
+   * @description 删除歌单歌曲
+   * @param pid
+   * @param tags
+   * @param description
+   */
+  public async updatePlaylist({
+    pid,
+    tags,
+    description,
+  }: iUpdatePlaylist): Promise<any> {
+    const { ctx } = this;
+    const query: any = ctx.request.query;
+    query.cookie.os = 'pc';
+    query.desc = description;
+    query.tags = tags;
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/playlist/manipulate/tracks`,
+      {
+        '/api/playlist/desc/update': `{"id":${pid},"desc":"${description}"}`,
+        '/api/playlist/tags/update': `{"id":${pid},"tags":"${query.tags}"}`,
+        '/api/playlist/update/name': `{"id":${pid},"name":"${query.name}"}`,
       },
       {
         crypto: 'weapi',

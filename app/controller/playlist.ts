@@ -144,4 +144,18 @@ export default class ArtistController extends Controller {
       songIds,
     });
   }
+
+  /**
+   * @description 删除歌单歌曲
+   */
+  public async updatePlaylist() {
+    const { ctx } = this;
+    const { pid } = ctx.params;
+    const { description, tags } = ctx.request.body;
+    ctx.body = await ctx.service.playlist.updatePlaylist({
+      pid,
+      description,
+      tags,
+    });
+  }
 }

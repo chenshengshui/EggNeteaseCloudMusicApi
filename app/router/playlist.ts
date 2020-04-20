@@ -27,4 +27,5 @@ export default (app: Application) => {
     '/playlist/:pid/songs/del',
     controller.playlist.deletePlaylistSongs
   );
+  router.put('/playlist/:pid/update', controller.playlist.updatePlaylist);
 };
