@@ -56,4 +56,12 @@ export default class ArtistController extends Controller {
       subNum,
     });
   }
+
+  /**
+   * @description 获取热门歌单
+   */
+  public async getHotPlaylist() {
+    const { ctx } = this;
+    ctx.body = await ctx.service.playlist.getHotPlaylist();
+  }
 }

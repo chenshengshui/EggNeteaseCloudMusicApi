@@ -1,5 +1,7 @@
 import { Service } from 'egg';
+
 import createRequest from '../utils/createRequest';
+
 import {
   iPostPlaylistCreate,
   iPid,
@@ -118,6 +120,25 @@ export default class Playlist extends Service {
         n: 100000,
         s: subNum,
       },
+      {
+        crypto: 'linuxapi',
+        cookie: query.cookie,
+        proxy: query.proxy,
+      }
+    );
+  }
+
+  /**
+   * @description 获取热门歌单
+   */
+  public async getHotPlaylist(): Promise<any> {
+    const { ctx } = this;
+    const query: any = ctx.request.query;
+
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/playlist/hottags`,
+      {},
       {
         crypto: 'linuxapi',
         cookie: query.cookie,
