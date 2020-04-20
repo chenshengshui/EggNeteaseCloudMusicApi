@@ -289,4 +289,32 @@ export default class Playlist extends Service {
       }
     );
   }
+
+  /**
+   * @description 删除歌单歌曲
+   * @param pid
+   * @param songIds
+   */
+  public async deletePlaylistSongs({
+    pid,
+    songIds,
+  }: iAddPlaylistSongs): Promise<any> {
+    const { ctx } = this;
+    const query: any = ctx.request.query;
+
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/playlist/manipulate/tracks`,
+      {
+        op: 'del',
+        pid,
+        trackIds: songIds,
+      },
+      {
+        crypto: 'weapi',
+        cookie: query.cookie,
+        proxy: query.proxy,
+      }
+    );
+  }
 }

@@ -23,4 +23,8 @@ export default (app: Application) => {
     controller.playlist.updatePlaylistTags
   );
   router.post('/playlist/:pid/songs/add', controller.playlist.addPlaylistSongs);
+  router.delete(
+    '/playlist/:pid/songs/del',
+    controller.playlist.deletePlaylistSongs
+  );
 };

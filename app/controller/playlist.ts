@@ -131,4 +131,17 @@ export default class ArtistController extends Controller {
       songIds,
     });
   }
+
+  /**
+   * @description 删除歌单歌曲
+   */
+  public async deletePlaylistSongs() {
+    const { ctx } = this;
+    const { pid } = ctx.params;
+    const { songIds } = ctx.request.body;
+    ctx.body = await ctx.service.playlist.deletePlaylistSongs({
+      pid,
+      songIds,
+    });
+  }
 }
