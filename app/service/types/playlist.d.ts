@@ -22,3 +22,10 @@ export interface iUpdatePlaylistName extends iPid {
 export interface iPostPlaylistSub extends iPid {
   actionType: 'subscribe' | 'unsubscribe';
 }
+
+export interface iGetPlaylistSubcribers extends iPid, iPageParams {}
+
+export interface iPageParams {
+  page?: number;
+  pageSize?: number;
+}

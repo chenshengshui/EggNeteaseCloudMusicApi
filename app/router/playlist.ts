@@ -14,4 +14,8 @@ export default (app: Application) => {
     '/playlist/:pid/sub/:actionType',
     controller.playlist.postPlaylistSub
   );
+  router.get(
+    '/playlist/:pid/subscribers',
+    controller.playlist.getPlaylistSubcribers
+  );
 };

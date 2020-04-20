@@ -7,6 +7,7 @@ import {
   iGetPlaylistDetail,
   iUpdatePlaylistName,
   iPostPlaylistSub,
+  iGetPlaylistSubcribers,
 } from './types/playlist';
 
 /**
@@ -140,7 +141,7 @@ export default class Playlist extends Service {
       `https://music.163.com/weapi/playlist/hottags`,
       {},
       {
-        crypto: 'linuxapi',
+        crypto: 'weapi',
         cookie: query.cookie,
         proxy: query.proxy,
       }
@@ -190,10 +191,36 @@ export default class Playlist extends Service {
         id: pid,
       },
       {
-        crypto: 'eapi',
+        crypto: 'weapi',
         cookie: query.cookie,
         proxy: query.proxy,
-        url: '/api/playlist/update/name',
+      }
+    );
+  }
+
+  /**
+   * @description 更新歌单名
+   */
+  public async getPlaylistSubcribers({
+    pid,
+    page,
+    pageSize,
+  }: iGetPlaylistSubcribers): Promise<any> {
+    const { ctx } = this;
+    const query: any = ctx.request.query;
+
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/playlist/subscribers`,
+      {
+        id: pid,
+        limit: pageSize,
+        offset: page,
+      },
+      {
+        crypto: 'weapi',
+        cookie: query.cookie,
+        proxy: query.proxy,
       }
     );
   }

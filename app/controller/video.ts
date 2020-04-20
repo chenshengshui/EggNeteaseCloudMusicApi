@@ -1,5 +1,4 @@
 import { Controller } from 'egg';
-
 import { Default_PageNumber, Default_Resolution } from '../utils/common';
 
 export default class VideoController extends Controller {
