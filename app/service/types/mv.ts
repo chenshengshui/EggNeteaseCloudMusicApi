@@ -11,6 +11,10 @@ export interface iGetMvList {
   pageSize?: number;
 }
 
+export interface iMvId {
+  mvId: string;
+}
+
 export enum MvType {
   '全部',
   '官方版',

@@ -29,4 +29,16 @@ export default class ArtistController extends Controller {
       pageSize,
     });
   }
+
+  /**
+   * @description 获取mv详情
+   */
+  public async getMvDetail() {
+    const { ctx } = this;
+    const { mvId } = ctx.params;
+
+    ctx.body = await ctx.service.mv.getMvDetail({
+      mvId,
+    });
+  }
 }

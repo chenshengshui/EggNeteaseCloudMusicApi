@@ -1,6 +1,6 @@
 import { Service } from 'egg';
 import createRequest from '../utils/createRequest';
-import { iGetMvList, MvOrder, MvType } from './types/mv';
+import { iGetMvList, MvOrder, MvType, iMvId } from './types/mv';
 
 /**
  * Mv Service
@@ -36,6 +36,24 @@ export default class Mv extends Service {
         offset: page,
         limit: pageSize,
         total: 'true',
+      },
+      { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
+
+  /**
+   * @description 获取mv详情
+   * @param mvId
+   */
+  public async getMvDetail({ mvId }: iMvId): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/mv/detail`,
+      {
+        id: mvId,
       },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );
