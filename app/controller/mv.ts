@@ -41,4 +41,20 @@ export default class ArtistController extends Controller {
       mvId,
     });
   }
+
+  /**
+   * @description 获取网易出品mv
+   */
+  public async getWyMv() {
+    const { ctx } = this;
+    const {
+      page = Default_PageNumber,
+      pageSize = Default_PageSize,
+    } = ctx.query;
+
+    ctx.body = await ctx.service.mv.getWyMv({
+      page,
+      pageSize,
+    });
+  }
 }
