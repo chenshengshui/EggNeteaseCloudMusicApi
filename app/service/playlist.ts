@@ -1,5 +1,7 @@
 import { Service } from 'egg';
+
 import createRequest from '../utils/createRequest';
+
 import {
   iPostPlaylistCreate,
   iPid,
@@ -320,7 +322,7 @@ export default class Playlist extends Service {
   }
 
   /**
-   * @description 删除歌单歌曲
+   * @description 更新歌单
    * @param pid
    * @param tags
    * @param description

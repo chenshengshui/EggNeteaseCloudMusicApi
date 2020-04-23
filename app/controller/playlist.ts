@@ -1,4 +1,5 @@
 import { Controller } from 'egg';
+
 import { Default_PageNumber, Default_PageSize } from '../utils/common';
 
 export default class ArtistController extends Controller {
@@ -146,7 +147,7 @@ export default class ArtistController extends Controller {
   }
 
   /**
-   * @description 删除歌单歌曲
+   * @description 更新歌单
    */
   public async updatePlaylist() {
     const { ctx } = this;
