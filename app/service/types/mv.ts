@@ -4,7 +4,7 @@ export interface iPageParams {
 }
 
 export interface iGetMvList {
-  area?: string;
+  area?: 0 | 1 | 2 | 3 | 4 | 5;
   type?: 0 | 1 | 2 | 3 | 4;
   order?: 0 | 1 | 2;
   page?: number;
@@ -13,6 +13,20 @@ export interface iGetMvList {
 
 export interface iMvId {
   mvId: string;
+}
+
+export interface iGetLatestMv {
+  pageSize: number;
+  area: 0 | 1 | 2 | 3 | 4 | 5;
+}
+
+export enum MvArea {
+  '全部',
+  '内地',
+  '港台',
+  '欧美',
+  '日本',
+  '韩国',
 }
 
 export enum MvType {

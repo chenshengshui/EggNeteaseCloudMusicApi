@@ -3,6 +3,7 @@ import { Controller } from 'egg';
 import {
   Default_PageNumber,
   Default_PageSize,
+  Default_MvArea,
   Defult_MvType,
   Default_MvOrder,
 } from '../utils/common';
@@ -14,7 +15,7 @@ export default class ArtistController extends Controller {
   public async getMvList() {
     const { ctx } = this;
     const {
-      area = '全部',
+      area = Default_MvArea,
       type = Defult_MvType,
       order = Default_MvOrder,
       page = Default_PageNumber,
@@ -54,6 +55,19 @@ export default class ArtistController extends Controller {
 
     ctx.body = await ctx.service.mv.getWyMv({
       page,
+      pageSize,
+    });
+  }
+
+  /**
+   * @description 获取最新mv
+   */
+  public async getLatestMv() {
+    const { ctx } = this;
+    const { area = Default_MvArea, pageSize = Default_PageSize } = ctx.query;
+
+    ctx.body = await ctx.service.mv.getLatestMv({
+      area,
       pageSize,
     });
   }
