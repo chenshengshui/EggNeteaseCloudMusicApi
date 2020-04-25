@@ -1,15 +1,30 @@
 export interface iGetResourceComments extends iPageParams {
   resourceId: string;
-  type: 'album' | 'dj' | 'music' | 'mv' | 'playlist' | 'video' | 'event';
+  type: Resource_Type;
   beforeTime: number;
 }
 
 export interface iPostResourceCommentLike {
   resourceId: string;
   commentId: string;
-  type: 'album' | 'dj' | 'music' | 'mv' | 'playlist' | 'video' | 'event';
+  type: Resource_Type;
   actionType: 'like' | 'unlike';
 }
+
+export interface iPostResourceCommentSend {
+  resourceId: string;
+  type: Resource_Type;
+  content: string;
+}
+
+export type Resource_Type =
+  | 'album'
+  | 'dj'
+  | 'music'
+  | 'mv'
+  | 'playlist'
+  | 'video'
+  | 'event';
 
 export enum Comment_Resource_Type {
   album = 'R_AL_3_',

@@ -19,4 +19,9 @@ export default (app: Application) => {
     '/comment/resource/:resourceId/like/:actionType',
     controller.comment.postResourceCommentLike
   );
+
+  router.post(
+    '/comment/resource/:resourceId/comment/send',
+    controller.comment.postResourceCommentSend
+  );
 };

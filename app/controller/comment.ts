@@ -67,4 +67,18 @@ export default class ArtistController extends Controller {
       actionType,
     });
   }
+
+  /**
+   * @description 发表资源评论
+   */
+  public async postResourceCommentSend() {
+    const { ctx } = this;
+    const { resourceId } = ctx.params;
+    const { type, content } = ctx.request.body;
+    ctx.body = await ctx.service.comment.postResourceCommentSend({
+      type,
+      resourceId,
+      content,
+    });
+  }
 }

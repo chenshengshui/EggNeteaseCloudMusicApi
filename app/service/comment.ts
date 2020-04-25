@@ -4,6 +4,7 @@ import {
   iGetResourceComments,
   Comment_Resource_Type,
   iPostResourceCommentLike,
+  iPostResourceCommentSend,
 } from './types/comment';
 
 /**
@@ -109,6 +110,35 @@ export default class Album extends Service {
     return createRequest(
       'POST',
       `https://music.163.com/weapi/v1/comment/${actionType}`,
+      data,
+      { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
+
+  /**
+   * @description 资源评论
+   */
+  public async postResourceCommentSend({
+    type,
+    resourceId,
+    content,
+  }: iPostResourceCommentSend): Promise<any> {
+    const { ctx } = this;
+    const query: any = ctx.request.query;
+    query.cookie.os = 'pc';
+    let resouceType: string = Comment_Resource_Type[type];
+
+    const data = {
+      threadId: resouceType + resourceId,
+      content,
+    };
+    if (type == 'event') {
+      data.threadId = resourceId;
+    }
+
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/resource/comments/add`,
       data,
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );
