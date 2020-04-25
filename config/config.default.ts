@@ -7,7 +7,7 @@ export default (appInfo: EggAppInfo) => {
   config.keys = appInfo.name + '_1585919666382_9400';
 
   // 中间件配置
-  config.middleware = ['query', 'cookie'];
+  config.middleware = ['query', 'cookie', 'error'];
 
   // 跨域配置
   config.cors = {
@@ -23,16 +23,6 @@ export default (appInfo: EggAppInfo) => {
       enable: false,
       headerName: 'x-csrf-token',
       ignore: 'localhost',
-    },
-  };
-
-  // 错误处理
-  config.onerror = {
-    all(err, ctx) {
-      if (err) {
-        ctx.body = (ctx && ctx.response && ctx.response.message) || 'error';
-        ctx.status = (ctx && ctx.response && ctx.response.status) || 500;
-      }
     },
   };
 
