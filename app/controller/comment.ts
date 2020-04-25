@@ -52,4 +52,19 @@ export default class ArtistController extends Controller {
 
     ctx.body = await ctx.service.comment.getCommentHotwall();
   }
+
+  /**
+   * @description 点赞 ｜ 取消点赞 评论
+   */
+  public async postResourceCommentLike() {
+    const { ctx } = this;
+    const { resourceId, actionType } = ctx.params;
+    const { type, commentId } = ctx.request.body;
+    ctx.body = await ctx.service.comment.postResourceCommentLike({
+      type,
+      commentId,
+      resourceId,
+      actionType,
+    });
+  }
 }

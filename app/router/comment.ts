@@ -14,4 +14,9 @@ export default (app: Application) => {
   );
 
   router.get('/comment/hotwall/list', controller.comment.getCommentHotwall);
+
+  router.post(
+    '/comment/resource/:resourceId/like/:actionType',
+    controller.comment.postResourceCommentLike
+  );
 };

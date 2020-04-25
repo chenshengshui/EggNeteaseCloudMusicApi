@@ -4,6 +4,13 @@ export interface iGetResourceComments extends iPageParams {
   beforeTime: number;
 }
 
+export interface iPostResourceCommentLike {
+  resourceId: string;
+  commentId: string;
+  type: 'album' | 'dj' | 'music' | 'mv' | 'playlist' | 'video' | 'event';
+  actionType: 'like' | 'unlike';
+}
+
 export enum Comment_Resource_Type {
   album = 'R_AL_3_',
   dj = 'A_DJ_1_',

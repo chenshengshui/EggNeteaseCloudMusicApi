@@ -1,6 +1,10 @@
 import { Service } from 'egg';
 import createRequest from '../utils/createRequest';
-import { iGetResourceComments, Comment_Resource_Type } from './types/comment';
+import {
+  iGetResourceComments,
+  Comment_Resource_Type,
+  iPostResourceCommentLike,
+} from './types/comment';
 
 /**
  * Album Service
@@ -77,6 +81,35 @@ export default class Album extends Service {
       'POST',
       `https://music.163.com/api/comment/hotwall/list/get`,
       {},
+      { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
+
+  /**
+   * @description 点赞 ｜ 取消点赞 评论
+   */
+  public async postResourceCommentLike({
+    type,
+    commentId,
+    resourceId,
+    actionType,
+  }: iPostResourceCommentLike): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+    let resouceType: string = Comment_Resource_Type[type];
+
+    const data = {
+      threadId: resouceType + resourceId,
+      commentId: commentId,
+    };
+    if (type == 'event') {
+      data.threadId = resourceId;
+    }
+
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/v1/comment/${actionType}`,
+      data,
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );
   }
