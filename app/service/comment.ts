@@ -21,7 +21,9 @@ export default class Album extends Service {
     pageSize,
   }: iGetResourceComments): Promise<any> {
     const { ctx } = this;
-    const query = ctx.request.query;
+
+    const query: any = ctx.request.query;
+    query.cookie.os = 'pc';
 
     return createRequest(
       'POST',
@@ -52,6 +54,34 @@ export default class Album extends Service {
       'POST',
       `https://music.163.com/weapi/v1/resource/comments/${eventId}`,
       {
+        limit: pageSize,
+        offset: page,
+        beforeTime,
+      },
+      { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
+
+  /**
+   * @description 获取资源热门评论
+   */
+  public async getResourceHotComments({
+    type,
+    resourceId,
+    beforeTime,
+    page,
+    pageSize,
+  }: iGetResourceComments): Promise<any> {
+    const { ctx } = this;
+
+    const query: any = ctx.request.query;
+    query.cookie.os = 'pc';
+
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/v1/resource/hotcomments/${Comment_Resource_Type[type]}${resourceId}`,
+      {
+        rid: resourceId,
         limit: pageSize,
         offset: page,
         beforeTime,

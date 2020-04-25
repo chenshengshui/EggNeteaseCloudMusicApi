@@ -41,4 +41,25 @@ export default class ArtistController extends Controller {
       pageSize,
     });
   }
+
+  /**
+   * @description 获取资源热门评论
+   */
+  public async getResourceHotComments() {
+    const { ctx } = this;
+    const { resourceId } = ctx.params;
+    const {
+      type,
+      beforeTime = 0,
+      page = Default_PageNumber,
+      pageSize = Default_PageSize,
+    } = ctx.query;
+    ctx.body = await ctx.service.comment.getResourceHotComments({
+      type,
+      resourceId,
+      beforeTime,
+      page,
+      pageSize,
+    });
+  }
 }
