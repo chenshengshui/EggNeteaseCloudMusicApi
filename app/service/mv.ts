@@ -11,6 +11,7 @@ import {
   iPageParams,
   iGetLatestMv,
   iPostMvSub,
+  iGetMvUrl,
 } from './types/mv';
 
 /**
@@ -147,6 +148,26 @@ export default class Mv extends Service {
         offset: page,
         limit: pageSize,
         total: true,
+      },
+      { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
+
+  /**
+   * @description 获取mv Url
+   * @param mvId
+   * @param resolution
+   */
+  public async getMvUrl({ mvId, resolution }: iGetMvUrl): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/song/enhance/play/mv/url`,
+      {
+        id: mvId,
+        r: resolution,
       },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );

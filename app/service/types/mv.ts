@@ -46,3 +46,7 @@ export enum MvOrder {
 export interface iPostMvSub extends iMvId {
   actionType: 'sub' | 'unsub';
 }
+
+export interface iGetMvUrl extends iMvId {
+  resolution: number;
+}

@@ -6,6 +6,7 @@ import {
   Default_MvArea,
   Defult_MvType,
   Default_MvOrder,
+  Default_Resolution,
 } from '../utils/common';
 
 export default class ArtistController extends Controller {
@@ -98,6 +99,19 @@ export default class ArtistController extends Controller {
     ctx.body = await ctx.service.mv.getMvSublist({
       page,
       pageSize,
+    });
+  }
+
+  /**
+   * @description 获取mv Url
+   */
+  public async getMvUrl() {
+    const { ctx } = this;
+    const { mvId, resolution = Default_Resolution } = ctx.query;
+
+    ctx.body = await ctx.service.mv.getMvUrl({
+      mvId,
+      resolution,
     });
   }
 }
