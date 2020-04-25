@@ -130,4 +130,25 @@ export default class Mv extends Service {
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );
   }
+
+  /**
+   * @description 获取mv收藏列表
+   * @param page
+   * @param pageSize
+   */
+  public async getMvSublist({ page, pageSize }: iPageParams): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/cloudvideo/allvideo/sublist`,
+      {
+        offset: page,
+        limit: pageSize,
+        total: true,
+      },
+      { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
 }

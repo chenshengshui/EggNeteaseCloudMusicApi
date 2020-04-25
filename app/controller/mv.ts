@@ -84,4 +84,20 @@ export default class ArtistController extends Controller {
       actionType,
     });
   }
+
+  /**
+   * @description 获取mv收藏列表
+   */
+  public async getMvSublist() {
+    const { ctx } = this;
+    const {
+      page = Default_PageNumber,
+      pageSize = Default_PageSize,
+    } = ctx.query;
+
+    ctx.body = await ctx.service.mv.getMvSublist({
+      page,
+      pageSize,
+    });
+  }
 }
