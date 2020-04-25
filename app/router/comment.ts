@@ -7,4 +7,9 @@ export default (app: Application) => {
     '/comment/resource/:resourceId/comments',
     controller.comment.getResourceComments
   );
+
+  router.get(
+    '/comment/event/:eventId/comments',
+    controller.comment.getEventComments
+  );
 };

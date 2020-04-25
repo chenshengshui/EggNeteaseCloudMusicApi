@@ -4,6 +4,11 @@ export interface iGetResourceComments extends iPageParams {
   beforeTime: number;
 }
 
+export interface iGetEventComments extends iPageParams {
+  eventId: string;
+  beforeTime: number;
+}
+
 export enum Comment_Resource_Type {
   album = 'R_AL_3_',
   dj = 'A_DJ_1_',
