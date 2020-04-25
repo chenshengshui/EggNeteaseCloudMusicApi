@@ -4,6 +4,7 @@
 import 'egg';
 import ExportAlbum from '../../../app/controller/album';
 import ExportArtist from '../../../app/controller/artist';
+import ExportComment from '../../../app/controller/comment';
 import ExportDj from '../../../app/controller/dj';
 import ExportLogin from '../../../app/controller/login';
 import ExportMv from '../../../app/controller/mv';
@@ -15,6 +16,7 @@ declare module 'egg' {
   interface IController {
     album: ExportAlbum;
     artist: ExportArtist;
+    comment: ExportComment;
     dj: ExportDj;
     login: ExportLogin;
     mv: ExportMv;

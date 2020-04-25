@@ -8,6 +8,7 @@ import VideoRouter from './router/video';
 import DjRouter from './router/dj';
 import PlaylistRouter from './router/playlist';
 import MvRouter from './router/mv';
+import CommentRouter from './router/comment';
 
 export default (app: Application) => {
   LoginRouter(app);
@@ -18,4 +19,5 @@ export default (app: Application) => {
   DjRouter(app);
   PlaylistRouter(app);
   MvRouter(app);
+  CommentRouter(app);
 };

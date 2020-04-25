@@ -46,7 +46,7 @@ export default class LoginController extends Controller {
   }
 
   /**
-   * @description 发送验证码
+   * @description 校验验证码
    */
   public async postLoginCaptchaVerify() {
     const { ctx } = this;
