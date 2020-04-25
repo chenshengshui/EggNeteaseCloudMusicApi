@@ -9,12 +9,9 @@ export default (app: Application) => {
   );
 
   router.get(
-    '/comment/event/:eventId/comments',
-    controller.comment.getEventComments
-  );
-
-  router.get(
     '/comment/resource/:resourceId/hot/comments',
     controller.comment.getResourceHotComments
   );
+
+  router.get('/comment/hotwall/list', controller.comment.getCommentHotwall);
 };

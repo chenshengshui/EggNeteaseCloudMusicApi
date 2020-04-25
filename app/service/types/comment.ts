@@ -1,11 +1,6 @@
 export interface iGetResourceComments extends iPageParams {
   resourceId: string;
-  type: 'album' | 'dj' | 'music' | 'mv' | 'playlist' | 'video';
-  beforeTime: number;
-}
-
-export interface iGetEventComments extends iPageParams {
-  eventId: string;
+  type: 'album' | 'dj' | 'music' | 'mv' | 'playlist' | 'video' | 'event';
   beforeTime: number;
 }
 
@@ -16,6 +11,7 @@ export enum Comment_Resource_Type {
   mv = 'R_MV_5_',
   playlist = 'A_PL_0_',
   video = 'R_VI_62_',
+  event = 'A_EV_2_',
 }
 
 export interface iPageParams {

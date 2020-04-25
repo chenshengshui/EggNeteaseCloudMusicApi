@@ -24,25 +24,6 @@ export default class ArtistController extends Controller {
   }
 
   /**
-   * @description 获取动态评论
-   */
-  public async getEventComments() {
-    const { ctx } = this;
-    const { eventId } = ctx.params;
-    const {
-      beforeTime = 0,
-      page = Default_PageNumber,
-      pageSize = Default_PageSize,
-    } = ctx.query;
-    ctx.body = await ctx.service.comment.getEventComments({
-      eventId,
-      beforeTime,
-      page,
-      pageSize,
-    });
-  }
-
-  /**
    * @description 获取资源热门评论
    */
   public async getResourceHotComments() {
@@ -61,5 +42,14 @@ export default class ArtistController extends Controller {
       page,
       pageSize,
     });
+  }
+
+  /**
+   * @description 获取资源热门评论
+   */
+  public async getCommentHotwall() {
+    const { ctx } = this;
+
+    ctx.body = await ctx.service.comment.getCommentHotwall();
   }
 }
