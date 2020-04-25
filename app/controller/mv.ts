@@ -71,4 +71,17 @@ export default class ArtistController extends Controller {
       pageSize,
     });
   }
+
+  /**
+   * @description 收藏 ｜ 取消收藏 Mv
+   */
+  public async postMvSub() {
+    const { ctx } = this;
+    const { mvId, actionType } = ctx.params;
+
+    ctx.body = await ctx.service.mv.postMvSub({
+      mvId,
+      actionType,
+    });
+  }
 }

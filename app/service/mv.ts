@@ -1,5 +1,7 @@
 import { Service } from 'egg';
+
 import createRequest from '../utils/createRequest';
+
 import {
   iGetMvList,
   MvArea,
@@ -8,6 +10,7 @@ import {
   iMvId,
   iPageParams,
   iGetLatestMv,
+  iPostMvSub,
 } from './types/mv';
 
 /**
@@ -103,6 +106,26 @@ export default class Mv extends Service {
         area: area === 0 ? '' : MvArea[area],
         limit: pageSize,
         total: true,
+      },
+      { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
+
+  /**
+   * @description 收藏 ｜ 取消收藏 Mv
+   * @param mvId
+   * @param actionType
+   */
+  public async postMvSub({ mvId, actionType }: iPostMvSub): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/mv/${actionType}`,
+      {
+        mvId: mvId,
+        mvIds: '["' + mvId + '"]',
       },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );

@@ -42,3 +42,7 @@ export enum MvOrder {
   '最热',
   '最新',
 }
+
+export interface iPostMvSub extends iMvId {
+  actionType: 'sub' | 'unsub';
+}

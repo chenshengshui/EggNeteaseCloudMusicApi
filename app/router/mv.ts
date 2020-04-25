@@ -7,4 +7,5 @@ export default (app: Application) => {
   router.get('/mv/:mvId/detail', controller.mv.getMvDetail);
   router.get('/mv/exclusive/rcmd', controller.mv.getWyMv);
   router.get('/mv/latest', controller.mv.getLatestMv);
+  router.post('/mv/:mvId/sub/:actionType', controller.artist.postMvSub);
 };
