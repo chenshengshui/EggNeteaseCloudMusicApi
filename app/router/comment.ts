@@ -24,4 +24,14 @@ export default (app: Application) => {
     '/comment/resource/:resourceId/comment/send',
     controller.comment.postResourceCommentSend
   );
+
+  router.delete(
+    '/comment/resource/:resourceId/comment',
+    controller.comment.deleteResourceComment
+  );
+
+  router.post(
+    '/comment/resource/:resourceId/comment/:commentId/reply',
+    controller.comment.postResourceCommentReply
+  );
 };

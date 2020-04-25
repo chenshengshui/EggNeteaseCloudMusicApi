@@ -81,4 +81,33 @@ export default class ArtistController extends Controller {
       content,
     });
   }
+
+  /**
+   * @description 删除资源评论
+   */
+  public async deleteResourceComment() {
+    const { ctx } = this;
+    const { resourceId } = ctx.params;
+    const { type, commentId } = ctx.request.body;
+    ctx.body = await ctx.service.comment.deleteResourceComment({
+      type,
+      resourceId,
+      commentId,
+    });
+  }
+
+  /**
+   * @description 回复资源评论
+   */
+  public async postResourceCommentReply() {
+    const { ctx } = this;
+    const { resourceId, commentId } = ctx.params;
+    const { type, content } = ctx.request.body;
+    ctx.body = await ctx.service.comment.postResourceCommentReply({
+      type,
+      resourceId,
+      commentId,
+      content,
+    });
+  }
 }

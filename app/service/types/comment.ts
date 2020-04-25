@@ -17,6 +17,19 @@ export interface iPostResourceCommentSend {
   content: string;
 }
 
+export interface iPostResourceCommentReply {
+  resourceId: string;
+  type: Resource_Type;
+  commentId: string;
+  content: string;
+}
+
+export interface iDeleteResourceComment {
+  resourceId: string;
+  type: Resource_Type;
+  commentId: string;
+}
+
 export type Resource_Type =
   | 'album'
   | 'dj'

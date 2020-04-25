@@ -5,6 +5,8 @@ import {
   Comment_Resource_Type,
   iPostResourceCommentLike,
   iPostResourceCommentSend,
+  iDeleteResourceComment,
+  iPostResourceCommentReply,
 } from './types/comment';
 
 /**
@@ -116,7 +118,7 @@ export default class Album extends Service {
   }
 
   /**
-   * @description 资源评论
+   * @description 发表资源评论
    */
   public async postResourceCommentSend({
     type,
@@ -139,6 +141,66 @@ export default class Album extends Service {
     return createRequest(
       'POST',
       `https://music.163.com/weapi/resource/comments/add`,
+      data,
+      { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
+
+  /**
+   * @description 删除资源评论
+   */
+  public async deleteResourceComment({
+    type,
+    resourceId,
+    commentId,
+  }: iDeleteResourceComment): Promise<any> {
+    const { ctx } = this;
+    const query: any = ctx.request.query;
+    query.cookie.os = 'pc';
+    let resouceType: string = Comment_Resource_Type[type];
+
+    const data = {
+      threadId: resouceType + resourceId,
+      commentId,
+    };
+    if (type == 'event') {
+      data.threadId = resourceId;
+    }
+
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/resource/comments/delete`,
+      data,
+      { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
+
+  /**
+   * @description 发表资源评论
+   */
+  public async postResourceCommentReply({
+    type,
+    resourceId,
+    commentId,
+    content,
+  }: iPostResourceCommentReply): Promise<any> {
+    const { ctx } = this;
+    const query: any = ctx.request.query;
+    query.cookie.os = 'pc';
+    let resouceType: string = Comment_Resource_Type[type];
+
+    const data = {
+      threadId: resouceType + resourceId,
+      content,
+      commentId,
+    };
+    if (type == 'event') {
+      data.threadId = resourceId;
+    }
+
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/resource/comments/reply`,
       data,
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );
