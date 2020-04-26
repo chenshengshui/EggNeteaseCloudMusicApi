@@ -15,4 +15,5 @@ export default (app: Application) => {
     controller.login.postCheckCellphoneExit
   );
   router.get('/login/refresh', controller.login.getLoginRefresh);
+  router.get('/login/status', controller.login.getLoginStatus);
 };

@@ -159,4 +159,21 @@ export default class Login extends Service {
       }
     );
   }
+
+  /**
+   * @description 获取登录状态
+   */
+  public async getLoginStatus(): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+    return createRequest(
+      'GET',
+      `https://music.163.com`,
+      {},
+      {
+        cookie: query.cookie,
+        proxy: query.proxy,
+      }
+    );
+  }
 }

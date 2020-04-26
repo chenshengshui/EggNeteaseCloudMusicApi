@@ -78,4 +78,24 @@ export default class LoginController extends Controller {
     const { ctx } = this;
     ctx.body = await ctx.service.login.getLoginRefresh();
   }
+
+  /**
+   * @description 获取登录状态码
+   */
+  public async getLoginStatus() {
+    const { ctx } = this;
+    try {
+      const response: any = await ctx.service.login.getLoginStatus();
+      const profile: any = /GUser\s*=\s*([^;]+);/.exec(response.body);
+      const bindings: any = /GBinds\s*=\s*([^;]+);/.exec(response.body);
+      ctx.body = {
+        code: 200,
+        profile: profile[1],
+        bindings: bindings[1],
+      };
+    } catch (err) {
+      ctx.body.status = 301;
+      ctx.body = { code: 301 };
+    }
+  }
 }
