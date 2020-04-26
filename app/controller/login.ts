@@ -1,4 +1,5 @@
 import { Controller } from 'egg';
+
 import { Default_Ctcode } from '../utils/common';
 
 export default class LoginController extends Controller {
@@ -68,5 +69,13 @@ export default class LoginController extends Controller {
       cellphone,
       countrycode,
     });
+  }
+
+  /**
+   * @description 登录状态刷新
+   */
+  public async getLoginRefresh() {
+    const { ctx } = this;
+    ctx.body = await ctx.service.login.getLoginRefresh();
   }
 }

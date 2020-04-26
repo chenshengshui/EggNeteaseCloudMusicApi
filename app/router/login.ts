@@ -14,4 +14,5 @@ export default (app: Application) => {
     '/login/cellphone/check/exist',
     controller.login.postCheckCellphoneExit
   );
+  router.get('/login/refresh', controller.login.getLoginRefresh);
 };

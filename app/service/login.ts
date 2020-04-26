@@ -1,5 +1,7 @@
 import { Service } from 'egg';
+
 import createRequest from '../utils/createRequest';
+
 import {
   iLoginByCellPhone,
   iPostInitProfile,
@@ -135,6 +137,25 @@ export default class Login extends Service {
         cookie: query.cookie,
         proxy: query.proxy,
         url: '/api/cellphone/existence/check',
+      }
+    );
+  }
+
+  /**
+   * @description 刷新登录状态
+   */
+  public async getLoginRefresh(): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/login/token/refresh`,
+      {},
+      {
+        crypto: 'weapi',
+        cookie: query.cookie,
+        proxy: query.proxy,
+        ua: 'pc',
       }
     );
   }
