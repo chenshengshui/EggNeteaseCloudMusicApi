@@ -16,4 +16,5 @@ export default (app: Application) => {
   );
   router.get('/login/refresh', controller.login.getLoginRefresh);
   router.get('/login/status', controller.login.getLoginStatus);
+  router.get('/logout', controller.login.getLogout);
 };

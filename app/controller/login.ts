@@ -94,8 +94,16 @@ export default class LoginController extends Controller {
         bindings: bindings[1],
       };
     } catch (err) {
-      ctx.body.status = 301;
+      ctx.status = 301;
       ctx.body = { code: 301 };
     }
+  }
+
+  /**
+   * @description 登出
+   */
+  public async getLogout() {
+    const { ctx } = this;
+    ctx.body = await ctx.service.login.getLogout();
   }
 }
