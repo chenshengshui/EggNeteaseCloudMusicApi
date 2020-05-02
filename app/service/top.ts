@@ -1,6 +1,12 @@
 import { Service } from 'egg';
 import createRequest from '../utils/createRequest';
-import { iGetTopAlbum, AlbumArea, iPageParams } from './types/top';
+import {
+  iGetTopAlbum,
+  AlbumArea,
+  iPageParams,
+  iGetTopList,
+  TopList,
+} from './types/top';
 
 /**
  * Top Service
@@ -51,6 +57,25 @@ export default class Top extends Service {
         total: true,
       },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
+
+  /**
+   * @description 获取新歌列表
+   * @param type
+   */
+  public async getTopList({ type }: iGetTopList): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/v3/playlist/detail`,
+      {
+        id: TopList[type],
+        n: 1000,
+      },
+      { crypto: 'linuxapi', cookie: query.cookie, proxy: query.proxy }
     );
   }
 }

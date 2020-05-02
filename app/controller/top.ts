@@ -35,4 +35,16 @@ export default class ArtistController extends Controller {
       pageSize,
     });
   }
+
+  /**
+   * @description 获取新歌列表
+   */
+  public async getTopList() {
+    const { ctx } = this;
+    const { type } = ctx.query;
+
+    ctx.body = await ctx.service.top.getTopList({
+      type,
+    });
+  }
 }
