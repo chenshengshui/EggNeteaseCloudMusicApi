@@ -9,6 +9,7 @@ import ExportDj from '../../../app/controller/dj';
 import ExportLogin from '../../../app/controller/login';
 import ExportMv from '../../../app/controller/mv';
 import ExportPlaylist from '../../../app/controller/playlist';
+import ExportTop from '../../../app/controller/top';
 import ExportUser from '../../../app/controller/user';
 import ExportVideo from '../../../app/controller/video';
 
@@ -21,6 +22,7 @@ declare module 'egg' {
     login: ExportLogin;
     mv: ExportMv;
     playlist: ExportPlaylist;
+    top: ExportTop;
     user: ExportUser;
     video: ExportVideo;
   }

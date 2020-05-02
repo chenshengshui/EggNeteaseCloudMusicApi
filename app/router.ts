@@ -9,6 +9,7 @@ import DjRouter from './router/dj';
 import PlaylistRouter from './router/playlist';
 import MvRouter from './router/mv';
 import CommentRouter from './router/comment';
+import TopRouter from './router/top';
 
 export default (app: Application) => {
   LoginRouter(app);
@@ -20,4 +21,5 @@ export default (app: Application) => {
   PlaylistRouter(app);
   MvRouter(app);
   CommentRouter(app);
+  TopRouter(app);
 };
