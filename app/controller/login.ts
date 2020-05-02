@@ -26,6 +26,25 @@ export default class LoginController extends Controller {
   }
 
   /**
+   * @description 邮箱登录
+   */
+  public async loginByEmail() {
+    const { ctx } = this;
+    const { email, password, rememberLogin = false } = ctx.request.body;
+    try {
+      const result: any = await ctx.service.login.loginByEmail({
+        email,
+        password,
+        rememberLogin,
+      });
+      ctx.body = result;
+      const useId = result.body.account.id;
+      const maxAge = rememberLogin ? 3600 * 24 * 30 : 3600 * 24;
+      ctx.cookies.set('userId', useId, { httpOnly: true, maxAge: maxAge });
+    } catch (err) {}
+  }
+
+  /**
    * @description 初始化昵称
    */
   public async postInitProfile() {

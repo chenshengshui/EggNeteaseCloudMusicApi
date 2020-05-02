@@ -31,15 +31,12 @@ export default class VideoController extends Controller {
       page = Default_PageNumber,
       resolution = Default_Resolution,
     } = ctx.query;
-    try {
-      ctx.body = await ctx.service.video.getVideoGroupVideos({
-        groupId,
-        page,
-        resolution,
-      });
-    } catch (error) {
-      console.log(error);
-    }
+
+    ctx.body = await ctx.service.video.getVideoGroupVideos({
+      groupId,
+      page,
+      resolution,
+    });
   }
 
   /**

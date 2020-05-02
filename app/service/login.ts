@@ -4,6 +4,7 @@ import createRequest from '../utils/createRequest';
 
 import {
   iLoginByCellPhone,
+  iLoginByEmail,
   iPostInitProfile,
   iPostLoginCaptchaSend,
   iPostLoginCaptchaVerify,
@@ -36,6 +37,38 @@ export default class Login extends Service {
       {
         phone,
         countrycode,
+        password: crypto.createHash('md5').update(password).digest('hex'),
+        rememberLogin,
+      },
+      {
+        crypto: 'weapi',
+        ua: 'pc',
+        cookie: query.cookie,
+        proxy: query.proxy,
+      }
+    );
+  }
+
+  /**
+   * @description 邮箱登录
+   * @param email
+   * @param password
+   * @param rememberLogin
+   */
+  public async loginByEmail({
+    email,
+    password,
+    rememberLogin,
+  }: iLoginByEmail): Promise<any> {
+    const { ctx } = this;
+    const query: any = ctx.request.query;
+    query.cookie.os = 'pc';
+
+    return createRequest(
+      'POST',
+      'https://music.163.com/weapi/login',
+      {
+        username: email,
         password: crypto.createHash('md5').update(password).digest('hex'),
         rememberLogin,
       },

@@ -5,6 +5,12 @@ export interface iLoginByCellPhone {
   rememberLogin?: boolean;
 }
 
+export interface iLoginByEmail {
+  email: string;
+  password: string;
+  rememberLogin?: boolean;
+}
+
 export interface iPostInitProfile {
   nickname: string;
 }

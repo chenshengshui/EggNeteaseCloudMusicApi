@@ -145,7 +145,6 @@ export default class UserController extends Controller {
   public async getUserPlayrecord() {
     const { ctx } = this;
     const uid = ctx.cookies.get('userId');
-    console.log(uid);
     const { type = 1 } = ctx.query;
     ctx.body = await ctx.service.user.getUserPlayrecord({
       uid,
