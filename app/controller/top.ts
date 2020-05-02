@@ -19,4 +19,20 @@ export default class ArtistController extends Controller {
       area,
     });
   }
+
+  /**
+   * @description 获取热门歌手
+   */
+  public async getTopArtist() {
+    const { ctx } = this;
+    const {
+      page = Default_PageNumber,
+      pageSize = Default_PageSize,
+    } = ctx.query;
+
+    ctx.body = await ctx.service.top.getTopArtist({
+      page,
+      pageSize,
+    });
+  }
 }
