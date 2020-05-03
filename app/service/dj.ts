@@ -5,7 +5,7 @@ import {
   iPageParams,
   iDjHoursProgram,
   iGetDjProgramList,
-  iGetCatgoryHotDjs,
+  iGetCategoryHotDjs,
   iGetTypeRecDjs,
   iPostDjSub,
   iGetDjToplist,
@@ -197,18 +197,18 @@ export default class Dj extends Service {
   /**
    * @description 获取分类热门电台
    */
-  public async getCatgoryHotDjs({
+  public async getCategoryHotDjs({
     page,
     pageSize,
-    catgoryId,
-  }: iGetCatgoryHotDjs): Promise<any> {
+    categoryId,
+  }: iGetCategoryHotDjs): Promise<any> {
     const { ctx } = this;
     const query = ctx.request.query;
 
     return createRequest(
       'POST',
       `https://music.163.com/api/djradio/hot`,
-      { cateId: catgoryId, offset: page, limit: pageSize },
+      { cateId: categoryId, offset: page, limit: pageSize },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );
   }

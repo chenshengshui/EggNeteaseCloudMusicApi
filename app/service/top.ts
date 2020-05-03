@@ -7,6 +7,7 @@ import {
   iGetTopList,
   TopList,
   iGetTopMv,
+  iGetQualityPlaylist,
 } from './types/top';
 
 /**
@@ -97,6 +98,33 @@ export default class Top extends Service {
         offset: page,
         limit: pageSize,
         area,
+        total: true,
+      },
+      { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
+
+  /**
+   * @description 获取MV排行榜
+   * @param page
+   * @param pageSize
+   * @param area
+   */
+  public async getQualityPlaylist({
+    lasttime,
+    pageSize,
+    category,
+  }: iGetQualityPlaylist): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/playlist/highquality/list`,
+      {
+        cat: category,
+        limit: pageSize,
+        lasttime,
         total: true,
       },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }

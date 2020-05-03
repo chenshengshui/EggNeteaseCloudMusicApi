@@ -22,7 +22,7 @@ export default class Playlist extends Service {
   /**
    * @description 获取歌单 分类列表
    */
-  public async getPlaylistCatgorys(): Promise<any> {
+  public async getPlaylistCategorys(): Promise<any> {
     const { ctx } = this;
     const query = ctx.request.query;
 

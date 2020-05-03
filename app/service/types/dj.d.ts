@@ -16,8 +16,8 @@ export interface iGetDjProgramList extends iPageParams {
   asc: boolean;
 }
 
-export interface iGetCatgoryHotDjs extends iPageParams {
-  catgoryId: string;
+export interface iGetCategoryHotDjs extends iPageParams {
+  categoryId: string;
 }
 
 export interface iGetTypeRecDjs {

@@ -134,17 +134,17 @@ export default class ArtistController extends Controller {
   /**
    * @description 获取分类热门电台
    */
-  public async getCatgoryHotDjs() {
+  public async getCategoryHotDjs() {
     const { ctx } = this;
-    const { catgoryId } = ctx.params;
+    const { categoryId } = ctx.params;
     const {
       page = Default_PageNumber,
       pageSize = Default_PageSize,
     } = ctx.query;
-    ctx.body = await ctx.service.dj.getCatgoryHotDjs({
+    ctx.body = await ctx.service.dj.getCategoryHotDjs({
       page,
       pageSize,
-      catgoryId,
+      categoryId,
     });
   }
 

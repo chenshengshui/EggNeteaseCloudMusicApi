@@ -17,7 +17,7 @@ export default (app: Application) => {
   );
   router.get('/dj/program/toplist', controller.dj.getDjToplistProgram);
   router.get('/dj/:djId/program/list', controller.dj.getDjProgramList);
-  router.get('/dj/catgory/:catgoryId/djs', controller.dj.getCatgoryHotDjs);
+  router.get('/dj/category/:categoryId/djs', controller.dj.getCategoryHotDjs);
   router.get('/dj/type/:typeId/rec/djs', controller.dj.getTypeRecDjs);
   router.get('/dj/rec/djs', controller.dj.getRecDjs);
   router.post('/dj/:djId/sub/:actionType', controller.dj.postDjSub);

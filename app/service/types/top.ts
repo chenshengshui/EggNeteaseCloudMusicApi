@@ -16,6 +16,11 @@ export interface iGetTopMv extends iPageParams {
   area: keyof typeof MvArea;
 }
 
+export interface iGetQualityPlaylist extends Pick<iPageParams, 'pageSize'> {
+  lasttime: number;
+  category: keyof typeof PlayListCat;
+}
+
 export const TopList = {
   0: '3779629', //云音乐新歌榜
   1: '3778678', //云音乐热歌榜
@@ -55,6 +60,30 @@ export const TopList = {
   35: '3001795926', //云音乐ACG游戏榜
   36: '3001890046', //云音乐ACG VOCALOID榜
 };
+
+export enum PlayListCat {
+  全部,
+  华语,
+  欧美,
+  韩语,
+  日语,
+  粤语,
+  小语种,
+  运动,
+  ACG,
+  影视原声,
+  流行,
+  摇滚,
+  后摇,
+  古风,
+  民谣,
+  轻音乐,
+  电子,
+  器乐,
+  说唱,
+  古典,
+  爵士,
+}
 
 export enum AlbumArea {
   ALL = 'ALL',

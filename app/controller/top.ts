@@ -65,4 +65,18 @@ export default class ArtistController extends Controller {
       pageSize,
     });
   }
+
+  /**
+   * @description 获取高质量歌单排行榜
+   */
+  public async getQualityPlaylist() {
+    const { ctx } = this;
+    const { category, lasttime, pageSize = Default_PageSize } = ctx.query;
+
+    ctx.body = await ctx.service.top.getQualityPlaylist({
+      category,
+      pageSize,
+      lasttime,
+    });
+  }
 }

@@ -6,9 +6,9 @@ export default class ArtistController extends Controller {
   /**
    * @description 获取歌单 分类列表
    */
-  public async getPlaylistCatgorys() {
+  public async getPlaylistCategorys() {
     const { ctx } = this;
-    ctx.body = await ctx.service.playlist.getPlaylistCatgorys();
+    ctx.body = await ctx.service.playlist.getPlaylistCategorys();
   }
 
   /**
