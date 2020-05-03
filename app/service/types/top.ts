@@ -26,6 +26,10 @@ export interface iGetTopPlaylist extends iPageParams {
   order: 'hot' | 'new';
 }
 
+export interface iGetTopSongs {
+  area: keyof typeof Area;
+}
+
 export const TopList = {
   0: '3779629', //云音乐新歌榜
   1: '3778678', //云音乐热歌榜
@@ -65,6 +69,14 @@ export const TopList = {
   35: '3001795926', //云音乐ACG游戏榜
   36: '3001890046', //云音乐ACG VOCALOID榜
 };
+
+export enum Area {
+  全部 = 0,
+  华语 = 7,
+  欧美 = 96,
+  日本 = 8,
+  韩国 = 16,
+}
 
 export enum PlayListQualityCat {
   全部,

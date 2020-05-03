@@ -81,7 +81,7 @@ export default class ArtistController extends Controller {
   }
 
   /**
-   * @description 获取歌单榜单
+   * @description 获取新歌排行榜
    */
   public async getTopPlaylist() {
     const { ctx } = this;
@@ -97,6 +97,18 @@ export default class ArtistController extends Controller {
       page,
       pageSize,
       order,
+    });
+  }
+
+  /**
+   * @description 新歌榜单
+   */
+  public async getTopSongs() {
+    const { ctx } = this;
+    const { area } = ctx.query;
+
+    ctx.body = await ctx.service.top.getTopSongs({
+      area,
     });
   }
 }
