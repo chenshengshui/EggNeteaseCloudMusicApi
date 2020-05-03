@@ -79,4 +79,24 @@ export default class ArtistController extends Controller {
       lasttime,
     });
   }
+
+  /**
+   * @description 获取歌单榜单
+   */
+  public async getTopPlaylist() {
+    const { ctx } = this;
+    const {
+      category,
+      order,
+      page = Default_PageNumber,
+      pageSize = Default_PageSize,
+    } = ctx.query;
+
+    ctx.body = await ctx.service.top.getTopPlaylist({
+      category,
+      page,
+      pageSize,
+      order,
+    });
+  }
 }

@@ -18,7 +18,12 @@ export interface iGetTopMv extends iPageParams {
 
 export interface iGetQualityPlaylist extends Pick<iPageParams, 'pageSize'> {
   lasttime: number;
-  category: keyof typeof PlayListCat;
+  category: keyof typeof PlayListQualityCat;
+}
+
+export interface iGetTopPlaylist extends iPageParams {
+  category: string;
+  order: 'hot' | 'new';
 }
 
 export const TopList = {
@@ -61,7 +66,7 @@ export const TopList = {
   36: '3001890046', //云音乐ACG VOCALOID榜
 };
 
-export enum PlayListCat {
+export enum PlayListQualityCat {
   全部,
   华语,
   欧美,

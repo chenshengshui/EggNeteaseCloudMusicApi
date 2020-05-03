@@ -8,4 +8,5 @@ export default (app: Application) => {
   router.get('/top/list', controller.top.getTopList);
   router.get('/top/mv', controller.top.getTopMv);
   router.get('/top/quality/playlist', controller.top.getQualityPlaylist);
+  router.get('/top/playlist', controller.top.getTopPlaylist);
 };

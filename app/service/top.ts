@@ -8,6 +8,7 @@ import {
   TopList,
   iGetTopMv,
   iGetQualityPlaylist,
+  iGetTopPlaylist,
 } from './types/top';
 
 /**
@@ -125,6 +126,36 @@ export default class Top extends Service {
         cat: category,
         limit: pageSize,
         lasttime,
+        total: true,
+      },
+      { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
+
+  /**
+   * @description 获取歌单排行榜
+   * @param category
+   * @param page
+   * @param pageSize
+   * @param order
+   */
+  public async getTopPlaylist({
+    category,
+    page,
+    pageSize,
+    order,
+  }: iGetTopPlaylist): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/playlist/list`,
+      {
+        cat: category,
+        offset: page,
+        limit: pageSize,
+        order,
         total: true,
       },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
