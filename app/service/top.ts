@@ -6,6 +6,7 @@ import {
   iPageParams,
   iGetTopList,
   TopList,
+  iGetTopMv,
 } from './types/top';
 
 /**
@@ -76,6 +77,29 @@ export default class Top extends Service {
         n: 1000,
       },
       { crypto: 'linuxapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
+
+  /**
+   * @description 获取MV排行榜
+   * @param page
+   * @param pageSize
+   * @param area
+   */
+  public async getTopMv({ page, pageSize, area }: iGetTopMv): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/mv/toplist`,
+      {
+        offset: page,
+        limit: pageSize,
+        area,
+        total: true,
+      },
+      { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );
   }
 }

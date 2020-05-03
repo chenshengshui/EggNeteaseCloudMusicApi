@@ -47,4 +47,22 @@ export default class ArtistController extends Controller {
       type,
     });
   }
+
+  /**
+   * @description 获取MV排行榜
+   */
+  public async getTopMv() {
+    const { ctx } = this;
+    const {
+      area,
+      page = Default_PageNumber,
+      pageSize = Default_PageSize,
+    } = ctx.query;
+
+    ctx.body = await ctx.service.top.getTopMv({
+      area,
+      page,
+      pageSize,
+    });
+  }
 }

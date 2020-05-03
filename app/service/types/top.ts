@@ -1,3 +1,4 @@
+import { MvArea } from './mv';
 export interface iPageParams {
   page?: number;
   pageSize?: number;
@@ -9,6 +10,10 @@ export interface iGetTopAlbum extends iPageParams {
 
 export interface iGetTopList {
   type: keyof typeof TopList;
+}
+
+export interface iGetTopMv extends iPageParams {
+  area: keyof typeof MvArea;
 }
 
 export const TopList = {
@@ -50,6 +55,7 @@ export const TopList = {
   35: '3001795926', //云音乐ACG游戏榜
   36: '3001890046', //云音乐ACG VOCALOID榜
 };
+
 export enum AlbumArea {
   ALL = 'ALL',
   ZH = 'ZH',

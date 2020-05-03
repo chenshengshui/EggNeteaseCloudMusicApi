@@ -6,4 +6,5 @@ export default (app: Application) => {
   router.get('/top/album', controller.top.getTopAlbum);
   router.get('/top/artist', controller.top.getTopArtist);
   router.get('/top/list', controller.top.getTopList);
+  router.get('/top/mv', controller.top.getTopMv);
 };
