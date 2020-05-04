@@ -12,4 +12,5 @@ export default (app: Application) => {
   router.get('/top/songs', controller.top.getTopSongs);
   router.get('/toplist/artist', controller.top.getArtistToplist);
   router.get('/toplist/detail', controller.top.getToplistDetail);
+  router.get('/toplist/introduction', controller.top.getToplistIntroduction);
 };

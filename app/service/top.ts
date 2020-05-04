@@ -218,4 +218,19 @@ export default class Top extends Service {
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );
   }
+
+  /**
+   * @description 榜单介绍
+   */
+  public async getToplistIntroduction(): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/toplist`,
+      {},
+      { crypto: 'linuxapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
 }

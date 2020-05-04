@@ -132,4 +132,13 @@ export default class ArtistController extends Controller {
 
     ctx.body = await ctx.service.top.getToplistDetail();
   }
+
+  /**
+   * @description 榜单介绍
+   */
+  public async getToplistIntroduction() {
+    const { ctx } = this;
+
+    ctx.body = await ctx.service.top.getToplistIntroduction();
+  }
 }
