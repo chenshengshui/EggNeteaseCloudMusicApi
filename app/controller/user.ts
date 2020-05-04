@@ -207,4 +207,12 @@ export default class UserController extends Controller {
     const { ctx } = this;
     ctx.body = await ctx.service.user.getUserMv();
   }
+
+  /**
+   * @description 获取用户新歌
+   */
+  public async getUserMewsong() {
+    const { ctx } = this;
+    ctx.body = await ctx.service.user.getUserMewsong();
+  }
 }
