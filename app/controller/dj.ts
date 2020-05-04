@@ -87,7 +87,7 @@ export default class ArtistController extends Controller {
   }
 
   /**
-   * @description 获取电台24
+   * @description 获取电台24小时节目榜
    */
   public async getDjToplistHoursProgram() {
     const { ctx } = this;
@@ -149,7 +149,7 @@ export default class ArtistController extends Controller {
   }
 
   /**
-   * @description 获取分类热门电台
+   * @description 精选分类电台列表
    */
   public async getTypeRecDjs() {
     const { ctx } = this;

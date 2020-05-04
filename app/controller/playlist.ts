@@ -24,7 +24,7 @@ export default class ArtistController extends Controller {
   }
 
   /**
-   * @description 创建歌单
+   * @description 删除歌单
    */
   public async deletePlaylist() {
     const { ctx } = this;

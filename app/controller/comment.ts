@@ -45,7 +45,7 @@ export default class ArtistController extends Controller {
   }
 
   /**
-   * @description 获取资源热门评论
+   * @description 获取资源云村热评
    */
   public async getCommentHotwall() {
     const { ctx } = this;

@@ -225,7 +225,7 @@ export default class UserController extends Controller {
   }
 
   /**
-   * @description 独家放送
+   * @description 独家推荐歌单
    */
   public async getUserRecPlaylist() {
     const { ctx } = this;

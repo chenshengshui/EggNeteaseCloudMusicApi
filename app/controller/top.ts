@@ -3,7 +3,7 @@ import { Default_PageNumber, Default_PageSize } from '../utils/common';
 
 export default class ArtistController extends Controller {
   /**
-   * @description 获取专辑动态信息
+   * @description 专辑排行榜
    */
   public async getTopAlbum() {
     const { ctx } = this;
@@ -125,7 +125,7 @@ export default class ArtistController extends Controller {
   }
 
   /**
-   * @description 获取歌手榜
+   * @description 所有榜单内容摘要
    */
   public async getToplistDetail() {
     const { ctx } = this;
