@@ -17,4 +17,5 @@ export default (app: Application) => {
   router.get('/user/subcount', controller.user.getUserSubcount);
   router.put('/user/info', controller.user.putUserInfo);
   router.get('/user/logs', controller.user.getUserLogs);
+  router.get('/user/fm', controller.user.getUserFM);
 };

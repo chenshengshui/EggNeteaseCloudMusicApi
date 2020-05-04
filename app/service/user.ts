@@ -339,4 +339,22 @@ export default class User extends Service {
       }
     );
   }
+
+  /**
+   * @description 个人FM
+   */
+  public async getUserFM() {
+    const { ctx } = this;
+    const query = ctx.request.query;
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/v1/radio/get`,
+      {},
+      {
+        crypto: 'weapi',
+        cookie: query.cookie,
+        proxy: query.proxy,
+      }
+    );
+  }
 }
