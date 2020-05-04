@@ -19,4 +19,5 @@ export default (app: Application) => {
   router.get('/user/logs', controller.user.getUserLogs);
   router.get('/user/fm', controller.user.getUserFM);
   router.get('/user/djprogram', controller.user.getUserDjprogram);
+  router.get('/user/mv', controller.user.getUserMv);
 };

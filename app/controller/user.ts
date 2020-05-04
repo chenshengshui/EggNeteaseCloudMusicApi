@@ -199,4 +199,12 @@ export default class UserController extends Controller {
     const { ctx } = this;
     ctx.body = await ctx.service.user.getUserDjprogram();
   }
+
+  /**
+   * @description 获取用户Mv
+   */
+  public async getUserMv() {
+    const { ctx } = this;
+    ctx.body = await ctx.service.user.getUserMv();
+  }
 }
