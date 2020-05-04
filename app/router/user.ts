@@ -21,4 +21,5 @@ export default (app: Application) => {
   router.get('/user/djprogram', controller.user.getUserDjprogram);
   router.get('/user/mv', controller.user.getUserMv);
   router.get('/user/newsong', controller.user.getUserMewsong);
+  router.get('/user/privatecontent', controller.user.getUserPrivateContent);
 };

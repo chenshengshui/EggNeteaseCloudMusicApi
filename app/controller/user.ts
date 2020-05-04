@@ -215,4 +215,12 @@ export default class UserController extends Controller {
     const { ctx } = this;
     ctx.body = await ctx.service.user.getUserMewsong();
   }
+
+  /**
+   * @description 独家放送
+   */
+  public async getUserPrivateContent() {
+    const { ctx } = this;
+    ctx.body = await ctx.service.user.getUserPrivateContent();
+  }
 }

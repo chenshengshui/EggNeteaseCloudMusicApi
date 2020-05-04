@@ -366,7 +366,7 @@ export default class User extends Service {
     const query = ctx.request.query;
     return createRequest(
       'POST',
-      `https://music.163.com/weapi/v1/radio/get`,
+      `https://music.163.com/weapi/personalized/djprogram`,
       {},
       {
         crypto: 'weapi',
@@ -384,7 +384,7 @@ export default class User extends Service {
     const query = ctx.request.query;
     return createRequest(
       'POST',
-      `https://music.163.com/weapi/v1/radio/get`,
+      `https://music.163.com/weapi/personalized/mv`,
       {},
       {
         crypto: 'weapi',
@@ -402,7 +402,25 @@ export default class User extends Service {
     const query = ctx.request.query;
     return createRequest(
       'POST',
-      `https://music.163.com/weapi/v1/radio/get`,
+      `https://music.163.com/weapi/personalized/newsong`,
+      {},
+      {
+        crypto: 'weapi',
+        cookie: query.cookie,
+        proxy: query.proxy,
+      }
+    );
+  }
+
+  /**
+   * @description 独家放送
+   */
+  public async getUserPrivateContent() {
+    const { ctx } = this;
+    const query = ctx.request.query;
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/personalized/privatecontent`,
       {},
       {
         crypto: 'weapi',
