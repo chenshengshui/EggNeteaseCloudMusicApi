@@ -18,4 +18,5 @@ export default (app: Application) => {
   router.put('/user/info', controller.user.putUserInfo);
   router.get('/user/logs', controller.user.getUserLogs);
   router.get('/user/fm', controller.user.getUserFM);
+  router.get('/user/djprogram', controller.user.getUserDjprogram);
 };

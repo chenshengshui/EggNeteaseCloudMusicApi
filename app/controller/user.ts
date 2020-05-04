@@ -185,10 +185,18 @@ export default class UserController extends Controller {
   }
 
   /**
-   * @description 获取用户操作记录
+   * @description 获取用户FM
    */
   public async getUserFM() {
     const { ctx } = this;
     ctx.body = await ctx.service.user.getUserFM();
+  }
+
+  /**
+   * @description 获取用户Djprogram
+   */
+  public async getUserDjprogram() {
+    const { ctx } = this;
+    ctx.body = await ctx.service.user.getUserDjprogram();
   }
 }
