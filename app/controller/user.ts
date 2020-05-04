@@ -223,4 +223,13 @@ export default class UserController extends Controller {
     const { ctx } = this;
     ctx.body = await ctx.service.user.getUserPrivateContent();
   }
+
+  /**
+   * @description 独家放送
+   */
+  public async getUserRecPlaylist() {
+    const { ctx } = this;
+    const { pageSize = Default_PageSize } = ctx.query;
+    ctx.body = await ctx.service.user.getUserRecPlaylist({ pageSize });
+  }
 }

@@ -359,7 +359,7 @@ export default class User extends Service {
   }
 
   /**
-   * @description 个人Djprogram
+   * @description 推荐Djprogram
    */
   public async getUserDjprogram() {
     const { ctx } = this;
@@ -377,7 +377,7 @@ export default class User extends Service {
   }
 
   /**
-   * @description 个人Mv
+   * @description 推荐Mv
    */
   public async getUserMv() {
     const { ctx } = this;
@@ -395,7 +395,7 @@ export default class User extends Service {
   }
 
   /**
-   * @description 个人新歌
+   * @description 推荐新歌
    */
   public async getUserMewsong() {
     const { ctx } = this;
@@ -403,7 +403,9 @@ export default class User extends Service {
     return createRequest(
       'POST',
       `https://music.163.com/weapi/personalized/newsong`,
-      {},
+      {
+        type: 'recommend',
+      },
       {
         crypto: 'weapi',
         cookie: query.cookie,
@@ -422,6 +424,28 @@ export default class User extends Service {
       'POST',
       `https://music.163.com/weapi/personalized/privatecontent`,
       {},
+      {
+        crypto: 'weapi',
+        cookie: query.cookie,
+        proxy: query.proxy,
+      }
+    );
+  }
+
+  /**
+   * @description 推荐歌单
+   */
+  public async getUserRecPlaylist({ pageSize }: iPageParams) {
+    const { ctx } = this;
+    const query = ctx.request.query;
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/personalized/playlist`,
+      {
+        limit: pageSize,
+        total: true,
+        n: 1000,
+      },
       {
         crypto: 'weapi',
         cookie: query.cookie,
