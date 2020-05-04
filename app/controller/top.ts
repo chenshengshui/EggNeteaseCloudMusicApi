@@ -111,4 +111,16 @@ export default class ArtistController extends Controller {
       area,
     });
   }
+
+  /**
+   * @description 获取歌手榜
+   */
+  public async getArtistToplist() {
+    const { ctx } = this;
+    const { type } = ctx.query;
+
+    ctx.body = await ctx.service.top.getArtistToplist({
+      type,
+    });
+  }
 }

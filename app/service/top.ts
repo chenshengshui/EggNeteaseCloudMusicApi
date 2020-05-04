@@ -11,6 +11,7 @@ import {
   iGetTopPlaylist,
   iGetTopSongs,
   Area,
+  iGetArtistToplist,
 } from './types/top';
 
 /**
@@ -177,6 +178,25 @@ export default class Top extends Service {
       `https://music.163.com/weapi/v1/discovery/new/songs`,
       {
         areaId: Area[area],
+        total: true,
+      },
+      { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
+
+  /**
+   * @description 获取新歌排行榜
+   * @param area
+   */
+  public async getArtistToplist({ type }: iGetArtistToplist): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/toplist/artist`,
+      {
+        type,
         total: true,
       },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
