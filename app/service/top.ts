@@ -202,4 +202,20 @@ export default class Top extends Service {
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );
   }
+
+  /**
+   * @description 获取新歌排行榜
+   * @param area
+   */
+  public async getToplistDetail(): Promise<any> {
+    const { ctx } = this;
+    const query = ctx.request.query;
+
+    return createRequest(
+      'POST',
+      `https://music.163.com/weapi/toplist/detail`,
+      {},
+      { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
+    );
+  }
 }

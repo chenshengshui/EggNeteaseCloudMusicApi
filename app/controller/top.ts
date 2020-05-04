@@ -123,4 +123,13 @@ export default class ArtistController extends Controller {
       type,
     });
   }
+
+  /**
+   * @description 获取歌手榜
+   */
+  public async getToplistDetail() {
+    const { ctx } = this;
+
+    ctx.body = await ctx.service.top.getToplistDetail();
+  }
 }
