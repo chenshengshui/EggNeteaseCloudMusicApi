@@ -6,6 +6,6 @@
 - 完善的文档
 
 [GitHub](https://github.com/chenshengshui/EggNeteaseCloudMusicApi.git)
-[Get Started](/)
+[Get Started](#eggneteasecloudmusicapi)
 
 ![color](#ffffff)
