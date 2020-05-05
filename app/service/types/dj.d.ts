@@ -21,7 +21,7 @@ export interface iGetCategoryHotDjs extends iPageParams {
 }
 
 export interface iGetTypeRecDjs {
-  typeId: string;
+  typeId: number;
 }
 
 export interface iPostDjSub {

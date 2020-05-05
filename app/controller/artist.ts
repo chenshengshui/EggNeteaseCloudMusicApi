@@ -7,7 +7,12 @@ export default class ArtistController extends Controller {
    */
   public async getArtistList() {
     const { ctx } = this;
-    const { categoryCode, offset, limit, initial } = ctx.query;
+    const {
+      categoryCode = 1001,
+      offset = Default_Offset,
+      limit = Default_Limit,
+      initial,
+    } = ctx.query;
     ctx.body = await ctx.service.artist.getArtistList({
       categoryCode,
       offset,

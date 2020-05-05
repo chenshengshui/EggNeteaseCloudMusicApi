@@ -50,7 +50,11 @@ export default class ArtistController extends Controller {
    */
   public async getTopMv() {
     const { ctx } = this;
-    const { area, offset = Default_Offset, limit = Default_Limit } = ctx.query;
+    const {
+      area = '全部',
+      offset = Default_Offset,
+      limit = Default_Limit,
+    } = ctx.query;
 
     ctx.body = await ctx.service.top.getTopMv({
       area,
@@ -64,7 +68,7 @@ export default class ArtistController extends Controller {
    */
   public async getQualityPlaylist() {
     const { ctx } = this;
-    const { category, lasttime, limit = Default_Limit } = ctx.query;
+    const { category, lasttime = 0, limit = Default_Limit } = ctx.query;
 
     ctx.body = await ctx.service.top.getQualityPlaylist({
       category,
@@ -98,7 +102,7 @@ export default class ArtistController extends Controller {
    */
   public async getTopSongs() {
     const { ctx } = this;
-    const { area } = ctx.query;
+    const { area = '全部' } = ctx.query;
 
     ctx.body = await ctx.service.top.getTopSongs({
       area,
@@ -110,7 +114,7 @@ export default class ArtistController extends Controller {
    */
   public async getArtistToplist() {
     const { ctx } = this;
-    const { type } = ctx.query;
+    const { type = 1 } = ctx.query;
 
     ctx.body = await ctx.service.top.getArtistToplist({
       type,
