@@ -123,3 +123,6 @@ $ open http://localhost:7001/
 ## 文档
 
 [文档地址](https://chenshengshui.github.io/EggNeteaseCloudMusicApi/#/)
+
+喜欢我就给我 Star 吧，或者欢迎我的前端公众号——前端剑指 offer
+![](https://user-gold-cdn.xitu.io/2020/5/5/171e551e99223c6e?w=344&h=344&f=png&s=40463)
