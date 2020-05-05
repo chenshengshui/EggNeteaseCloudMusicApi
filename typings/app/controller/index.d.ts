@@ -5,6 +5,7 @@ import 'egg';
 import ExportAlbum from '../../../app/controller/album';
 import ExportArtist from '../../../app/controller/artist';
 import ExportComment from '../../../app/controller/comment';
+import ExportCustom from '../../../app/controller/custom';
 import ExportDj from '../../../app/controller/dj';
 import ExportLogin from '../../../app/controller/login';
 import ExportMv from '../../../app/controller/mv';
@@ -18,6 +19,7 @@ declare module 'egg' {
     album: ExportAlbum;
     artist: ExportArtist;
     comment: ExportComment;
+    custom: ExportCustom;
     dj: ExportDj;
     login: ExportLogin;
     mv: ExportMv;
