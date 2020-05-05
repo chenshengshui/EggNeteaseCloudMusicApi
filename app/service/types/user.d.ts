@@ -8,7 +8,7 @@ export interface iGetCloudMusicsInfo {
 
 export interface iGetUserEvent extends iUserId {
   lasttime: number;
-  pageSize: number;
+  limit: number;
 }
 
 export interface iGetUserFollows extends iUserId, iPageParams {}
@@ -31,6 +31,6 @@ export interface iUserId {
 }
 
 export interface iPageParams {
-  page?: number;
-  pageSize?: number;
+  offset?: number;
+  limit?: number;
 }

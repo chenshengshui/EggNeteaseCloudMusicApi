@@ -92,34 +92,34 @@ export default class Dj extends Service {
 
   /**
    * @description 获取热门电台列表
-   * @param page
-   * @param pageSize
+   * @param offset
+   * @param limit
    */
-  public async getHotDjs({ page, pageSize }: iPageParams): Promise<any> {
+  public async getHotDjs({ offset, limit }: iPageParams): Promise<any> {
     const { ctx } = this;
     const query = ctx.request.query;
 
     return createRequest(
       'POST',
       `https://music.163.com/weapi/djradio/hot/v1`,
-      { offset: page, limit: pageSize },
+      { offset: offset, limit: limit },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );
   }
 
   /**
    * @description 获取付费电台列表
-   * @param page
-   * @param pageSize
+   * @param offset
+   * @param limit
    */
-  public async getPaygiftDjs({ page, pageSize }: iPageParams): Promise<any> {
+  public async getPaygiftDjs({ offset, limit }: iPageParams): Promise<any> {
     const { ctx } = this;
     const query = ctx.request.query;
 
     return createRequest(
       'POST',
       `https://music.163.com/weapi/djradio/home/paygift/list?_nmclfl=1`,
-      { offset: page, limit: pageSize },
+      { offset: offset, limit: limit },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );
   }
@@ -143,7 +143,7 @@ export default class Dj extends Service {
    * @description 获取电台节目24小时榜单
    */
   public async getDjToplistHoursProgram({
-    pageSize,
+    limit,
   }: iDjHoursProgram): Promise<any> {
     const { ctx } = this;
     const query = ctx.request.query;
@@ -151,7 +151,7 @@ export default class Dj extends Service {
     return createRequest(
       'POST',
       `https://music.163.com/api/djprogram/toplist/hours`,
-      { limit: pageSize },
+      { limit: limit },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );
   }
@@ -160,8 +160,8 @@ export default class Dj extends Service {
    * @description 获取电台节目榜
    */
   public async getDjToplistProgram({
-    page,
-    pageSize,
+    offset,
+    limit,
   }: iPageParams): Promise<any> {
     const { ctx } = this;
     const query = ctx.request.query;
@@ -169,7 +169,7 @@ export default class Dj extends Service {
     return createRequest(
       'POST',
       `https://music.163.com/api/program/toplist/v1`,
-      { offset: page, limit: pageSize },
+      { offset: offset, limit: limit },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );
   }
@@ -178,8 +178,8 @@ export default class Dj extends Service {
    * @description 获取电台节目列表
    */
   public async getDjProgramList({
-    page,
-    pageSize,
+    offset,
+    limit,
     djId,
     asc,
   }: iGetDjProgramList): Promise<any> {
@@ -189,7 +189,7 @@ export default class Dj extends Service {
     return createRequest(
       'POST',
       `https://music.163.com/weapi/dj/program/byradio`,
-      { djId, asc, offset: page, limit: pageSize },
+      { djId, asc, offset: offset, limit: limit },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );
   }
@@ -198,8 +198,8 @@ export default class Dj extends Service {
    * @description 获取分类热门电台
    */
   public async getCategoryHotDjs({
-    page,
-    pageSize,
+    offset,
+    limit,
     categoryId,
   }: iGetCategoryHotDjs): Promise<any> {
     const { ctx } = this;
@@ -208,7 +208,7 @@ export default class Dj extends Service {
     return createRequest(
       'POST',
       `https://music.163.com/api/djradio/hot`,
-      { cateId: categoryId, offset: page, limit: pageSize },
+      { cateId: categoryId, offset: offset, limit: limit },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );
   }
@@ -286,10 +286,10 @@ export default class Dj extends Service {
 
   /**
    * @description 获取订阅电台列表
-   * @param page
-   * @param pageSize
+   * @param offset
+   * @param limit
    */
-  public async getDjSublist({ page, pageSize }: iPageParams): Promise<any> {
+  public async getDjSublist({ offset, limit }: iPageParams): Promise<any> {
     const { ctx } = this;
     const query = ctx.request.query;
 
@@ -297,8 +297,8 @@ export default class Dj extends Service {
       'POST',
       `https://music.163.com/weapi/djradio/get/subed`,
       {
-        offset: page,
-        limit: pageSize,
+        offset: offset,
+        limit: limit,
         total: true,
       },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
@@ -307,9 +307,9 @@ export default class Dj extends Service {
 
   /**
    * @description 获取今日优选
-   * @param page
+   * @param offset
    */
-  public async getTodayPerferedDjs({ page }: iPageParams): Promise<any> {
+  public async getTodayPerferedDjs({ offset }: iPageParams): Promise<any> {
     const { ctx } = this;
     const query = ctx.request.query;
 
@@ -317,7 +317,7 @@ export default class Dj extends Service {
       'POST',
       `http://music.163.com/weapi/djradio/home/today/perfered`,
       {
-        page: page,
+        offset: offset,
       },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );
@@ -325,9 +325,9 @@ export default class Dj extends Service {
 
   /**
    * @description 获取24小时榜电台
-   * @param pageSize
+   * @param limit
    */
-  public async getDjHoursToplist({ pageSize }: iPageParams): Promise<any> {
+  public async getDjHoursToplist({ limit }: iPageParams): Promise<any> {
     const { ctx } = this;
     const query = ctx.request.query;
 
@@ -335,7 +335,7 @@ export default class Dj extends Service {
       'POST',
       `https://music.163.com/api/dj/toplist/hours`,
       {
-        limit: pageSize,
+        limit: limit,
       },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );
@@ -345,8 +345,8 @@ export default class Dj extends Service {
    * @description 电台新人榜
    */
   public async getDjNewcomerToplist({
-    page,
-    pageSize,
+    offset,
+    limit,
   }: iPageParams): Promise<any> {
     const { ctx } = this;
     const query = ctx.request.query;
@@ -355,8 +355,8 @@ export default class Dj extends Service {
       'POST',
       `https://music.163.com/api/dj/toplist/newcomer`,
       {
-        offset: page,
-        limit: pageSize,
+        offset: offset,
+        limit: limit,
       },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );
@@ -365,7 +365,7 @@ export default class Dj extends Service {
   /**
    * @description 付费精品
    */
-  public async getDjPayToplist({ pageSize }: iPageParams): Promise<any> {
+  public async getDjPayToplist({ limit }: iPageParams): Promise<any> {
     const { ctx } = this;
     const query = ctx.request.query;
 
@@ -373,7 +373,7 @@ export default class Dj extends Service {
       'POST',
       `https://music.163.com/api/djradio/toplist/pay`,
       {
-        limit: pageSize,
+        limit: limit,
       },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );
@@ -382,7 +382,7 @@ export default class Dj extends Service {
   /**
    * @description 付费精品
    */
-  public async getDjPopularToplist({ pageSize }: iPageParams): Promise<any> {
+  public async getDjPopularToplist({ limit }: iPageParams): Promise<any> {
     const { ctx } = this;
     const query = ctx.request.query;
 
@@ -390,7 +390,7 @@ export default class Dj extends Service {
       'POST',
       `https://music.163.com/api/dj/toplist/popular`,
       {
-        limit: pageSize,
+        limit: limit,
       },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );
@@ -400,8 +400,8 @@ export default class Dj extends Service {
    * @description 热榜
    */
   public async getDjToplist({
-    page,
-    pageSize,
+    offset,
+    limit,
     type,
   }: iGetDjToplist): Promise<any> {
     const { ctx } = this;
@@ -411,8 +411,8 @@ export default class Dj extends Service {
       'POST',
       `https://music.163.com/api/djradio/toplist`,
       {
-        offset: page,
-        limit: pageSize,
+        offset: offset,
+        limit: limit,
         type,
       },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }

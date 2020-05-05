@@ -1,5 +1,5 @@
 import { Controller } from 'egg';
-import { Default_PageNumber, Default_PageSize } from '../utils/common';
+import { Default_Offset, Default_Limit } from '../utils/common';
 
 export default class ArtistController extends Controller {
   /**
@@ -50,13 +50,10 @@ export default class ArtistController extends Controller {
    */
   public async getHotDjs() {
     const { ctx } = this;
-    const {
-      page = Default_PageNumber,
-      pageSize = Default_PageSize,
-    } = ctx.query;
+    const { offset = Default_Offset, limit = Default_Limit } = ctx.query;
     ctx.body = await ctx.service.dj.getHotDjs({
-      page,
-      pageSize,
+      offset,
+      limit,
     });
   }
 
@@ -65,13 +62,10 @@ export default class ArtistController extends Controller {
    */
   public async getPaygiftDjs() {
     const { ctx } = this;
-    const {
-      page = Default_PageNumber,
-      pageSize = Default_PageSize,
-    } = ctx.query;
+    const { offset = Default_Offset, limit = Default_Limit } = ctx.query;
     ctx.body = await ctx.service.dj.getPaygiftDjs({
-      page,
-      pageSize,
+      offset,
+      limit,
     });
   }
 
@@ -91,9 +85,9 @@ export default class ArtistController extends Controller {
    */
   public async getDjToplistHoursProgram() {
     const { ctx } = this;
-    const { pageSize = Default_PageSize } = ctx.query;
+    const { limit = Default_Limit } = ctx.query;
     ctx.body = await ctx.service.dj.getDjToplistHoursProgram({
-      pageSize,
+      limit,
     });
   }
 
@@ -102,13 +96,10 @@ export default class ArtistController extends Controller {
    */
   public async getDjToplistProgram() {
     const { ctx } = this;
-    const {
-      page = Default_PageNumber,
-      pageSize = Default_PageSize,
-    } = ctx.query;
+    const { offset = Default_Offset, limit = Default_Limit } = ctx.query;
     ctx.body = await ctx.service.dj.getDjToplistProgram({
-      page,
-      pageSize,
+      offset,
+      limit,
     });
   }
 
@@ -118,14 +109,10 @@ export default class ArtistController extends Controller {
   public async getDjProgramList() {
     const { ctx } = this;
     const { djId } = ctx.params;
-    const {
-      page = Default_PageNumber,
-      pageSize = Default_PageSize,
-      asc,
-    } = ctx.query;
+    const { offset = Default_Offset, limit = Default_Limit, asc } = ctx.query;
     ctx.body = await ctx.service.dj.getDjProgramList({
-      page,
-      pageSize,
+      offset,
+      limit,
       djId,
       asc,
     });
@@ -137,13 +124,10 @@ export default class ArtistController extends Controller {
   public async getCategoryHotDjs() {
     const { ctx } = this;
     const { categoryId } = ctx.params;
-    const {
-      page = Default_PageNumber,
-      pageSize = Default_PageSize,
-    } = ctx.query;
+    const { offset = Default_Offset, limit = Default_Limit } = ctx.query;
     ctx.body = await ctx.service.dj.getCategoryHotDjs({
-      page,
-      pageSize,
+      offset,
+      limit,
       categoryId,
     });
   }
@@ -181,11 +165,8 @@ export default class ArtistController extends Controller {
    */
   public async getDjSublist() {
     const { ctx } = this;
-    const {
-      page = Default_PageNumber,
-      pageSize = Default_PageSize,
-    } = ctx.query;
-    ctx.body = await ctx.service.dj.getDjSublist({ page, pageSize });
+    const { offset = Default_Offset, limit = Default_Limit } = ctx.query;
+    ctx.body = await ctx.service.dj.getDjSublist({ offset, limit });
   }
 
   /**
@@ -193,8 +174,8 @@ export default class ArtistController extends Controller {
    */
   public async getTodayPerferedDjs() {
     const { ctx } = this;
-    const { page = Default_PageNumber } = ctx.query;
-    ctx.body = await ctx.service.dj.getTodayPerferedDjs({ page });
+    const { offset = Default_Offset } = ctx.query;
+    ctx.body = await ctx.service.dj.getTodayPerferedDjs({ offset });
   }
 
   /**
@@ -202,8 +183,8 @@ export default class ArtistController extends Controller {
    */
   public async getDjHoursToplist() {
     const { ctx } = this;
-    const { pageSize = Default_PageSize } = ctx.query;
-    ctx.body = await ctx.service.dj.getDjHoursToplist({ pageSize });
+    const { limit = Default_Limit } = ctx.query;
+    ctx.body = await ctx.service.dj.getDjHoursToplist({ limit });
   }
 
   /**
@@ -211,11 +192,8 @@ export default class ArtistController extends Controller {
    */
   public async getDjNewcomerToplist() {
     const { ctx } = this;
-    const {
-      page = Default_PageNumber,
-      pageSize = Default_PageSize,
-    } = ctx.query;
-    ctx.body = await ctx.service.dj.getDjNewcomerToplist({ page, pageSize });
+    const { offset = Default_Offset, limit = Default_Limit } = ctx.query;
+    ctx.body = await ctx.service.dj.getDjNewcomerToplist({ offset, limit });
   }
 
   /**
@@ -223,8 +201,8 @@ export default class ArtistController extends Controller {
    */
   public async getDjPayToplist() {
     const { ctx } = this;
-    const { pageSize = Default_PageSize } = ctx.query;
-    ctx.body = await ctx.service.dj.getDjPayToplist({ pageSize });
+    const { limit = Default_Limit } = ctx.query;
+    ctx.body = await ctx.service.dj.getDjPayToplist({ limit });
   }
 
   /**
@@ -232,8 +210,8 @@ export default class ArtistController extends Controller {
    */
   public async getDjPopularToplist() {
     const { ctx } = this;
-    const { pageSize = Default_PageSize } = ctx.query;
-    ctx.body = await ctx.service.dj.getDjPopularToplist({ pageSize });
+    const { limit = Default_Limit } = ctx.query;
+    ctx.body = await ctx.service.dj.getDjPopularToplist({ limit });
   }
 
   /**
@@ -243,10 +221,10 @@ export default class ArtistController extends Controller {
   public async getDjToplist() {
     const { ctx } = this;
     const {
-      page = Default_PageNumber,
-      pageSize = Default_PageSize,
+      offset = Default_Offset,
+      limit = Default_Limit,
       type = 0,
     } = ctx.query;
-    ctx.body = await ctx.service.dj.getDjToplist({ page, pageSize, type });
+    ctx.body = await ctx.service.dj.getDjToplist({ offset, limit, type });
   }
 }

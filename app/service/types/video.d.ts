@@ -1,6 +1,6 @@
 export interface iGetGroupVideos {
   groupId: string;
-  page: number;
+  offset: number;
   resolution: number;
 }
 export interface iVideoId {

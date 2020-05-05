@@ -1,5 +1,5 @@
 import { Controller } from 'egg';
-import { Default_PageNumber, Default_PageSize } from '../utils/common';
+import { Default_Offset, Default_Limit } from '../utils/common';
 
 export default class ArtistController extends Controller {
   /**
@@ -7,11 +7,11 @@ export default class ArtistController extends Controller {
    */
   public async getArtistList() {
     const { ctx } = this;
-    const { categoryCode, page, pageSize, initial } = ctx.query;
+    const { categoryCode, offset, limit, initial } = ctx.query;
     ctx.body = await ctx.service.artist.getArtistList({
       categoryCode,
-      page,
-      pageSize,
+      offset,
+      limit,
       initial,
     });
   }
@@ -43,16 +43,13 @@ export default class ArtistController extends Controller {
    */
   public async getArtistAlbums() {
     const { ctx } = this;
-    const {
-      pageSize = Default_PageSize,
-      page = Default_PageNumber,
-    } = ctx.query;
+    const { limit = Default_Limit, offset = Default_Offset } = ctx.query;
     const { artistId } = ctx.params;
 
     ctx.body = await ctx.service.artist.getArtistAlbums({
       artistId,
-      page,
-      pageSize,
+      offset,
+      limit,
     });
   }
 
@@ -61,16 +58,13 @@ export default class ArtistController extends Controller {
    */
   public async getArtistMv() {
     const { ctx } = this;
-    const {
-      pageSize = Default_PageSize,
-      page = Default_PageNumber,
-    } = ctx.query;
+    const { limit = Default_Limit, offset = Default_Offset } = ctx.query;
     const { artistId } = ctx.params;
 
     ctx.body = await ctx.service.artist.getArtistMv({
       artistId,
-      page,
-      pageSize,
+      offset,
+      limit,
     });
   }
 
@@ -104,14 +98,11 @@ export default class ArtistController extends Controller {
    */
   public async getArtistSublist() {
     const { ctx } = this;
-    const {
-      pageSize = Default_PageSize,
-      page = Default_PageNumber,
-    } = ctx.query;
+    const { limit = Default_Limit, offset = Default_Offset } = ctx.query;
 
     ctx.body = await ctx.service.artist.getArtistSublist({
-      page,
-      pageSize,
+      offset,
+      limit,
     });
   }
 }

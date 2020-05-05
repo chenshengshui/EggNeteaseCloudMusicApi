@@ -1,5 +1,5 @@
 import { Controller } from 'egg';
-import { Default_PageNumber, Default_PageSize } from '../utils/common';
+import { Default_Offset, Default_Limit } from '../utils/common';
 
 export default class ArtistController extends Controller {
   /**
@@ -41,14 +41,11 @@ export default class ArtistController extends Controller {
    */
   public async getAlbumSublist() {
     const { ctx } = this;
-    const {
-      pageSize = Default_PageSize,
-      page = Default_PageNumber,
-    } = ctx.query;
+    const { limit = Default_Limit, offset = Default_Offset } = ctx.query;
 
     ctx.body = await ctx.service.album.getAlbumSublist({
-      page,
-      pageSize,
+      offset,
+      limit,
     });
   }
 

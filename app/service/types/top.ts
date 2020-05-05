@@ -1,7 +1,7 @@
 import { MvArea } from './mv';
 export interface iPageParams {
-  page?: number;
-  pageSize?: number;
+  offset?: number;
+  limit?: number;
 }
 
 export interface iGetTopAlbum extends iPageParams {
@@ -16,7 +16,7 @@ export interface iGetTopMv extends iPageParams {
   area: keyof typeof MvArea;
 }
 
-export interface iGetQualityPlaylist extends Pick<iPageParams, 'pageSize'> {
+export interface iGetQualityPlaylist extends Pick<iPageParams, 'limit'> {
   lasttime: number;
   category: keyof typeof PlayListQualityCat;
 }

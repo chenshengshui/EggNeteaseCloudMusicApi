@@ -1,5 +1,5 @@
 import { Controller } from 'egg';
-import { Default_PageNumber, Default_PageSize } from '../utils/common';
+import { Default_Offset, Default_Limit } from '../utils/common';
 
 export default class ArtistController extends Controller {
   /**
@@ -11,15 +11,15 @@ export default class ArtistController extends Controller {
     const {
       type,
       beforeTime = 0,
-      page = Default_PageNumber,
-      pageSize = Default_PageSize,
+      offset = Default_Offset,
+      limit = Default_Limit,
     } = ctx.query;
     ctx.body = await ctx.service.comment.getResourceComments({
       type,
       resourceId,
       beforeTime,
-      page,
-      pageSize,
+      offset,
+      limit,
     });
   }
 
@@ -32,15 +32,15 @@ export default class ArtistController extends Controller {
     const {
       type,
       beforeTime = 0,
-      page = Default_PageNumber,
-      pageSize = Default_PageSize,
+      offset = Default_Offset,
+      limit = Default_Limit,
     } = ctx.query;
     ctx.body = await ctx.service.comment.getResourceHotComments({
       type,
       resourceId,
       beforeTime,
-      page,
-      pageSize,
+      offset,
+      limit,
     });
   }
 

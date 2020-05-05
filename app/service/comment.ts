@@ -20,8 +20,8 @@ export default class Album extends Service {
     type,
     resourceId,
     beforeTime,
-    page,
-    pageSize,
+    offset,
+    limit,
   }: iGetResourceComments): Promise<any> {
     const { ctx } = this;
 
@@ -37,8 +37,8 @@ export default class Album extends Service {
       `https://music.163.com/weapi/v1/resource/comments/${resouceType}${resourceId}`,
       {
         rid: resourceId,
-        limit: pageSize,
-        offset: page,
+        limit: limit,
+        offset: offset,
         beforeTime,
       },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
@@ -52,8 +52,8 @@ export default class Album extends Service {
     type,
     resourceId,
     beforeTime,
-    page,
-    pageSize,
+    offset,
+    limit,
   }: iGetResourceComments): Promise<any> {
     const { ctx } = this;
 
@@ -65,8 +65,8 @@ export default class Album extends Service {
       `https://music.163.com/weapi/v1/resource/hotcomments/${Comment_Resource_Type[type]}${resourceId}`,
       {
         rid: resourceId,
-        limit: pageSize,
-        offset: page,
+        limit: limit,
+        offset: offset,
         beforeTime,
       },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }

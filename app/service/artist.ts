@@ -18,13 +18,13 @@ export default class Artist extends Service {
    * @description 获取歌手列表
    * @param categoryCode 类别code
    * @param initial 排序规则
-   * @param page
-   * @param pageSize
+   * @param offset
+   * @param limit
    */
   public async getArtistList({
     categoryCode,
-    page,
-    pageSize,
+    offset,
+    limit,
     initial,
   }: iGetArtistList): Promise<any> {
     const { ctx } = this;
@@ -34,8 +34,8 @@ export default class Artist extends Service {
       initial: isNaN(initial as number)
         ? ((initial || '') as string).toUpperCase().charCodeAt(0) || undefined
         : initial,
-      offset: page,
-      limit: pageSize,
+      offset: offset,
+      limit: limit,
       total: true,
     };
     return createRequest(
@@ -83,13 +83,13 @@ export default class Artist extends Service {
   /**
    * @description 获取歌手专辑
    * @param artistId 歌手ID
-   * @param page
-   * @param pageSize
+   * @param offset
+   * @param limit
    */
   public async getArtistAlbums({
     artistId,
-    page,
-    pageSize,
+    offset,
+    limit,
   }: iGetArtistArts): Promise<any> {
     const { ctx } = this;
     const query = ctx.request.query;
@@ -97,8 +97,8 @@ export default class Artist extends Service {
       'POST',
       `https://music.163.com/weapi/artist/albums/${artistId}`,
       {
-        limit: pageSize,
-        offset: page,
+        limit: limit,
+        offset: offset,
         total: true,
       },
       {
@@ -112,13 +112,13 @@ export default class Artist extends Service {
   /**
    * @description 获取歌手MV
    * @param artistId 歌手ID
-   * @param page
-   * @param pageSize
+   * @param offset
+   * @param limit
    */
   public async getArtistMv({
     artistId,
-    page,
-    pageSize,
+    offset,
+    limit,
   }: iGetArtistArts): Promise<any> {
     const { ctx } = this;
     const query = ctx.request.query;
@@ -127,8 +127,8 @@ export default class Artist extends Service {
       `https://music.163.com/weapi/artist/mvs`,
       {
         artistId,
-        limit: pageSize,
-        offset: page,
+        limit: limit,
+        offset: offset,
         total: true,
       },
       {
@@ -185,18 +185,18 @@ export default class Artist extends Service {
 
   /**
    * @description 获取订阅歌手列表
-   * @param page
-   * @param pageSize
+   * @param offset
+   * @param limit
    */
-  public async getArtistSublist({ page, pageSize }: iPageParams) {
+  public async getArtistSublist({ offset, limit }: iPageParams) {
     const { ctx } = this;
     const query = ctx.request.query;
     return createRequest(
       'POST',
       `https://music.163.com/weapi/artist/sublist`,
       {
-        limit: pageSize,
-        offset: page,
+        limit: limit,
+        offset: offset,
         total: true,
       },
       {

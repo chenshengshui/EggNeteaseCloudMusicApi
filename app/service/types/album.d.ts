@@ -12,6 +12,6 @@ export interface iGetAlbumInfo {
 }
 
 export interface iPageParams {
-  page?: number;
-  pageSize?: number;
+  offset?: number;
+  limit?: number;
 }

@@ -1,6 +1,6 @@
 export interface iPageParams {
-  page?: number;
-  pageSize?: number;
+  offset?: number;
+  limit?: number;
 }
 
 export interface iDjId {
@@ -8,7 +8,7 @@ export interface iDjId {
 }
 
 export interface iDjHoursProgram {
-  pageSize?: number;
+  limit?: number;
 }
 
 export interface iGetDjProgramList extends iPageParams {

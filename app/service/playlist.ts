@@ -210,13 +210,13 @@ export default class Playlist extends Service {
   /**
    * @description 更新歌单名
    * @param pid
-   * @param page
-   * @param pageSize
+   * @param offset
+   * @param limit
    */
   public async getPlaylistSubcribers({
     pid,
-    page,
-    pageSize,
+    offset,
+    limit,
   }: iGetPlaylistSubcribers): Promise<any> {
     const { ctx } = this;
     const query: any = ctx.request.query;
@@ -226,8 +226,8 @@ export default class Playlist extends Service {
       `https://music.163.com/weapi/playlist/subscribers`,
       {
         id: pid,
-        limit: pageSize,
-        offset: page,
+        limit: limit,
+        offset: offset,
       },
       {
         crypto: 'weapi',

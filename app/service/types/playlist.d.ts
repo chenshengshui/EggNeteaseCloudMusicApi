@@ -26,8 +26,8 @@ export interface iPostPlaylistSub extends iPid {
 export interface iGetPlaylistSubcribers extends iPid, iPageParams {}
 
 export interface iPageParams {
-  page?: number;
-  pageSize?: number;
+  offset?: number;
+  limit?: number;
 }
 
 export interface iUpdatePlaylistTags extends iPid {

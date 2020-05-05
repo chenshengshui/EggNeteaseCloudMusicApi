@@ -70,10 +70,10 @@ export default class Album extends Service {
 
   /**
    * @description 获取收藏专辑列表
-   * @param page
-   * @param pageSize
+   * @param offset
+   * @param limit
    */
-  public async getAlbumSublist({ page, pageSize }: iPageParams): Promise<any> {
+  public async getAlbumSublist({ offset, limit }: iPageParams): Promise<any> {
     const { ctx } = this;
     const query = ctx.request.query;
 
@@ -81,8 +81,8 @@ export default class Album extends Service {
       'POST',
       `https://music.163.com/weapi/album/sublist`,
       {
-        limit: pageSize,
-        offset: page,
+        limit: limit,
+        offset: offset,
         total: true,
       },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }

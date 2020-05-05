@@ -1,14 +1,14 @@
 export interface iPageParams {
-  page?: number;
-  pageSize?: number;
+  offset?: number;
+  limit?: number;
 }
 
 export interface iGetMvList {
   area?: 0 | 1 | 2 | 3 | 4 | 5;
   type?: 0 | 1 | 2 | 3 | 4;
   order?: 0 | 1 | 2;
-  page?: number;
-  pageSize?: number;
+  offset?: number;
+  limit?: number;
 }
 
 export interface iMvId {
@@ -16,7 +16,7 @@ export interface iMvId {
 }
 
 export interface iGetLatestMv {
-  pageSize: number;
+  limit: number;
   area: 0 | 1 | 2 | 3 | 4 | 5;
 }
 

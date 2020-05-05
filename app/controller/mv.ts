@@ -1,8 +1,8 @@
 import { Controller } from 'egg';
 
 import {
-  Default_PageNumber,
-  Default_PageSize,
+  Default_Offset,
+  Default_Limit,
   Default_MvArea,
   Defult_MvType,
   Default_MvOrder,
@@ -19,16 +19,16 @@ export default class ArtistController extends Controller {
       area = Default_MvArea,
       type = Defult_MvType,
       order = Default_MvOrder,
-      page = Default_PageNumber,
-      pageSize = Default_PageSize,
+      offset = Default_Offset,
+      limit = Default_Limit,
     } = ctx.query;
 
     ctx.body = await ctx.service.mv.getMvList({
       area,
       type,
       order,
-      page,
-      pageSize,
+      offset,
+      limit,
     });
   }
 
@@ -49,14 +49,11 @@ export default class ArtistController extends Controller {
    */
   public async getWyMv() {
     const { ctx } = this;
-    const {
-      page = Default_PageNumber,
-      pageSize = Default_PageSize,
-    } = ctx.query;
+    const { offset = Default_Offset, limit = Default_Limit } = ctx.query;
 
     ctx.body = await ctx.service.mv.getWyMv({
-      page,
-      pageSize,
+      offset,
+      limit,
     });
   }
 
@@ -65,11 +62,11 @@ export default class ArtistController extends Controller {
    */
   public async getLatestMv() {
     const { ctx } = this;
-    const { area = Default_MvArea, pageSize = Default_PageSize } = ctx.query;
+    const { area = Default_MvArea, limit = Default_Limit } = ctx.query;
 
     ctx.body = await ctx.service.mv.getLatestMv({
       area,
-      pageSize,
+      limit,
     });
   }
 
@@ -91,14 +88,11 @@ export default class ArtistController extends Controller {
    */
   public async getMvSublist() {
     const { ctx } = this;
-    const {
-      page = Default_PageNumber,
-      pageSize = Default_PageSize,
-    } = ctx.query;
+    const { offset = Default_Offset, limit = Default_Limit } = ctx.query;
 
     ctx.body = await ctx.service.mv.getMvSublist({
-      page,
-      pageSize,
+      offset,
+      limit,
     });
   }
 

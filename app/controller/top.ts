@@ -1,5 +1,5 @@
 import { Controller } from 'egg';
-import { Default_PageNumber, Default_PageSize } from '../utils/common';
+import { Default_Offset, Default_Limit } from '../utils/common';
 
 export default class ArtistController extends Controller {
   /**
@@ -8,14 +8,14 @@ export default class ArtistController extends Controller {
   public async getTopAlbum() {
     const { ctx } = this;
     const {
-      page = Default_PageNumber,
-      pageSize = Default_PageSize,
+      offset = Default_Offset,
+      limit = Default_Limit,
       area = 'ALL',
     } = ctx.query;
 
     ctx.body = await ctx.service.top.getTopAlbum({
-      page,
-      pageSize,
+      offset,
+      limit,
       area,
     });
   }
@@ -25,14 +25,11 @@ export default class ArtistController extends Controller {
    */
   public async getTopArtist() {
     const { ctx } = this;
-    const {
-      page = Default_PageNumber,
-      pageSize = Default_PageSize,
-    } = ctx.query;
+    const { offset = Default_Offset, limit = Default_Limit } = ctx.query;
 
     ctx.body = await ctx.service.top.getTopArtist({
-      page,
-      pageSize,
+      offset,
+      limit,
     });
   }
 
@@ -53,16 +50,12 @@ export default class ArtistController extends Controller {
    */
   public async getTopMv() {
     const { ctx } = this;
-    const {
-      area,
-      page = Default_PageNumber,
-      pageSize = Default_PageSize,
-    } = ctx.query;
+    const { area, offset = Default_Offset, limit = Default_Limit } = ctx.query;
 
     ctx.body = await ctx.service.top.getTopMv({
       area,
-      page,
-      pageSize,
+      offset,
+      limit,
     });
   }
 
@@ -71,11 +64,11 @@ export default class ArtistController extends Controller {
    */
   public async getQualityPlaylist() {
     const { ctx } = this;
-    const { category, lasttime, pageSize = Default_PageSize } = ctx.query;
+    const { category, lasttime, limit = Default_Limit } = ctx.query;
 
     ctx.body = await ctx.service.top.getQualityPlaylist({
       category,
-      pageSize,
+      limit,
       lasttime,
     });
   }
@@ -88,14 +81,14 @@ export default class ArtistController extends Controller {
     const {
       category,
       order,
-      page = Default_PageNumber,
-      pageSize = Default_PageSize,
+      offset = Default_Offset,
+      limit = Default_Limit,
     } = ctx.query;
 
     ctx.body = await ctx.service.top.getTopPlaylist({
       category,
-      page,
-      pageSize,
+      offset,
+      limit,
       order,
     });
   }

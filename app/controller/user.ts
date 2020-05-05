@@ -1,6 +1,6 @@
 import { Controller } from 'egg';
 
-import { Default_PageNumber, Default_PageSize } from '../utils/common';
+import { Default_Offset, Default_Limit } from '../utils/common';
 
 export default class UserController extends Controller {
   /**
@@ -44,14 +44,11 @@ export default class UserController extends Controller {
    */
   public async getCloudMusics() {
     const { ctx } = this;
-    const {
-      page = Default_PageNumber,
-      pageSize = Default_PageSize,
-    } = ctx.query;
+    const { offset = Default_Offset, limit = Default_Limit } = ctx.query;
 
     ctx.body = await ctx.service.user.getCloudMusics({
-      page,
-      pageSize,
+      offset,
+      limit,
     });
   }
 
@@ -83,10 +80,10 @@ export default class UserController extends Controller {
   public async getUserEvent() {
     const { ctx } = this;
     const uid = ctx.cookies.get('userId');
-    const { lasttime = -1, pageSize = Default_PageSize } = ctx.query;
+    const { lasttime = -1, limit = Default_Limit } = ctx.query;
     ctx.body = await ctx.service.user.getUserEvent({
       uid,
-      pageSize,
+      limit,
       lasttime,
     });
   }
@@ -97,10 +94,10 @@ export default class UserController extends Controller {
   public async getUserFolloweds() {
     const { ctx } = this;
     const uid = ctx.cookies.get('userId');
-    const { lasttime = -1, pageSize = Default_PageSize } = ctx.query;
+    const { lasttime = -1, limit = Default_Limit } = ctx.query;
     ctx.body = await ctx.service.user.getUserFolloweds({
       uid,
-      pageSize,
+      limit,
       lasttime,
     });
   }
@@ -111,14 +108,11 @@ export default class UserController extends Controller {
   public async getUserFollows() {
     const { ctx } = this;
     const uid = ctx.cookies.get('userId');
-    const {
-      page = Default_PageNumber,
-      pageSize = Default_PageSize,
-    } = ctx.query;
+    const { offset = Default_Offset, limit = Default_Limit } = ctx.query;
     ctx.body = await ctx.service.user.getUserFollows({
       uid,
-      page,
-      pageSize,
+      offset,
+      limit,
     });
   }
 
@@ -128,14 +122,11 @@ export default class UserController extends Controller {
   public async getUserPlaylist() {
     const { ctx } = this;
     const uid = ctx.cookies.get('userId');
-    const {
-      page = Default_PageNumber,
-      pageSize = Default_PageSize,
-    } = ctx.query;
+    const { offset = Default_Offset, limit = Default_Limit } = ctx.query;
     ctx.body = await ctx.service.user.getUserPlaylist({
       uid,
-      page,
-      pageSize,
+      offset,
+      limit,
     });
   }
 
@@ -229,7 +220,7 @@ export default class UserController extends Controller {
    */
   public async getUserRecPlaylist() {
     const { ctx } = this;
-    const { pageSize = Default_PageSize } = ctx.query;
-    ctx.body = await ctx.service.user.getUserRecPlaylist({ pageSize });
+    const { limit = Default_Limit } = ctx.query;
+    ctx.body = await ctx.service.user.getUserRecPlaylist({ limit });
   }
 }

@@ -1,5 +1,5 @@
 import { Controller } from 'egg';
-import { Default_PageNumber, Default_Resolution } from '../utils/common';
+import { Default_Offset, Default_Resolution } from '../utils/common';
 
 export default class VideoController extends Controller {
   /**
@@ -28,13 +28,13 @@ export default class VideoController extends Controller {
     const { ctx } = this;
     const {
       groupId,
-      page = Default_PageNumber,
+      offset = Default_Offset,
       resolution = Default_Resolution,
     } = ctx.query;
 
     ctx.body = await ctx.service.video.getVideoGroupVideos({
       groupId,
-      page,
+      offset,
       resolution,
     });
   }

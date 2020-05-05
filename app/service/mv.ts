@@ -23,15 +23,15 @@ export default class Mv extends Service {
    * @param area
    * @param type
    * @param order
-   * @param page
-   * @param pageSize
+   * @param offset
+   * @param limit
    */
   public async getMvList({
     area = 0,
     type = 0,
     order = 1,
-    page,
-    pageSize,
+    offset,
+    limit,
   }: iGetMvList): Promise<any> {
     const { ctx } = this;
     const query = ctx.request.query;
@@ -45,8 +45,8 @@ export default class Mv extends Service {
           类型: MvType[type],
           排序: MvOrder[order],
         }),
-        offset: page,
-        limit: pageSize,
+        offset: offset,
+        limit: limit,
         total: 'true',
       },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
@@ -73,10 +73,10 @@ export default class Mv extends Service {
 
   /**
    * @description 获取网易出品mv
-   * @param page
-   * @param pageSize
+   * @param offset
+   * @param limit
    */
-  public async getWyMv({ page, pageSize }: iPageParams): Promise<any> {
+  public async getWyMv({ offset, limit }: iPageParams): Promise<any> {
     const { ctx } = this;
     const query = ctx.request.query;
 
@@ -84,8 +84,8 @@ export default class Mv extends Service {
       'POST',
       `https://interface.music.163.com/api/mv/exclusive/rcmd`,
       {
-        offset: page,
-        limit: pageSize,
+        offset: offset,
+        limit: limit,
       },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
     );
@@ -93,10 +93,10 @@ export default class Mv extends Service {
 
   /**
    * @description 获取网易出品mv
-   * @param page
-   * @param pageSize
+   * @param offset
+   * @param limit
    */
-  public async getLatestMv({ area = 0, pageSize }: iGetLatestMv): Promise<any> {
+  public async getLatestMv({ area = 0, limit }: iGetLatestMv): Promise<any> {
     const { ctx } = this;
     const query = ctx.request.query;
 
@@ -105,7 +105,7 @@ export default class Mv extends Service {
       `https://interface.music.163.com/weapi/mv/first`,
       {
         area: area === 0 ? '' : MvArea[area],
-        limit: pageSize,
+        limit: limit,
         total: true,
       },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
@@ -134,10 +134,10 @@ export default class Mv extends Service {
 
   /**
    * @description 获取mv收藏列表
-   * @param page
-   * @param pageSize
+   * @param offset
+   * @param limit
    */
-  public async getMvSublist({ page, pageSize }: iPageParams): Promise<any> {
+  public async getMvSublist({ offset, limit }: iPageParams): Promise<any> {
     const { ctx } = this;
     const query = ctx.request.query;
 
@@ -145,8 +145,8 @@ export default class Mv extends Service {
       'POST',
       `https://music.163.com/weapi/cloudvideo/allvideo/sublist`,
       {
-        offset: page,
-        limit: pageSize,
+        offset: offset,
+        limit: limit,
         total: true,
       },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }

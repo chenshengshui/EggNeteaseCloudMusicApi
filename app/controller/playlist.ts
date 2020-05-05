@@ -1,6 +1,6 @@
 import { Controller } from 'egg';
 
-import { Default_PageNumber, Default_PageSize } from '../utils/common';
+import { Default_Offset, Default_Limit } from '../utils/common';
 
 export default class ArtistController extends Controller {
   /**
@@ -96,14 +96,11 @@ export default class ArtistController extends Controller {
   public async getPlaylistSubcribers() {
     const { ctx } = this;
     const { pid } = ctx.params;
-    const {
-      page = Default_PageNumber,
-      pageSize = Default_PageSize,
-    } = ctx.request.body;
+    const { offset = Default_Offset, limit = Default_Limit } = ctx.request.body;
     ctx.body = await ctx.service.playlist.getPlaylistSubcribers({
       pid,
-      page,
-      pageSize,
+      offset,
+      limit,
     });
   }
 

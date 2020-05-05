@@ -84,15 +84,15 @@ export default class User extends Service {
    * @description 获取云盘音乐列表
    * @param param0
    */
-  public async getCloudMusics({ page, pageSize }: iPageParams): Promise<any> {
+  public async getCloudMusics({ offset, limit }: iPageParams): Promise<any> {
     const { ctx } = this;
     const query = ctx.request.query;
     return createRequest(
       'POST',
       `https://music.163.com/weapi/v1/cloud/get`,
       {
-        offset: page,
-        limit: pageSize,
+        offset: offset,
+        limit: limit,
       },
       {
         crypto: 'weapi',
@@ -144,12 +144,12 @@ export default class User extends Service {
    * @description 获取用户动态
    * @param uid
    * @param lasttime 时间戳，获取下一页数据，传入返回的lasttime
-   * @param pageSize 分页大小
+   * @param limit 分页大小
    */
   public async getUserEvent({
     uid,
     lasttime,
-    pageSize,
+    limit,
   }: iGetUserEvent): Promise<any> {
     const { ctx } = this;
     const query = ctx.request.query;
@@ -159,7 +159,7 @@ export default class User extends Service {
       {
         getcounts: true,
         time: lasttime,
-        limit: pageSize,
+        limit: limit,
         total: false,
       },
       {
@@ -174,12 +174,12 @@ export default class User extends Service {
    * @description 获取用户粉丝
    * @param uid
    * @param lasttime 时间戳，获取下一页数据，传入返回的lasttime
-   * @param pageSize 分页大小
+   * @param limit 分页大小
    */
   public async getUserFolloweds({
     uid,
     lasttime,
-    pageSize,
+    limit,
   }: iGetUserEvent): Promise<any> {
     const { ctx } = this;
     const query = ctx.request.query;
@@ -189,7 +189,7 @@ export default class User extends Service {
       {
         userId: uid,
         time: lasttime,
-        limit: pageSize,
+        limit: limit,
       },
       {
         crypto: 'eapi',
@@ -204,12 +204,12 @@ export default class User extends Service {
    * @description 获取用户关注者
    * @param uid
    * @param lasttime 时间戳，获取下一页数据，传入返回的lasttime
-   * @param pageSize 分页大小
+   * @param limit 分页大小
    */
   public async getUserFollows({
     uid,
-    page,
-    pageSize,
+    offset,
+    limit,
   }: iGetUserFollows): Promise<any> {
     const { ctx } = this;
     const query = ctx.request.query;
@@ -217,8 +217,8 @@ export default class User extends Service {
       'POST',
       `https://music.163.com/weapi/user/getfollows/${uid}`,
       {
-        offset: page,
-        limit: pageSize,
+        offset: offset,
+        limit: limit,
         order: true,
       },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
@@ -228,13 +228,13 @@ export default class User extends Service {
   /**
    * @description 获取用户播放列表
    * @param uid
-   * @param page
-   * @param pageSize
+   * @param offset
+   * @param limit
    */
   public async getUserPlaylist({
     uid,
-    page,
-    pageSize,
+    offset,
+    limit,
   }: iGetUserFollows): Promise<any> {
     const { ctx } = this;
     const query = ctx.request.query;
@@ -242,8 +242,8 @@ export default class User extends Service {
       'POST',
       `https://music.163.com/weapi/user/playlist`,
       {
-        offset: page,
-        limit: pageSize,
+        offset: offset,
+        limit: limit,
         uid: uid,
       },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
@@ -435,14 +435,14 @@ export default class User extends Service {
   /**
    * @description 推荐歌单
    */
-  public async getUserRecPlaylist({ pageSize }: iPageParams) {
+  public async getUserRecPlaylist({ limit }: iPageParams) {
     const { ctx } = this;
     const query = ctx.request.query;
     return createRequest(
       'POST',
       `https://music.163.com/weapi/personalized/playlist`,
       {
-        limit: pageSize,
+        limit: limit,
         total: true,
         n: 1000,
       },

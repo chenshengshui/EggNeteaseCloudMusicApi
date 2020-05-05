@@ -53,12 +53,12 @@ export default class Video extends Service {
   /**
    * @description 获取视频分组下视频
    * @param groupId
-   * @param pageSize
+   * @param limit
    * @param resolution
    */
   public async getVideoGroupVideos({
     groupId,
-    page,
+    offset,
     resolution,
   }: iGetGroupVideos): Promise<any> {
     const { ctx } = this;
@@ -68,7 +68,7 @@ export default class Video extends Service {
       'https://music.163.com/weapi/videotimeline/videogroup/get',
       {
         groupId,
-        offset: page,
+        offset: offset,
         resolution,
         needUrl: true,
       },

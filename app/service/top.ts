@@ -20,13 +20,13 @@ import {
 export default class Top extends Service {
   /**
    * @description 获取最新专辑
-   * @param page
-   * @param pageSize
+   * @param offset
+   * @param limit
    * @param area
    */
   public async getTopAlbum({
-    page,
-    pageSize,
+    offset,
+    limit,
     area = AlbumArea['ALL'],
   }: iGetTopAlbum): Promise<any> {
     const { ctx } = this;
@@ -36,8 +36,8 @@ export default class Top extends Service {
       'POST',
       `https://music.163.com/weapi/album/new`,
       {
-        offset: page,
-        limit: pageSize,
+        offset: offset,
+        limit: limit,
         area,
         total: true,
       },
@@ -47,10 +47,10 @@ export default class Top extends Service {
 
   /**
    * @description 获取最新专辑
-   * @param page
-   * @param pageSize
+   * @param offset
+   * @param limit
    */
-  public async getTopArtist({ page, pageSize }: iPageParams): Promise<any> {
+  public async getTopArtist({ offset, limit }: iPageParams): Promise<any> {
     const { ctx } = this;
     const query = ctx.request.query;
 
@@ -58,8 +58,8 @@ export default class Top extends Service {
       'POST',
       `https://music.163.com/weapi/artist/top`,
       {
-        offset: page,
-        limit: pageSize,
+        offset: offset,
+        limit: limit,
         total: true,
       },
       { crypto: 'weapi', cookie: query.cookie, proxy: query.proxy }
@@ -87,11 +87,11 @@ export default class Top extends Service {
 
   /**
    * @description 获取MV排行榜
-   * @param page
-   * @param pageSize
+   * @param offset
+   * @param limit
    * @param area
    */
-  public async getTopMv({ page, pageSize, area }: iGetTopMv): Promise<any> {
+  public async getTopMv({ offset, limit, area }: iGetTopMv): Promise<any> {
     const { ctx } = this;
     const query = ctx.request.query;
 
@@ -99,8 +99,8 @@ export default class Top extends Service {
       'POST',
       `https://music.163.com/weapi/mv/toplist`,
       {
-        offset: page,
-        limit: pageSize,
+        offset: offset,
+        limit: limit,
         area,
         total: true,
       },
@@ -110,13 +110,13 @@ export default class Top extends Service {
 
   /**
    * @description 获取MV排行榜
-   * @param page
-   * @param pageSize
+   * @param offset
+   * @param limit
    * @param area
    */
   public async getQualityPlaylist({
     lasttime,
-    pageSize,
+    limit,
     category,
   }: iGetQualityPlaylist): Promise<any> {
     const { ctx } = this;
@@ -127,7 +127,7 @@ export default class Top extends Service {
       `https://music.163.com/weapi/playlist/highquality/list`,
       {
         cat: category,
-        limit: pageSize,
+        limit: limit,
         lasttime,
         total: true,
       },
@@ -138,14 +138,14 @@ export default class Top extends Service {
   /**
    * @description 获取歌单排行榜
    * @param category
-   * @param page
-   * @param pageSize
+   * @param offset
+   * @param limit
    * @param order
    */
   public async getTopPlaylist({
     category,
-    page,
-    pageSize,
+    offset,
+    limit,
     order,
   }: iGetTopPlaylist): Promise<any> {
     const { ctx } = this;
@@ -156,8 +156,8 @@ export default class Top extends Service {
       `https://music.163.com/weapi/playlist/list`,
       {
         cat: category,
-        offset: page,
-        limit: pageSize,
+        offset: offset,
+        limit: limit,
         order,
         total: true,
       },
